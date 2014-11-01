@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "TimKiemSach";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div id="contenttop"></div>
+<div id="sidebar">
+
+    <h2>Categories</h2>
+    <ul>
+        <li> @Html.ActionLink("Thống kê độc giả", "Index", "Home")</li>
+        <li> @Html.ActionLink("Danh Sách Sách Đặt", "DanhSachSachDat", "Home")</li>
+        <li> @Html.ActionLink("Chỉnh sửa đặt mượn", "ChinhSuaDatMuon", "Home") </li>
+        <li> @Html.ActionLink("Gia hạn mượn", "GiaHanMuonSach", "Home") </li>
+        <li> @Html.ActionLink("Tìm kiếm sách", "TimKiemSach", "Home") </li>
+    </ul>
+
+</div>
+<div id="left">
+    <form role="form" style="padding: 10px">
+        <div class="form-group" style="margin-bottom:10px">
+            <label for="inputPassword3" class="col-sm-2 control-label">Tên sách: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPassword3" placeholder="Tên sách">
+            </div>
+        </div><br /><br />
+        <div class="form-group" style="margin-bottom:10px">
+            <label for="inputPassword3" class="col-sm-2 control-label">Tác giả: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPassword3" placeholder="Tác giả">
+            </div>
+        </div><br /><br />
+        <div class="form-group" style="margin-bottom:10px">
+            <label for="inputPassword3" class="col-sm-2 control-label">Loại: </label>
+            <div class="col-sm-10">
+                <select class="form-control" style="margin-bottom: 10px">
+                    <option> Sách Tham Khảo </option>
+                    <option> Tạp Chí </option>
+                    <option> Từ Điển </option>
+                    <option> Luận Văn </option>
+                </select>
+            </div>
+        </div><br /><br />
+        <div class="form-group" style="margin-bottom:10px">
+            <label for="inputPassword3" class="col-sm-2 control-label">Chủ đề: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="ChuDe" value="Khoa học và kĩ thuật">
+            </div>
+        </div><br /><br />
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Tìm kiếm</button>
+            </div>
+        </div><br><br>
+    </form>
+
+    <p>
+        <table class="table table-bordered" style="align-items:center">
+            <tr>
+                <th> STT </th>
+                <th> Tên Sách </th>
+                <th> Tác Giả </th>
+                <th> Số Lượng Hiện Tại </th>
+                <th> chi tiết </th>
+                <th> Đặt sách </th>
+            </tr>
+            <tr>
+                <td> 1 </td>
+                <td> Cơ Sở Dữ Liệu </td>
+                <td>  Trần Đan Thư </td>
+                <td> 15 </td>
+                <td> <a href=""> chi tiết </a></td>
+                <td><input type="checkbox"> </td>
+            </tr>
+            <tr>
+                <td> 2 </td>
+                <td> Kỹ Thuật Lập Trình </td>
+                <td> Nguyễn Thanh Phương </td>
+                <td> 20 </td>
+                <td> <a href="">  chi tiết </a></td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td> 3 </td>
+                <td>  Cấu trúc dữ liệu và giải thuật </td>
+                <td>  H. V. M</td>
+                <td> 10 </td>
+                <td> <a href="">  chi tiết </a></td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td> 4 </td>
+                <td> An Ninh Mạng </td>
+                <td> H. Q. H </td>
+                <td> 52</td>
+                <td> <a href="">  chi tiết </a></td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td> 5 </td>
+                <td> Lập Trình Hướng Đối Tượng </td>
+                <td> N. T. T. M. Kh </td>
+                <td> 21 </td>
+                <td> <a href="">  chi tiết </a></td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
+
+        <ul class="pagination" style="margin-bottom:2px">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+        <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-2">
+                <button type="submit" class="btn btn-default">Đặt Sách</button>
+            </div>
+        </div> <br /> <br />
+        <table class="table table-bordered" style="margin-top:45px">
+            <tr>
+                <th> STT </th>
+                <th> Tên Sách </th>
+                <th> Tác Giả </th>
+                <th> Loại </th>
+                <th> Hủy </th>
+                <th> Ngày mượn </th>
+            </tr>
+            <tr>
+                <td> 1 </td>
+                <td> Cơ Sở Dữ Liệu </td>
+                <td>  Trần Đan Thư </td>
+                <td> Tham khảo </td>
+                <td> <a href=""> Hủy</a></td>
+                <td><input type="date"> </td>
+            </tr>
+            <tr>
+                <td> 1 </td>
+                <td> Cơ Sở Dữ Liệu </td>
+                <td>  Trần Đan Thư </td>
+                <td> Tham Khảo </td>
+                <td> <a href=""> hủy </a></td>
+                <td>
+                    <input type="date">
+                </td>
+            </tr>
+        </table>
+        <div class="form-group" style="text-align:right">
+            <button type="button" class="btn btn-danger "> Lưu </button>
+            <button type="button" class="btn btn-success">Thoát </button>
+
+        </div>
+</div>
+<div class="clear">
+</div>

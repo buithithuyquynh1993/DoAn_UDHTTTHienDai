@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "GiaHanDatMuon";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "ChinhSuaDatMuon";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div id="contenttop"></div>
+<div id="sidebar">
+
+    <h2>Categories</h2>
+    <ul>
+        <li> @Html.ActionLink("Thống kê độc giả", "Index", "Home")</li>
+        <li> @Html.ActionLink("Danh Sách Sách Đặt", "DanhSachSachDat", "Home")</li>
+        <li> @Html.ActionLink("Chỉnh sửa đặt mượn", "ChinhSuaDatMuon", "Home") </li>
+        <li> @Html.ActionLink("Gia hạn mượn", "GiaHanMuonSach", "Home") </li>
+        <li> @Html.ActionLink("Tìm kiếm sách", "TimKiemSach", "Home") </li>
+    </ul>
+
+</div>
+<div id="left">
+    <p>
+        <table class="table table-bordered" style="margin-top:45px">
+            <tr>
+                <th> STT </th>
+                <th> Tên Sách </th>
+                <th> Tác Giả </th>
+                <th> Loại </th>
+                <th> Ngày mượn </th>
+                <th>  Ngày trả </th>
+                <th>  Gia hạn </th>
+            </tr>
+            <tr>
+                <td> 1 </td>
+                <td> Cơ Sở Dữ Liệu </td>
+                <td>  Trần Đan Thư </td>
+                <td> Tham khảo </td>
+                <td> 15/10/2014</td>
+                <td> 22/10/2014</td>
+                <td><input type="checkbox"> </td>
+            </tr>
+            <tr>
+                <td> 1 </td>
+                <td> Kỹ Thuật Lập Trình </td>
+                <td>  Nguyễn Thanh Phương </td>
+                <td> Tham khảo </td>
+                <td> 15/10/2014</td>
+                <td> 22/10/2014</td>
+                <td><input type="checkbox"> </td>
+            </tr>
+        </table>
+        <div class="form-group">
+                <button type="submit" class="btn btn-danger">Lưu</button>
+                <button type="submit" class="btn btn-success">Thoát </button>
+        </div>
+    </p>
+</div>
+<div class="clear">
+</div>
+
+
