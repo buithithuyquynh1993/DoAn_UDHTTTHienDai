@@ -7,7 +7,7 @@ using QuanLiThuVien.Models;
 
 namespace QuanLiThuVien.Controllers
 {
-    public class SachController : Controller
+    public class BookController : Controller
     {
         //
         // GET: /Sach/
