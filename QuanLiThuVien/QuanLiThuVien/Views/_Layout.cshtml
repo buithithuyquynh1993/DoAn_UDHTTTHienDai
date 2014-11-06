@@ -5,19 +5,19 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>Travel - Free Template - HTML5 Responsive</title>
+        <title>Services Page - Travel by templatemo</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 		<meta name="author" content="templatemo">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
         
-        <link rel="stylesheet" href=@Url.Content"css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/templatemo_misc.css">
-        <link rel="stylesheet" href="css/templatemo_style.css">
+        <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")">
+        <link rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome.css")">
+        <link rel="stylesheet" href="@Url.Content("~/Content/css/animate.css")">
+        <link rel="stylesheet" href="@Url.Content("~/Content/css/templatemo_misc.css")">
+        <link rel="stylesheet" href="@Url.Content("~/Content/css/templatemo_style.css")">
 
-        <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js")"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -28,21 +28,20 @@
 
         <div class="site-header">
             <div class="container">
-                @RenderBody()
-                @*<div class="main-header">
+                <div class="main-header">
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-xs-10">
                             <div class="logo">
                                 <a rel="nofollow" href="http://www.templatemo.com/preview/templatemo_409_travel">
-                                    <img src="images/logo.png" alt="travel html5 website template - templatemo" title="travel - free html5 template">
+                                    <img src="@Url.Content("~/Content/images/logo.png")" alt="travel html5 website template - templatemo" title="travel - free html5 template">
                                 </a>
                             </div> <!-- /.logo -->
                         </div> <!-- /.col-md-4 -->
                         <div class="col-md-8 col-sm-6 col-xs-2">
                             <div class="main-menu">
                                 <ul class="visible-lg visible-md">
-                                    <li class="active"><a href="index.html">Home</a></li>
-                                    <li><a href="services.html">Services</a></li>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li class="active"><a href="services.html">Services</a></li>
                                     <li><a href="events.html">Events</a></li>
                                     <li><a href="about.html">About Us</a></li>
                                     <li><a href="contact.html">Contact</a></li>
@@ -53,13 +52,13 @@
                             </div> <!-- /.main-menu -->
                         </div> <!-- /.col-md-8 -->
                     </div> <!-- /.row -->
-                </div> *@<!-- /.main-header -->
+                </div> <!-- /.main-header -->
                 <div class="row">
                     <div class="col-md-12 visible-sm visible-xs">
                         <div class="menu-responsive">
                             <ul>
-                                <li class="active"><a href="index.html">Home</a></li>
-                                <li><a href="services.html">Services</a></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active"><a href="services.html">Services</a></li>
                                 <li><a href="events.html">Events</a></li>
                                 <li><a href="about.html">About Us</a></li>
                                 <li><a href="contact.html">Contact</a></li>
@@ -70,189 +69,51 @@
             </div> <!-- /.container -->
         </div> <!-- /.site-header -->
 
+        <div class="page-top" id="templatemo_services">
+        </div> <!-- /.page-header -->
 
-        <div class="flexslider">
-            <ul class="slides">
-                <li>
-                    <div class="overlay"></div>
-                    <img src="images/templatemo_slide_1.jpg" alt="Special 1">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5 col-lg-4">
-                                <div class="flex-caption visible-lg">
-                                    <span class="price">$8,450</span>
-                                    <h3 class="title">Venice, Italy</h3>
-                                    <p>Travel is <a rel="nofollow" href="http://www.templatemo.com">free template</a> by templatemo. <br>
-										All images used in this template are from 
-                            			<a rel="nofollow" href="http://unsplash.com">Unsplash</a>.</p>
-                                    <a href="#" class="slider-btn">Pre-booking</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="overlay"></div>
-                    <img src="images/templatemo_slide_2.jpg" alt="Special 2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5 col-lg-4">
-                                <div class="flex-caption visible-lg">
-                                    <span class="price">$12,380</span>
-                                    <h3 class="title">Bercelona, Spain</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum nibh sit amet felis mattis, eu convallis risus egestas.</p>
-                                    <a href="#" class="slider-btn">Reserve Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="overlay"></div>
-                    <img src="images/templatemo_slide_3.jpg" alt="Special 3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5 col-lg-4">
-                                <div class="flex-caption visible-lg">
-                                    <span class="price">$21,640</span>
-                                    <h3 class="title">Basel, Switzerland</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum nibh sit amet felis mattis, eu convallis risus egestas.</p>
-                                    <a href="#" class="slider-btn">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div> <!-- /.flexslider -->
-
-        
-        
-        <div class="container">
-            <div class="row">
-                <div class="our-listing owl-carousel">
-                    <div class="list-item">
-                        <div class="list-thumb">
-                            <div class="title">
-                                <h4>Italy</h4>
-                            </div>
-                            <img src="images/destination_1.jpg" alt="destination 1">
-                        </div> <!-- /.list-thumb -->
-                        <div class="list-content">
-                            <h5>Rome, Milan, Naples</h5>
-                            <span>SILVER HOTEL, 4 NIGHTS, 5 STARS</span>
-                            <a href="#" class="price-btn">$1,800 Book Now</a>
-                        </div> <!-- /.list-content -->
-                    </div> <!-- /.list-item -->
-                    <div class="list-item">
-                        <div class="list-thumb">
-                            <div class="title">
-                                <h4>France</h4>
-                            </div>
-                            <img src="images/destination_2.jpg" alt="destination 2">
-                        </div> <!-- /.list-thumb -->
-                        <div class="list-content">
-                            <h5>Paris, Marseille, Lyon</h5>
-                            <span>NEW PALACE, 5 NIGHTS, 5 STARS</span>
-                            <a href="#" class="price-btn">$2,300 Book Now</a>
-                        </div> <!-- /.list-content -->
-                    </div> <!-- /.list-item -->
-                    <div class="list-item">
-                        <div class="list-thumb">
-                            <div class="title">
-                                <h4>Germany</h4>
-                            </div>
-                            <img src="images/destination_3.jpg" alt="destination 3">
-                        </div> <!-- /.list-thumb -->
-                        <div class="list-content">
-                            <h5>Berlin, Hamburg, Munich</h5>
-                            <span>LUXE HOTEL, 5 NIGHTS, 6 STARS</span>
-                            <a href="#" class="price-btn">$3,100 Book Now</a>
-                        </div> <!-- /.list-content -->
-                    </div> <!-- /.list-item -->
-                    <div class="list-item">
-                        <div class="list-thumb">
-                            <div class="title">
-                                <h4>Spain</h4>
-                            </div>
-                            <img src="images/destination_4.jpg" alt="destination 4">
-                        </div> <!-- /.list-thumb -->
-                        <div class="list-content">
-                            <h5>Madrid, Bercelona, Valencia</h5>
-                            <span>GOOD HOTEL, 4 NIGHTS, 6 STARS</span>
-                            <a href="#" class="price-btn">$4,800 Book Now</a>
-                        </div> <!-- /.list-content -->
-                    </div> <!-- /.list-item -->
-                    <div class="list-item">
-                        <div class="list-thumb">
-                            <div class="title">
-                                <h4>Netherlands</h4>
-                            </div>
-                            <img src="images/destination_5.jpg" alt="destination 5">
-                        </div> <!-- /.list-thumb -->
-                        <div class="list-content">
-                            <h5>Amsterdam, Delft, The Hague</h5>
-                            <span>BEST HOTEL, 6 NIGHTS, 7 STARS</span>
-                            <a href="#" class="price-btn">$5,600 Book Now</a>
-                        </div> <!-- /.list-content -->
-                    </div> <!-- /.list-item -->
-                    <div class="list-item">
-                        <div class="list-thumb">
-                            <div class="title">
-                                <h4>Switzerland</h4>
-                            </div>
-                            <img src="images/destination_6.jpg" alt="destination 6">
-                        </div> <!-- /.list-thumb -->
-                        <div class="list-content">
-                            <h5>Zürich, Geneva, Basel</h5>
-                            <span>NEW HOTEL, 7 NIGHTS, 7 STARS</span>
-                            <a href="#" class="price-btn">$6,300 Book Now</a>
-                        </div> <!-- /.list-content -->
-                    </div> <!-- /.list-item -->
-                </div> <!-- /.our-listing -->
-            </div> <!-- /.row -->
-        </div> <!-- /.container -->
-
-		<div class="middle-content"></div>
+        <div class="middle-content">
+            @RenderBody()
+        </div> <!-- /.middle-content -->
 
         <div class="partner-list">
             <div class="container">
                 <div class="row">
                     <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="partner-item">
-                            <img src="images/partners/partner1.png" alt="">
+                            <img src="@Url.Content("~/Content/images/partners/partner1.png")" alt="">
                         </div> <!-- /.partner-item -->
                     </div> <!-- /.col-md-2 -->
                     <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="partner-item">
-                            <img src="images/partners/partner2.png" alt="">
+                            <img src="@Url.Content("~/Content/images/partners/partner2.png")" alt="">
                         </div> <!-- /.partner-item -->
                     </div> <!-- /.col-md-2 -->
                     <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="partner-item">
-                            <img src="images/partners/partner3.png" alt="">
+                            <img src="@Url.Content("~/Content/images/partners/partner3.png")" alt="">
                         </div> <!-- /.partner-item -->
                     </div> <!-- /.col-md-2 -->
                     <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="partner-item">
-                            <img src="images/partners/partner1.png" alt="">
+                            <img src="@Url.Content("~/Content/images/partners/partner1.png")" alt="">
                         </div> <!-- /.partner-item -->
                     </div> <!-- /.col-md-2 -->
                     <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="partner-item">
-                            <img src="images/partners/partner2.png" alt="">
+                            <img src="@Url.Content("~/Content/images/partners/partner2.png")" alt="">
                         </div> <!-- /.partner-item -->
                     </div> <!-- /.col-md-2 -->
                     <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="partner-item last">
-                            <img src="images/partners/partner3.png" alt="">
+                            <img src="@Url.Content("~/Content/images/partners/partner3.png")" alt="">
                         </div> <!-- /.partner-item -->
                     </div> <!-- /.col-md-2 -->
                 </div> <!-- /.row -->
             </div> <!-- /.container -->
         </div> <!-- /.partner-list -->
 
-		
+
 
         <div class="site-footer">
             <div class="container">
@@ -260,7 +121,7 @@
                     <div class="col-md-4 col-sm-4">
                         <div class="footer-logo">
                             <a href="index.html">
-                                <img src="images/logo.png" alt="">
+                                <img src="@Url.Content("~/Content/images/logo.png")" alt="">
                             </a>
                         </div>
                     </div> <!-- /.col-md-4 -->
@@ -282,63 +143,37 @@
             </div> <!-- /.container -->
         </div> <!-- /.site-footer -->
 
-        <script src="js/vendor/jquery-1.11.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="@Url.Content("~/Content/js/vendor/jquery-1.11.0.min.js")"></script>
+        <script>window.jQuery || document.write('<script src="@Url.Content("~/Content/js/vendor/jquery-1.11.0.min.js")"><\/script>')</script>
+        <script src="@Url.Content("~/Content/js/bootstrap.js")"></script>
+        <script src="@Url.Content("~/Content/js/plugins.js")"></script>
+        <script src="@Url.Content("~/Content/js/main.js")"></script>
+        
+        <!-- Google Map -->
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script src="@Url.Content("~/js/vendor/jquery.gmap3.min.js")"></script>
+        
+        <!-- Google Map Init-->
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $('.first-map').gmap3({
+                    marker: {
+                        address: '16.8496189,96.1288854'
+                    },
+                    map: {
+                        options: {
+                            zoom: 16,
+                            scrollwheel: false,
+                            streetViewControl: true
+                        }
+                    }
+                });
+            });
+        </script>
         <!-- templatemo 409 travel -->
 <!-- 
 Travel Template 
 http://www.templatemo.com/preview/templatemo_409_travel 
 -->
-        
     </body>
 </html>
-
-
-@*<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Colors 3 - A free CSS Template by Rambling Soul</title>
-    <meta name="keywords" content="Free, CSS, Template, Downloads" />
-    <meta name="Author" content="Roshan, Ramblingsoul.com" />
-    <meta name="Credits" content="Designed by Roshan, RamblingSoul.com" />
-    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
-    <link href="/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <div id="wrap">
-        <div id="header">
-            <div class="topmenu">
-               
-            </div>
-            <h1 class="logo">
-                <a title="Good Morning World!" href="#">Good Morning World!</a>
-                <span>Website Caption goes here</span>
-            </h1>
-        </div>
-        <div id="mainmenu">
-            <ul>
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a> </li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-        <div id="contents">
-            @RenderBody()
-        </div>
-        <div id="footer">
-            <p>Copyright information &copy; Yourwebsite.com |  <a href="#">Put </a>| <a href="#">Some</a> | <a href="#">Links</a> | <a href="#">Here</a></p>
-            <!--Credits - Do not delete-->
-            <p class="credit"><a href="#">CSS Website Template </a>by Rambling Soul</p>
-            <!--Credits-->
-        </div>
-        <div id="bottom"></div>
-    </div>
-
-</body>
-</html>*@

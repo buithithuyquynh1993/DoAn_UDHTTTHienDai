@@ -13,10 +13,11 @@ namespace QuanLiThuVien.Controllers
 
         public ActionResult Index()
         {
-            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-            var result = from p in data.DOCGIAs
-                         select p;
-            return View(result);
+            //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            //var result = from p in data.DOCGIAs
+            //             select p;
+            //return View(result);
+            return View();
         }
 
         public ActionResult save(FormCollection f)
