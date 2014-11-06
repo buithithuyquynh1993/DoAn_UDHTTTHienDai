@@ -16,7 +16,8 @@ namespace QuanLiThuVien.Controllers
     {
         //
         // GET: /Home/
-        string url = "C:/Users/USER/Documents/Visual Studio 2013/Projects/QuanLiThuVien/QuanLiThuVien/Images/Barcode.gif";
+        //string url = "Images/Barcode.gif";
+        string url;
         //string url = "./BarCode/Images/BarCode.gif";
          public ActionResult Index()
         {
