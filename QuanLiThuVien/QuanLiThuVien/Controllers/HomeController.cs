@@ -21,7 +21,7 @@ namespace QuanLiThuVien.Controllers
             QuanLyThuVienEntities data = new QuanLyThuVienEntities();
             DOCGIA p = new DOCGIA();
             p.Hoten = f["Hoten"];
-            p.MaHocVien = f["MSSV"];
+            p.MHV_MSSV = f["MHV_MSSV"];
             p.Email = f["Email"];
             p.CMND = f["CMND"];
             p.DiaChi = f["DiaChi"];

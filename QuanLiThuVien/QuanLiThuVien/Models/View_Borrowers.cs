@@ -12,11 +12,10 @@ namespace QuanLiThuVien.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class View_Borrowers
+    public partial class VIEW_BORROWERS
     {
         public int ID { get; set; }
-        public string MaHocVien { get; set; }
-        public string MSSV { get; set; }
+        public string MHV_MSSV { get; set; }
         public string Hoten { get; set; }
         public string DiaChi { get; set; }
         public string CMND { get; set; }
@@ -24,6 +23,5 @@ namespace QuanLiThuVien.Models
         public string Truong { get; set; }
         public string Khoa { get; set; }
         public string Avatar { get; set; }
-        public string MatKhau { get; set; }
     }
 }

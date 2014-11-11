@@ -26,8 +26,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaHocVien" Type="varchar" MaxLength="10" />
-          <Property Name="MSSV" Type="varchar" MaxLength="10" />
+          <Property Name="MHV_MSSV" Type="varchar" MaxLength="10" />
           <Property Name="Hoten" Type="nvarchar" MaxLength="50" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
           <Property Name="CMND" Type="varchar" MaxLength="10" />
@@ -36,6 +35,7 @@
           <Property Name="Khoa" Type="nvarchar" MaxLength="50" />
           <Property Name="Avatar" Type="nvarchar" MaxLength="200" />
           <Property Name="MatKhau" Type="varchar" MaxLength="100" />
+          <Property Name="LoaiDocGia" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LICHSUMUONPHONG">
           <Key>
@@ -166,14 +166,13 @@
           <Property Name="Ngan" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="View_Borrowers">
+warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VIEW_BORROWERS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaHocVien" Type="varchar" MaxLength="10" />
-          <Property Name="MSSV" Type="varchar" MaxLength="10" />
+          <Property Name="MHV_MSSV" Type="varchar" MaxLength="10" />
           <Property Name="Hoten" Type="nvarchar" MaxLength="50" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
           <Property Name="CMND" Type="varchar" MaxLength="10" />
@@ -181,7 +180,6 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
           <Property Name="Truong" Type="nvarchar" MaxLength="50" />
           <Property Name="Khoa" Type="nvarchar" MaxLength="50" />
           <Property Name="Avatar" Type="nvarchar" MaxLength="200" />
-          <Property Name="MatKhau" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_BANPHAT_THONGTINMUONTRA">
           <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="0..1" />
@@ -368,20 +366,18 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
           <EntitySet Name="THONGTINMUONTRA" EntityType="Self.THONGTINMUONTRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUGOPY" EntityType="Self.THUGOPY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VITRI" EntityType="Self.VITRI" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="View_Borrowers" EntityType="Self.View_Borrowers" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [View_Borrowers].[ID] AS [ID], 
-    [View_Borrowers].[MaHocVien] AS [MaHocVien], 
-    [View_Borrowers].[MSSV] AS [MSSV], 
-    [View_Borrowers].[Hoten] AS [Hoten], 
-    [View_Borrowers].[DiaChi] AS [DiaChi], 
-    [View_Borrowers].[CMND] AS [CMND], 
-    [View_Borrowers].[Email] AS [Email], 
-    [View_Borrowers].[Truong] AS [Truong], 
-    [View_Borrowers].[Khoa] AS [Khoa], 
-    [View_Borrowers].[Avatar] AS [Avatar], 
-    [View_Borrowers].[MatKhau] AS [MatKhau]
-    FROM [dbo].[View_Borrowers] AS [View_Borrowers]</DefiningQuery>
+    [VIEW_BORROWERS].[ID] AS [ID], 
+    [VIEW_BORROWERS].[MHV_MSSV] AS [MHV_MSSV], 
+    [VIEW_BORROWERS].[Hoten] AS [Hoten], 
+    [VIEW_BORROWERS].[DiaChi] AS [DiaChi], 
+    [VIEW_BORROWERS].[CMND] AS [CMND], 
+    [VIEW_BORROWERS].[Email] AS [Email], 
+    [VIEW_BORROWERS].[Truong] AS [Truong], 
+    [VIEW_BORROWERS].[Khoa] AS [Khoa], 
+    [VIEW_BORROWERS].[Avatar] AS [Avatar]
+    FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
@@ -468,8 +464,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaHocVien" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MSSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MHV_MSSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Hoten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CMND" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -478,6 +473,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
           <Property Name="Khoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LoaiDocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LICHSUMUONPHONGs" Relationship="Self.FK_LICHSUMUONPHONG_DOCGIA" FromRole="DOCGIA" ToRole="LICHSUMUONPHONG" />
           <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_DOCGIA" FromRole="DOCGIA" ToRole="THONGTINMUONTRA" />
         </EntityType>
@@ -623,13 +619,12 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
           <Property Name="Ngan" Type="Int32" />
           <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_VITRI" FromRole="VITRI" ToRole="SACH" />
         </EntityType>
-        <EntityType Name="View_Borrowers">
+        <EntityType Name="VIEW_BORROWERS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaHocVien" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MSSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MHV_MSSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Hoten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CMND" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -637,7 +632,6 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
           <Property Name="Truong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Khoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_BANPHAT_THONGTINMUONTRA">
           <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="0..1" />
@@ -803,7 +797,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
           <EntitySet Name="THONGTINMUONTRAs" EntityType="Self.THONGTINMUONTRA" />
           <EntitySet Name="THUGOPies" EntityType="Self.THUGOPY" />
           <EntitySet Name="VITRIs" EntityType="Self.VITRI" />
-          <EntitySet Name="View_Borrowers" EntityType="Self.View_Borrowers" />
+          <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" />
           <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
             <End Role="BANPHAT" EntitySet="BANPHATs" />
@@ -885,8 +879,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
             <EntityTypeMapping TypeName="QuanLyThuVienModel.DOCGIA">
               <MappingFragment StoreEntitySet="DOCGIA">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MaHocVien" ColumnName="MaHocVien" />
-                <ScalarProperty Name="MSSV" ColumnName="MSSV" />
+                <ScalarProperty Name="MHV_MSSV" ColumnName="MHV_MSSV" />
                 <ScalarProperty Name="Hoten" ColumnName="Hoten" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="CMND" ColumnName="CMND" />
@@ -895,6 +888,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
                 <ScalarProperty Name="Khoa" ColumnName="Khoa" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="LoaiDocGia" ColumnName="LoaiDocGia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1028,12 +1022,11 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="View_Borrowers">
-            <EntityTypeMapping TypeName="QuanLyThuVienModel.View_Borrowers">
-              <MappingFragment StoreEntitySet="View_Borrowers">
+          <EntitySetMapping Name="VIEW_BORROWERS">
+            <EntityTypeMapping TypeName="QuanLyThuVienModel.VIEW_BORROWERS">
+              <MappingFragment StoreEntitySet="VIEW_BORROWERS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MaHocVien" ColumnName="MaHocVien" />
-                <ScalarProperty Name="MSSV" ColumnName="MSSV" />
+                <ScalarProperty Name="MHV_MSSV" ColumnName="MHV_MSSV" />
                 <ScalarProperty Name="Hoten" ColumnName="Hoten" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="CMND" ColumnName="CMND" />
@@ -1041,7 +1034,6 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.View_Borrowers' does not have a 
                 <ScalarProperty Name="Truong" ColumnName="Truong" />
                 <ScalarProperty Name="Khoa" ColumnName="Khoa" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

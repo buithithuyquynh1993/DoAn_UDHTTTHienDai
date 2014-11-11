@@ -21,8 +21,7 @@ namespace QuanLiThuVien.Models
         }
     
         public int ID { get; set; }
-        public string MaHocVien { get; set; }
-        public string MSSV { get; set; }
+        public string MHV_MSSV { get; set; }
         public string Hoten { get; set; }
         public string DiaChi { get; set; }
         public string CMND { get; set; }
@@ -31,6 +30,7 @@ namespace QuanLiThuVien.Models
         public string Khoa { get; set; }
         public string Avatar { get; set; }
         public string MatKhau { get; set; }
+        public string LoaiDocGia { get; set; }
     
         public virtual ICollection<LICHSUMUONPHONG> LICHSUMUONPHONGs { get; set; }
         public virtual ICollection<THONGTINMUONTRA> THONGTINMUONTRAs { get; set; }

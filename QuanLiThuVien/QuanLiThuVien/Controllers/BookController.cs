@@ -19,7 +19,7 @@ namespace QuanLiThuVien.Controllers
 
         public ActionResult getListBorrowers() {
             QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-            var result = from t in data.View_Borrowers select t;
+            var result = from t in data.VIEW_BORROWERS select t;
             return View(result);
         }
     }
