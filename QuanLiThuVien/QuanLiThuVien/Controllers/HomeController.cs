@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuanLiThuVien.Models;
+
 namespace QuanLiThuVien.Controllers
 {
     public class HomeController : Controller
@@ -15,45 +16,23 @@ namespace QuanLiThuVien.Controllers
         {
             return View();
         }
-
-        public ActionResult save(FormCollection f)
+        public ActionResult XemChiTietDocGia()
         {
             QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-            DOCGIA p = new DOCGIA();
-            p.Hoten = f["Hoten"];
-            p.MHV_MSSV = f["MHV_MSSV"];
-            p.Email = f["Email"];
-            p.CMND = f["CMND"];
-            p.DiaChi = f["DiaChi"];
-            p.Truong = f["Truong"];
-            p.Khoa = f["Khoa"];
-            data.DOCGIAs.Add(p);
+            var result = from p in data.DOCGIAs
+                         select p;
+            return View(result);
+        }
+        
 
-            data.SaveChanges();
-            return RedirectToAction("index");
-        }
 
-        public ActionResult add()
+        public ActionResult XemChiTietSach()
         {
-            return View();
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            var result = from p in data.SACHes
+                         select p;
+            return View(result);
+            
         }
-
-        public ActionResult DanhSachSachDat()
-        {
-            return View();
-        }
-        public ActionResult ChinhSuaDatMuon()
-        {
-            return View();
-        }
-        public ActionResult GiaHanMuonSach()
-        {
-            return View();
-        }
-        public ActionResult TimKiemSach()
-        {
-            return View();
-        }
-
     }
 }

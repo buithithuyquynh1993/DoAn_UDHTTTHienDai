@@ -1,102 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyThuVienModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="QuanLyThuVienModelStoreContainer">
-          <EntitySet Name="BANPHAT" EntityType="QuanLyThuVienModel.Store.BANPHAT" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CHUDE" EntityType="QuanLyThuVienModel.Store.CHUDE" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DOCGIA" EntityType="QuanLyThuVienModel.Store.DOCGIA" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="LICHSUMUONPHONG" EntityType="QuanLyThuVienModel.Store.LICHSUMUONPHONG" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="LOPTAPHUAN" EntityType="QuanLyThuVienModel.Store.LOPTAPHUAN" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="NGUOIDANGKY" EntityType="QuanLyThuVienModel.Store.NGUOIDANGKY" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="NHANVIEN" EntityType="QuanLyThuVienModel.Store.NHANVIEN" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="NHAXUATBAN" EntityType="QuanLyThuVienModel.Store.NHAXUATBAN" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="NHOMSACH" EntityType="QuanLyThuVienModel.Store.NHOMSACH" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PHONG" EntityType="QuanLyThuVienModel.Store.PHONG" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SACH" EntityType="QuanLyThuVienModel.Store.SACH" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TACGIA" EntityType="QuanLyThuVienModel.Store.TACGIA" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TACGIA_SACH" EntityType="QuanLyThuVienModel.Store.TACGIA_SACH" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="THONGTINMUONTRA" EntityType="QuanLyThuVienModel.Store.THONGTINMUONTRA" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="THUGOPY" EntityType="QuanLyThuVienModel.Store.THUGOPY" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VITRI" EntityType="QuanLyThuVienModel.Store.VITRI" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VIEW_BORROWERS" EntityType="QuanLyThuVienModel.Store.VIEW_BORROWERS" store:Type="Views" store:Schema="dbo" store:Name="VIEW_BORROWERS">
-            <DefiningQuery>SELECT 
-      [VIEW_BORROWERS].[ID] AS [ID], 
-      [VIEW_BORROWERS].[MHV_MSSV] AS [MHV_MSSV], 
-      [VIEW_BORROWERS].[Hoten] AS [Hoten], 
-      [VIEW_BORROWERS].[DiaChi] AS [DiaChi], 
-      [VIEW_BORROWERS].[CMND] AS [CMND], 
-      [VIEW_BORROWERS].[Email] AS [Email], 
-      [VIEW_BORROWERS].[Truong] AS [Truong], 
-      [VIEW_BORROWERS].[Khoa] AS [Khoa], 
-      [VIEW_BORROWERS].[Avatar] AS [Avatar]
-      FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="QuanLyThuVienModel.Store.FK_BANPHAT_THONGTINMUONTRA">
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
-            <End Role="BANPHAT" EntitySet="BANPHAT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LICHSUMUONPHONG_DOCGIA" Association="QuanLyThuVienModel.Store.FK_LICHSUMUONPHONG_DOCGIA">
-            <End Role="DOCGIA" EntitySet="DOCGIA" />
-            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LICHSUMUONPHONG_PHONG" Association="QuanLyThuVienModel.Store.FK_LICHSUMUONPHONG_PHONG">
-            <End Role="PHONG" EntitySet="PHONG" />
-            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NGUOIDANGKY_LOPTAPHUAN" Association="QuanLyThuVienModel.Store.FK_NGUOIDANGKY_LOPTAPHUAN">
-            <End Role="LOPTAPHUAN" EntitySet="LOPTAPHUAN" />
-            <End Role="NGUOIDANGKY" EntitySet="NGUOIDANGKY" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_CHUDE" Association="QuanLyThuVienModel.Store.FK_SACH_CHUDE">
-            <End Role="CHUDE" EntitySet="CHUDE" />
-            <End Role="SACH" EntitySet="SACH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_NHAXUATBAN" Association="QuanLyThuVienModel.Store.FK_SACH_NHAXUATBAN">
-            <End Role="NHAXUATBAN" EntitySet="NHAXUATBAN" />
-            <End Role="SACH" EntitySet="SACH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_NHOMSACH" Association="QuanLyThuVienModel.Store.FK_SACH_NHOMSACH">
-            <End Role="NHOMSACH" EntitySet="NHOMSACH" />
-            <End Role="SACH" EntitySet="SACH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_VITRI" Association="QuanLyThuVienModel.Store.FK_SACH_VITRI">
-            <End Role="VITRI" EntitySet="VITRI" />
-            <End Role="SACH" EntitySet="SACH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TACGIA_SACH_SACH" Association="QuanLyThuVienModel.Store.FK_TACGIA_SACH_SACH">
-            <End Role="SACH" EntitySet="SACH" />
-            <End Role="TACGIA_SACH" EntitySet="TACGIA_SACH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TACGIA_SACH_TACGIA" Association="QuanLyThuVienModel.Store.FK_TACGIA_SACH_TACGIA">
-            <End Role="TACGIA" EntitySet="TACGIA" />
-            <End Role="TACGIA_SACH" EntitySet="TACGIA_SACH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_DOCGIA" Association="QuanLyThuVienModel.Store.FK_THONGTINMUONTRA_DOCGIA">
-            <End Role="DOCGIA" EntitySet="DOCGIA" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN" Association="QuanLyThuVienModel.Store.FK_THONGTINMUONTRA_NHANVIEN">
-            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN1" Association="QuanLyThuVienModel.Store.FK_THONGTINMUONTRA_NHANVIEN1">
-            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_SACH" Association="QuanLyThuVienModel.Store.FK_THONGTINMUONTRA_SACH">
-            <End Role="SACH" EntitySet="SACH" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LiDo" Type="nvarchar" MaxLength="200" />
           <Property Name="PhiPhat" Type="money" />
           <Property Name="IDThongTinMuonTra" Type="int" />
@@ -105,14 +18,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenChuDe" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DOCGIA">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MHV_MSSV" Type="varchar" MaxLength="10" />
           <Property Name="Hoten" Type="nvarchar" MaxLength="50" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
@@ -139,16 +52,16 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ngay" Type="date" />
           <Property Name="Phong" Type="nchar" MaxLength="10" />
-          <Property Name="ThoiGian" Type="time" />
+          <Property Name="ThoiGian" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="NGUOIDANGKY">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MSSV_MaHocVien" Type="varchar" MaxLength="10" />
           <Property Name="Hoten" Type="nchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
@@ -160,7 +73,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenNhanVien" Type="nvarchar" MaxLength="50" />
           <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
@@ -170,7 +83,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenNXB" Type="nvarchar" MaxLength="50" />
           <Property Name="QuocGia" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -178,21 +91,21 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenNhom" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PHONG">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="SACH">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenSach" Type="nvarchar" MaxLength="100" />
           <Property Name="NamXB" Type="date" />
           <Property Name="Tap" Type="int" />
@@ -209,7 +122,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenTacGia" Type="nvarchar" MaxLength="50" />
           <Property Name="QuocTich" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -225,7 +138,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NgayMuon" Type="date" />
           <Property Name="NgayTra" Type="date" />
           <Property Name="HanTra" Type="date" />
@@ -239,7 +152,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayGopY" Type="date" />
         </EntityType>
@@ -247,19 +160,18 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ke" Type="int" />
           <Property Name="Tang" Type="int" />
           <Property Name="Ngan" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VIEW_BORROWERS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MHV_MSSV" Type="varchar" MaxLength="10" />
           <Property Name="Hoten" Type="nvarchar" MaxLength="50" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
@@ -270,8 +182,8 @@
           <Property Name="Avatar" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_BANPHAT_THONGTINMUONTRA">
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.Store.THONGTINMUONTRA" Multiplicity="0..1" />
-          <End Role="BANPHAT" Type="QuanLyThuVienModel.Store.BANPHAT" Multiplicity="*" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="0..1" />
+          <End Role="BANPHAT" Type="Self.BANPHAT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THONGTINMUONTRA">
               <PropertyRef Name="ID" />
@@ -282,8 +194,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_DOCGIA">
-          <End Role="DOCGIA" Type="QuanLyThuVienModel.Store.DOCGIA" Multiplicity="1" />
-          <End Role="LICHSUMUONPHONG" Type="QuanLyThuVienModel.Store.LICHSUMUONPHONG" Multiplicity="*" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
               <PropertyRef Name="ID" />
@@ -294,8 +206,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_PHONG">
-          <End Role="PHONG" Type="QuanLyThuVienModel.Store.PHONG" Multiplicity="1" />
-          <End Role="LICHSUMUONPHONG" Type="QuanLyThuVienModel.Store.LICHSUMUONPHONG" Multiplicity="*" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHONG">
               <PropertyRef Name="ID" />
@@ -306,8 +218,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NGUOIDANGKY_LOPTAPHUAN">
-          <End Role="LOPTAPHUAN" Type="QuanLyThuVienModel.Store.LOPTAPHUAN" Multiplicity="0..1" />
-          <End Role="NGUOIDANGKY" Type="QuanLyThuVienModel.Store.NGUOIDANGKY" Multiplicity="*" />
+          <End Role="LOPTAPHUAN" Type="Self.LOPTAPHUAN" Multiplicity="0..1" />
+          <End Role="NGUOIDANGKY" Type="Self.NGUOIDANGKY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOPTAPHUAN">
               <PropertyRef Name="ID" />
@@ -318,8 +230,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_CHUDE">
-          <End Role="CHUDE" Type="QuanLyThuVienModel.Store.CHUDE" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.Store.SACH" Multiplicity="*" />
+          <End Role="CHUDE" Type="Self.CHUDE" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CHUDE">
               <PropertyRef Name="ID" />
@@ -330,8 +242,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_NHAXUATBAN">
-          <End Role="NHAXUATBAN" Type="QuanLyThuVienModel.Store.NHAXUATBAN" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.Store.SACH" Multiplicity="*" />
+          <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHAXUATBAN">
               <PropertyRef Name="ID" />
@@ -342,8 +254,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_NHOMSACH">
-          <End Role="NHOMSACH" Type="QuanLyThuVienModel.Store.NHOMSACH" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.Store.SACH" Multiplicity="*" />
+          <End Role="NHOMSACH" Type="Self.NHOMSACH" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHOMSACH">
               <PropertyRef Name="ID" />
@@ -354,8 +266,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_VITRI">
-          <End Role="VITRI" Type="QuanLyThuVienModel.Store.VITRI" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.Store.SACH" Multiplicity="*" />
+          <End Role="VITRI" Type="Self.VITRI" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VITRI">
               <PropertyRef Name="ID" />
@@ -366,8 +278,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TACGIA_SACH_SACH">
-          <End Role="SACH" Type="QuanLyThuVienModel.Store.SACH" Multiplicity="1" />
-          <End Role="TACGIA_SACH" Type="QuanLyThuVienModel.Store.TACGIA_SACH" Multiplicity="*" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="1" />
+          <End Role="TACGIA_SACH" Type="Self.TACGIA_SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SACH">
               <PropertyRef Name="ID" />
@@ -378,8 +290,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TACGIA_SACH_TACGIA">
-          <End Role="TACGIA" Type="QuanLyThuVienModel.Store.TACGIA" Multiplicity="1" />
-          <End Role="TACGIA_SACH" Type="QuanLyThuVienModel.Store.TACGIA_SACH" Multiplicity="*" />
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="1" />
+          <End Role="TACGIA_SACH" Type="Self.TACGIA_SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TACGIA">
               <PropertyRef Name="ID" />
@@ -390,8 +302,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_DOCGIA">
-          <End Role="DOCGIA" Type="QuanLyThuVienModel.Store.DOCGIA" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.Store.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
               <PropertyRef Name="ID" />
@@ -402,8 +314,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_NHANVIEN">
-          <End Role="NHANVIEN" Type="QuanLyThuVienModel.Store.NHANVIEN" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.Store.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
               <PropertyRef Name="ID" />
@@ -414,8 +326,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_NHANVIEN1">
-          <End Role="NHANVIEN" Type="QuanLyThuVienModel.Store.NHANVIEN" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.Store.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
               <PropertyRef Name="ID" />
@@ -426,8 +338,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_SACH">
-          <End Role="SACH" Type="QuanLyThuVienModel.Store.SACH" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.Store.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SACH">
               <PropertyRef Name="ID" />
@@ -437,116 +349,133 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="QuanLyThuVienModelStoreContainer">
+          <EntitySet Name="BANPHAT" EntityType="Self.BANPHAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHUDE" EntityType="Self.CHUDE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCGIA" EntityType="Self.DOCGIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LICHSUMUONPHONG" EntityType="Self.LICHSUMUONPHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOPTAPHUAN" EntityType="Self.LOPTAPHUAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOIDANGKY" EntityType="Self.NGUOIDANGKY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHAXUATBAN" EntityType="Self.NHAXUATBAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHOMSACH" EntityType="Self.NHOMSACH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SACH" EntityType="Self.SACH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TACGIA" EntityType="Self.TACGIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TACGIA_SACH" EntityType="Self.TACGIA_SACH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THONGTINMUONTRA" EntityType="Self.THONGTINMUONTRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THUGOPY" EntityType="Self.THUGOPY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VITRI" EntityType="Self.VITRI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIEW_BORROWERS].[ID] AS [ID], 
+    [VIEW_BORROWERS].[MHV_MSSV] AS [MHV_MSSV], 
+    [VIEW_BORROWERS].[Hoten] AS [Hoten], 
+    [VIEW_BORROWERS].[DiaChi] AS [DiaChi], 
+    [VIEW_BORROWERS].[CMND] AS [CMND], 
+    [VIEW_BORROWERS].[Email] AS [Email], 
+    [VIEW_BORROWERS].[Truong] AS [Truong], 
+    [VIEW_BORROWERS].[Khoa] AS [Khoa], 
+    [VIEW_BORROWERS].[Avatar] AS [Avatar]
+    FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
+            <End Role="BANPHAT" EntitySet="BANPHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHSUMUONPHONG_DOCGIA" Association="Self.FK_LICHSUMUONPHONG_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHSUMUONPHONG_PHONG" Association="Self.FK_LICHSUMUONPHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGUOIDANGKY_LOPTAPHUAN" Association="Self.FK_NGUOIDANGKY_LOPTAPHUAN">
+            <End Role="LOPTAPHUAN" EntitySet="LOPTAPHUAN" />
+            <End Role="NGUOIDANGKY" EntitySet="NGUOIDANGKY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_CHUDE" Association="Self.FK_SACH_CHUDE">
+            <End Role="CHUDE" EntitySet="CHUDE" />
+            <End Role="SACH" EntitySet="SACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_NHAXUATBAN" Association="Self.FK_SACH_NHAXUATBAN">
+            <End Role="NHAXUATBAN" EntitySet="NHAXUATBAN" />
+            <End Role="SACH" EntitySet="SACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_NHOMSACH" Association="Self.FK_SACH_NHOMSACH">
+            <End Role="NHOMSACH" EntitySet="NHOMSACH" />
+            <End Role="SACH" EntitySet="SACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_VITRI" Association="Self.FK_SACH_VITRI">
+            <End Role="VITRI" EntitySet="VITRI" />
+            <End Role="SACH" EntitySet="SACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TACGIA_SACH_SACH" Association="Self.FK_TACGIA_SACH_SACH">
+            <End Role="SACH" EntitySet="SACH" />
+            <End Role="TACGIA_SACH" EntitySet="TACGIA_SACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TACGIA_SACH_TACGIA" Association="Self.FK_TACGIA_SACH_TACGIA">
+            <End Role="TACGIA" EntitySet="TACGIA" />
+            <End Role="TACGIA_SACH" EntitySet="TACGIA_SACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_DOCGIA" Association="Self.FK_THONGTINMUONTRA_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN" Association="Self.FK_THONGTINMUONTRA_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN1" Association="Self.FK_THONGTINMUONTRA_NHANVIEN1">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_SACH" Association="Self.FK_THONGTINMUONTRA_SACH">
+            <End Role="SACH" EntitySet="SACH" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QuanLyThuVienModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="QuanLyThuVienEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BANPHATs" EntityType="QuanLyThuVienModel.BANPHAT" />
-          <EntitySet Name="CHUDEs" EntityType="QuanLyThuVienModel.CHUDE" />
-          <EntitySet Name="DOCGIAs" EntityType="QuanLyThuVienModel.DOCGIA" />
-          <EntitySet Name="LICHSUMUONPHONGs" EntityType="QuanLyThuVienModel.LICHSUMUONPHONG" />
-          <EntitySet Name="LOPTAPHUANs" EntityType="QuanLyThuVienModel.LOPTAPHUAN" />
-          <EntitySet Name="NGUOIDANGKies" EntityType="QuanLyThuVienModel.NGUOIDANGKY" />
-          <EntitySet Name="NHANVIENs" EntityType="QuanLyThuVienModel.NHANVIEN" />
-          <EntitySet Name="NHAXUATBANs" EntityType="QuanLyThuVienModel.NHAXUATBAN" />
-          <EntitySet Name="NHOMSACHes" EntityType="QuanLyThuVienModel.NHOMSACH" />
-          <EntitySet Name="PHONGs" EntityType="QuanLyThuVienModel.PHONG" />
-          <EntitySet Name="SACHes" EntityType="QuanLyThuVienModel.SACH" />
-          <EntitySet Name="TACGIAs" EntityType="QuanLyThuVienModel.TACGIA" />
-          <EntitySet Name="THONGTINMUONTRAs" EntityType="QuanLyThuVienModel.THONGTINMUONTRA" />
-          <EntitySet Name="THUGOPies" EntityType="QuanLyThuVienModel.THUGOPY" />
-          <EntitySet Name="VITRIs" EntityType="QuanLyThuVienModel.VITRI" />
-          <EntitySet Name="VIEW_BORROWERS" EntityType="QuanLyThuVienModel.VIEW_BORROWERS" />
-          <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="QuanLyThuVienModel.FK_BANPHAT_THONGTINMUONTRA">
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
-            <End Role="BANPHAT" EntitySet="BANPHATs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_CHUDE" Association="QuanLyThuVienModel.FK_SACH_CHUDE">
-            <End Role="CHUDE" EntitySet="CHUDEs" />
-            <End Role="SACH" EntitySet="SACHes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LICHSUMUONPHONG_DOCGIA" Association="QuanLyThuVienModel.FK_LICHSUMUONPHONG_DOCGIA">
-            <End Role="DOCGIA" EntitySet="DOCGIAs" />
-            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_DOCGIA" Association="QuanLyThuVienModel.FK_THONGTINMUONTRA_DOCGIA">
-            <End Role="DOCGIA" EntitySet="DOCGIAs" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LICHSUMUONPHONG_PHONG" Association="QuanLyThuVienModel.FK_LICHSUMUONPHONG_PHONG">
-            <End Role="PHONG" EntitySet="PHONGs" />
-            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NGUOIDANGKY_LOPTAPHUAN" Association="QuanLyThuVienModel.FK_NGUOIDANGKY_LOPTAPHUAN">
-            <End Role="LOPTAPHUAN" EntitySet="LOPTAPHUANs" />
-            <End Role="NGUOIDANGKY" EntitySet="NGUOIDANGKies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN" Association="QuanLyThuVienModel.FK_THONGTINMUONTRA_NHANVIEN">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN1" Association="QuanLyThuVienModel.FK_THONGTINMUONTRA_NHANVIEN1">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_NHAXUATBAN" Association="QuanLyThuVienModel.FK_SACH_NHAXUATBAN">
-            <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
-            <End Role="SACH" EntitySet="SACHes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_NHOMSACH" Association="QuanLyThuVienModel.FK_SACH_NHOMSACH">
-            <End Role="NHOMSACH" EntitySet="NHOMSACHes" />
-            <End Role="SACH" EntitySet="SACHes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SACH_VITRI" Association="QuanLyThuVienModel.FK_SACH_VITRI">
-            <End Role="VITRI" EntitySet="VITRIs" />
-            <End Role="SACH" EntitySet="SACHes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_THONGTINMUONTRA_SACH" Association="QuanLyThuVienModel.FK_THONGTINMUONTRA_SACH">
-            <End Role="SACH" EntitySet="SACHes" />
-            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
-          </AssociationSet>
-          <AssociationSet Name="TACGIA_SACH" Association="QuanLyThuVienModel.TACGIA_SACH">
-            <End Role="SACH" EntitySet="SACHes" />
-            <End Role="TACGIA" EntitySet="TACGIAs" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LiDo" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="LiDo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="PhiPhat" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="IDThongTinMuonTra" Type="Int32" />
-          <NavigationProperty Name="THONGTINMUONTRA" Relationship="QuanLyThuVienModel.FK_BANPHAT_THONGTINMUONTRA" FromRole="BANPHAT" ToRole="THONGTINMUONTRA" />
+          <NavigationProperty Name="THONGTINMUONTRA" Relationship="Self.FK_BANPHAT_THONGTINMUONTRA" FromRole="BANPHAT" ToRole="THONGTINMUONTRA" />
         </EntityType>
         <EntityType Name="CHUDE">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenChuDe" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="SACHes" Relationship="QuanLyThuVienModel.FK_SACH_CHUDE" FromRole="CHUDE" ToRole="SACH" />
+          <Property Name="TenChuDe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_CHUDE" FromRole="CHUDE" ToRole="SACH" />
         </EntityType>
         <EntityType Name="DOCGIA">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MHV_MSSV" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="Hoten" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="DiaChi" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="CMND" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Truong" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Khoa" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Avatar" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="MatKhau" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="LoaiDocGia" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="LICHSUMUONPHONGs" Relationship="QuanLyThuVienModel.FK_LICHSUMUONPHONG_DOCGIA" FromRole="DOCGIA" ToRole="LICHSUMUONPHONG" />
-          <NavigationProperty Name="THONGTINMUONTRAs" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_DOCGIA" FromRole="DOCGIA" ToRole="THONGTINMUONTRA" />
+          <Property Name="MHV_MSSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Hoten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Truong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Khoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LoaiDocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LICHSUMUONPHONGs" Relationship="Self.FK_LICHSUMUONPHONG_DOCGIA" FromRole="DOCGIA" ToRole="LICHSUMUONPHONG" />
+          <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_DOCGIA" FromRole="DOCGIA" ToRole="THONGTINMUONTRA" />
         </EntityType>
         <EntityType Name="LICHSUMUONPHONG">
           <Key>
@@ -558,8 +487,8 @@
           <Property Name="IDPhong" Type="Int32" Nullable="false" />
           <Property Name="ThoiGianMuon" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ThoiGianTra" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="DOCGIA" Relationship="QuanLyThuVienModel.FK_LICHSUMUONPHONG_DOCGIA" FromRole="LICHSUMUONPHONG" ToRole="DOCGIA" />
-          <NavigationProperty Name="PHONG" Relationship="QuanLyThuVienModel.FK_LICHSUMUONPHONG_PHONG" FromRole="LICHSUMUONPHONG" ToRole="PHONG" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK_LICHSUMUONPHONG_DOCGIA" FromRole="LICHSUMUONPHONG" ToRole="DOCGIA" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK_LICHSUMUONPHONG_PHONG" FromRole="LICHSUMUONPHONG" ToRole="PHONG" />
         </EntityType>
         <EntityType Name="LOPTAPHUAN">
           <Key>
@@ -567,91 +496,91 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ngay" Type="DateTime" Precision="0" />
-          <Property Name="Phong" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Phong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ThoiGian" Type="Time" Precision="7" />
-          <NavigationProperty Name="NGUOIDANGKies" Relationship="QuanLyThuVienModel.FK_NGUOIDANGKY_LOPTAPHUAN" FromRole="LOPTAPHUAN" ToRole="NGUOIDANGKY" />
+          <NavigationProperty Name="NGUOIDANGKies" Relationship="Self.FK_NGUOIDANGKY_LOPTAPHUAN" FromRole="LOPTAPHUAN" ToRole="NGUOIDANGKY" />
         </EntityType>
         <EntityType Name="NGUOIDANGKY">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MSSV_MaHocVien" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="Hoten" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Truong" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MSSV_MaHocVien" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Hoten" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Truong" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="XacNhan" Type="Boolean" />
           <Property Name="IDLopTapHuan" Type="Int32" />
-          <NavigationProperty Name="LOPTAPHUAN" Relationship="QuanLyThuVienModel.FK_NGUOIDANGKY_LOPTAPHUAN" FromRole="NGUOIDANGKY" ToRole="LOPTAPHUAN" />
+          <NavigationProperty Name="LOPTAPHUAN" Relationship="Self.FK_NGUOIDANGKY_LOPTAPHUAN" FromRole="NGUOIDANGKY" ToRole="LOPTAPHUAN" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenNhanVien" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ChucVu" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="SDT" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="THONGTINMUONTRAs" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_NHANVIEN" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
-          <NavigationProperty Name="THONGTINMUONTRAs1" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_NHANVIEN1" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
+          <Property Name="TenNhanVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
+          <NavigationProperty Name="THONGTINMUONTRAs1" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN1" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
         </EntityType>
         <EntityType Name="NHAXUATBAN">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenNXB" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="QuocGia" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="SACHes" Relationship="QuanLyThuVienModel.FK_SACH_NHAXUATBAN" FromRole="NHAXUATBAN" ToRole="SACH" />
+          <Property Name="TenNXB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_NHAXUATBAN" FromRole="NHAXUATBAN" ToRole="SACH" />
         </EntityType>
         <EntityType Name="NHOMSACH">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenNhom" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="SACHes" Relationship="QuanLyThuVienModel.FK_SACH_NHOMSACH" FromRole="NHOMSACH" ToRole="SACH" />
+          <Property Name="TenNhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_NHOMSACH" FromRole="NHOMSACH" ToRole="SACH" />
         </EntityType>
         <EntityType Name="PHONG">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TrangThai" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="LICHSUMUONPHONGs" Relationship="QuanLyThuVienModel.FK_LICHSUMUONPHONG_PHONG" FromRole="PHONG" ToRole="LICHSUMUONPHONG" />
+          <Property Name="TrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LICHSUMUONPHONGs" Relationship="Self.FK_LICHSUMUONPHONG_PHONG" FromRole="PHONG" ToRole="LICHSUMUONPHONG" />
         </EntityType>
         <EntityType Name="SACH">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenSach" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="TenSach" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NamXB" Type="DateTime" Precision="0" />
           <Property Name="Tap" Type="Int32" />
           <Property Name="Cuon" Type="Int32" />
-          <Property Name="TrangThai" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="NoiDungTomTat" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="MucLuc" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="TrangThai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDungTomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MucLuc" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="IDNhaXuatBan" Type="Int32" />
           <Property Name="IDNhomSach" Type="Int32" />
           <Property Name="IDViTri" Type="Int32" />
           <Property Name="IDChuDe" Type="Int32" />
-          <NavigationProperty Name="CHUDE" Relationship="QuanLyThuVienModel.FK_SACH_CHUDE" FromRole="SACH" ToRole="CHUDE" />
-          <NavigationProperty Name="NHAXUATBAN" Relationship="QuanLyThuVienModel.FK_SACH_NHAXUATBAN" FromRole="SACH" ToRole="NHAXUATBAN" />
-          <NavigationProperty Name="NHOMSACH" Relationship="QuanLyThuVienModel.FK_SACH_NHOMSACH" FromRole="SACH" ToRole="NHOMSACH" />
-          <NavigationProperty Name="VITRI" Relationship="QuanLyThuVienModel.FK_SACH_VITRI" FromRole="SACH" ToRole="VITRI" />
-          <NavigationProperty Name="THONGTINMUONTRAs" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_SACH" FromRole="SACH" ToRole="THONGTINMUONTRA" />
-          <NavigationProperty Name="TACGIAs" Relationship="QuanLyThuVienModel.TACGIA_SACH" FromRole="SACH" ToRole="TACGIA" />
+          <NavigationProperty Name="CHUDE" Relationship="Self.FK_SACH_CHUDE" FromRole="SACH" ToRole="CHUDE" />
+          <NavigationProperty Name="NHAXUATBAN" Relationship="Self.FK_SACH_NHAXUATBAN" FromRole="SACH" ToRole="NHAXUATBAN" />
+          <NavigationProperty Name="NHOMSACH" Relationship="Self.FK_SACH_NHOMSACH" FromRole="SACH" ToRole="NHOMSACH" />
+          <NavigationProperty Name="VITRI" Relationship="Self.FK_SACH_VITRI" FromRole="SACH" ToRole="VITRI" />
+          <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_SACH" FromRole="SACH" ToRole="THONGTINMUONTRA" />
+          <NavigationProperty Name="TACGIAs" Relationship="Self.TACGIA_SACH" FromRole="SACH" ToRole="TACGIA" />
         </EntityType>
         <EntityType Name="TACGIA">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenTacGia" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="QuocTich" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="SACHes" Relationship="QuanLyThuVienModel.TACGIA_SACH" FromRole="TACGIA" ToRole="SACH" />
+          <Property Name="TenTacGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuocTich" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SACHes" Relationship="Self.TACGIA_SACH" FromRole="TACGIA" ToRole="SACH" />
         </EntityType>
         <EntityType Name="THONGTINMUONTRA">
           <Key>
@@ -666,18 +595,18 @@
           <Property Name="IDNhanVienTra" Type="Int32" />
           <Property Name="IDDocGia" Type="Int32" />
           <Property Name="IDSach" Type="Int32" />
-          <NavigationProperty Name="BANPHATs" Relationship="QuanLyThuVienModel.FK_BANPHAT_THONGTINMUONTRA" FromRole="THONGTINMUONTRA" ToRole="BANPHAT" />
-          <NavigationProperty Name="DOCGIA" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_DOCGIA" FromRole="THONGTINMUONTRA" ToRole="DOCGIA" />
-          <NavigationProperty Name="NHANVIEN" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_NHANVIEN" FromRole="THONGTINMUONTRA" ToRole="NHANVIEN" />
-          <NavigationProperty Name="NHANVIEN1" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_NHANVIEN1" FromRole="THONGTINMUONTRA" ToRole="NHANVIEN" />
-          <NavigationProperty Name="SACH" Relationship="QuanLyThuVienModel.FK_THONGTINMUONTRA_SACH" FromRole="THONGTINMUONTRA" ToRole="SACH" />
+          <NavigationProperty Name="BANPHATs" Relationship="Self.FK_BANPHAT_THONGTINMUONTRA" FromRole="THONGTINMUONTRA" ToRole="BANPHAT" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK_THONGTINMUONTRA_DOCGIA" FromRole="THONGTINMUONTRA" ToRole="DOCGIA" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN" FromRole="THONGTINMUONTRA" ToRole="NHANVIEN" />
+          <NavigationProperty Name="NHANVIEN1" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN1" FromRole="THONGTINMUONTRA" ToRole="NHANVIEN" />
+          <NavigationProperty Name="SACH" Relationship="Self.FK_THONGTINMUONTRA_SACH" FromRole="THONGTINMUONTRA" ToRole="SACH" />
         </EntityType>
         <EntityType Name="THUGOPY">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NoiDung" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayGopY" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="VITRI">
@@ -688,25 +617,25 @@
           <Property Name="Ke" Type="Int32" />
           <Property Name="Tang" Type="Int32" />
           <Property Name="Ngan" Type="Int32" />
-          <NavigationProperty Name="SACHes" Relationship="QuanLyThuVienModel.FK_SACH_VITRI" FromRole="VITRI" ToRole="SACH" />
+          <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_VITRI" FromRole="VITRI" ToRole="SACH" />
         </EntityType>
         <EntityType Name="VIEW_BORROWERS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MHV_MSSV" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="Hoten" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="DiaChi" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="CMND" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Truong" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Khoa" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Avatar" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="MHV_MSSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Hoten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Truong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Khoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_BANPHAT_THONGTINMUONTRA">
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.THONGTINMUONTRA" Multiplicity="0..1" />
-          <End Role="BANPHAT" Type="QuanLyThuVienModel.BANPHAT" Multiplicity="*" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="0..1" />
+          <End Role="BANPHAT" Type="Self.BANPHAT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THONGTINMUONTRA">
               <PropertyRef Name="ID" />
@@ -717,8 +646,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_CHUDE">
-          <End Role="CHUDE" Type="QuanLyThuVienModel.CHUDE" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.SACH" Multiplicity="*" />
+          <End Role="CHUDE" Type="Self.CHUDE" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CHUDE">
               <PropertyRef Name="ID" />
@@ -729,8 +658,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_DOCGIA">
-          <End Role="DOCGIA" Type="QuanLyThuVienModel.DOCGIA" Multiplicity="1" />
-          <End Role="LICHSUMUONPHONG" Type="QuanLyThuVienModel.LICHSUMUONPHONG" Multiplicity="*" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
               <PropertyRef Name="ID" />
@@ -741,8 +670,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_DOCGIA">
-          <End Role="DOCGIA" Type="QuanLyThuVienModel.DOCGIA" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
               <PropertyRef Name="ID" />
@@ -753,8 +682,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_PHONG">
-          <End Role="PHONG" Type="QuanLyThuVienModel.PHONG" Multiplicity="1" />
-          <End Role="LICHSUMUONPHONG" Type="QuanLyThuVienModel.LICHSUMUONPHONG" Multiplicity="*" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHONG">
               <PropertyRef Name="ID" />
@@ -765,8 +694,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NGUOIDANGKY_LOPTAPHUAN">
-          <End Role="LOPTAPHUAN" Type="QuanLyThuVienModel.LOPTAPHUAN" Multiplicity="0..1" />
-          <End Role="NGUOIDANGKY" Type="QuanLyThuVienModel.NGUOIDANGKY" Multiplicity="*" />
+          <End Role="LOPTAPHUAN" Type="Self.LOPTAPHUAN" Multiplicity="0..1" />
+          <End Role="NGUOIDANGKY" Type="Self.NGUOIDANGKY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOPTAPHUAN">
               <PropertyRef Name="ID" />
@@ -777,8 +706,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_NHANVIEN">
-          <End Role="NHANVIEN" Type="QuanLyThuVienModel.NHANVIEN" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
               <PropertyRef Name="ID" />
@@ -789,8 +718,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_NHANVIEN1">
-          <End Role="NHANVIEN" Type="QuanLyThuVienModel.NHANVIEN" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
               <PropertyRef Name="ID" />
@@ -801,8 +730,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_NHAXUATBAN">
-          <End Role="NHAXUATBAN" Type="QuanLyThuVienModel.NHAXUATBAN" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.SACH" Multiplicity="*" />
+          <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHAXUATBAN">
               <PropertyRef Name="ID" />
@@ -813,8 +742,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_NHOMSACH">
-          <End Role="NHOMSACH" Type="QuanLyThuVienModel.NHOMSACH" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.SACH" Multiplicity="*" />
+          <End Role="NHOMSACH" Type="Self.NHOMSACH" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHOMSACH">
               <PropertyRef Name="ID" />
@@ -825,8 +754,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SACH_VITRI">
-          <End Role="VITRI" Type="QuanLyThuVienModel.VITRI" Multiplicity="0..1" />
-          <End Role="SACH" Type="QuanLyThuVienModel.SACH" Multiplicity="*" />
+          <End Role="VITRI" Type="Self.VITRI" Multiplicity="0..1" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VITRI">
               <PropertyRef Name="ID" />
@@ -837,8 +766,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_THONGTINMUONTRA_SACH">
-          <End Role="SACH" Type="QuanLyThuVienModel.SACH" Multiplicity="0..1" />
-          <End Role="THONGTINMUONTRA" Type="QuanLyThuVienModel.THONGTINMUONTRA" Multiplicity="*" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="0..1" />
+          <End Role="THONGTINMUONTRA" Type="Self.THONGTINMUONTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SACH">
               <PropertyRef Name="ID" />
@@ -849,14 +778,84 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TACGIA_SACH">
-          <End Role="SACH" Type="QuanLyThuVienModel.SACH" Multiplicity="*" />
-          <End Role="TACGIA" Type="QuanLyThuVienModel.TACGIA" Multiplicity="*" />
+          <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+          <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="*" />
         </Association>
+        <EntityContainer Name="QuanLyThuVienEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BANPHATs" EntityType="Self.BANPHAT" />
+          <EntitySet Name="CHUDEs" EntityType="Self.CHUDE" />
+          <EntitySet Name="DOCGIAs" EntityType="Self.DOCGIA" />
+          <EntitySet Name="LICHSUMUONPHONGs" EntityType="Self.LICHSUMUONPHONG" />
+          <EntitySet Name="LOPTAPHUANs" EntityType="Self.LOPTAPHUAN" />
+          <EntitySet Name="NGUOIDANGKies" EntityType="Self.NGUOIDANGKY" />
+          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="NHAXUATBANs" EntityType="Self.NHAXUATBAN" />
+          <EntitySet Name="NHOMSACHes" EntityType="Self.NHOMSACH" />
+          <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+          <EntitySet Name="SACHes" EntityType="Self.SACH" />
+          <EntitySet Name="TACGIAs" EntityType="Self.TACGIA" />
+          <EntitySet Name="THONGTINMUONTRAs" EntityType="Self.THONGTINMUONTRA" />
+          <EntitySet Name="THUGOPies" EntityType="Self.THUGOPY" />
+          <EntitySet Name="VITRIs" EntityType="Self.VITRI" />
+          <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" />
+          <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
+            <End Role="BANPHAT" EntitySet="BANPHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_CHUDE" Association="Self.FK_SACH_CHUDE">
+            <End Role="CHUDE" EntitySet="CHUDEs" />
+            <End Role="SACH" EntitySet="SACHes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHSUMUONPHONG_DOCGIA" Association="Self.FK_LICHSUMUONPHONG_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_DOCGIA" Association="Self.FK_THONGTINMUONTRA_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHSUMUONPHONG_PHONG" Association="Self.FK_LICHSUMUONPHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGUOIDANGKY_LOPTAPHUAN" Association="Self.FK_NGUOIDANGKY_LOPTAPHUAN">
+            <End Role="LOPTAPHUAN" EntitySet="LOPTAPHUANs" />
+            <End Role="NGUOIDANGKY" EntitySet="NGUOIDANGKies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN" Association="Self.FK_THONGTINMUONTRA_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN1" Association="Self.FK_THONGTINMUONTRA_NHANVIEN1">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_NHAXUATBAN" Association="Self.FK_SACH_NHAXUATBAN">
+            <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
+            <End Role="SACH" EntitySet="SACHes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_NHOMSACH" Association="Self.FK_SACH_NHOMSACH">
+            <End Role="NHOMSACH" EntitySet="NHOMSACHes" />
+            <End Role="SACH" EntitySet="SACHes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SACH_VITRI" Association="Self.FK_SACH_VITRI">
+            <End Role="VITRI" EntitySet="VITRIs" />
+            <End Role="SACH" EntitySet="SACHes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THONGTINMUONTRA_SACH" Association="Self.FK_THONGTINMUONTRA_SACH">
+            <End Role="SACH" EntitySet="SACHes" />
+            <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
+          </AssociationSet>
+          <AssociationSet Name="TACGIA_SACH" Association="Self.TACGIA_SACH">
+            <End Role="SACH" EntitySet="SACHes" />
+            <End Role="TACGIA" EntitySet="TACGIAs" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QuanLyThuVienModelStoreContainer" CdmEntityContainer="QuanLyThuVienEntities">
           <EntitySetMapping Name="BANPHATs">
             <EntityTypeMapping TypeName="QuanLyThuVienModel.BANPHAT">
@@ -1051,7 +1050,7 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
@@ -1060,8 +1059,9 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
