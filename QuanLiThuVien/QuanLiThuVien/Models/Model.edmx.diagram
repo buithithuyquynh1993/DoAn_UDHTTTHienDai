@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="eb4b3b10e873454db1217f0a563f5953" Name="Diagram1">
+      <Diagram DiagramId="82818f69271a4f18b7e6a350be989c8f" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyThuVienModel.BANPHAT" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.CHUDE" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.DOCGIA" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
