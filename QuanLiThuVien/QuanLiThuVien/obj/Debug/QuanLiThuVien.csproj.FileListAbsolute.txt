@@ -46,6 +46,7 @@ c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\
 c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\obj\Debug\Native.QuanLiThuVien.manifest
 c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.dll
 c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.pdb
+<<<<<<< HEAD
 C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.dll.config
 C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\Native.QuanLiThuVien.manifest
 C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.dll
@@ -88,3 +89,5 @@ C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\ob
 C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\obj\Debug\Native.QuanLiThuVien.manifest
 C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.dll
 C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.pdb
+=======
+>>>>>>> a69ac8cae802dd20ef7a0f89945d2917e48e822f
