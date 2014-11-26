@@ -142,7 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BarCodeController.cs" />
-    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Controllers\DocGiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -276,7 +276,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -303,8 +305,8 @@
     <Content Include="Views\BarCode\SetBarCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Book\getListBorrowers.cshtml" />
-    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Sach\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DocGia\add.cshtml" />
