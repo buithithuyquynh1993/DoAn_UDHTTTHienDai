@@ -67,6 +67,9 @@
     <Reference Include="OnBarcode.Barcode.WinForms">
       <HintPath>..\..\AppWebcam\bin\Debug\OnBarcode.Barcode.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="ProcessRootXML">
+      <HintPath>.\ProcessRootXML.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -222,6 +225,8 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\reader_style.css" />
     <Content Include="Content\css\search_box.css" />
+    <Content Include="Content\css\table_normalize.css" />
+    <Content Include="Content\css\table_style.css" />
     <Content Include="Content\css\templatemo_misc.css" />
     <Content Include="Content\css\templatemo_style.css" />
     <Content Include="Content\images\about_1.jpg" />
@@ -256,6 +261,7 @@
     <Content Include="Content\js\min\main.min.js" />
     <Content Include="Content\js\min\plugins.min.js" />
     <Content Include="Content\js\plugins.js" />
+    <Content Include="Content\js\table_respond.js" />
     <Content Include="Content\js\vendor\jquery-1.11.0.min.js" />
     <Content Include="Content\js\vendor\jquery.gmap3.min.js" />
     <Content Include="Content\js\vendor\modernizr-2.6.1-respond-1.1.0.min.js" />
@@ -287,6 +293,8 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\XemChiTietDocGia.cshtml" />
+    <Content Include="Views\Sach\layDsMuonTra.cshtml" />
+    <Content Include="Views\DocGia\LayDsMuonTra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

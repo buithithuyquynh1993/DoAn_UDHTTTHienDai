@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 using QuanLiThuVien.Models;
+using ProcessRootXML;
+
 namespace QuanLiThuVien.Controllers
 {
     public class DocGiaController : Controller
@@ -30,6 +33,14 @@ namespace QuanLiThuVien.Controllers
 
         public ActionResult add()
         {
+            return View();
+        }
+
+        public ActionResult LayDsMuonTra(FormCollection f)
+        {
+            //Lấy giá trị form
+            XmlElement node = ProcessRoot.CreateNode("NODE", "", "");
+            String Strquery = SachController.StrQuery_LayDsMuonTra(node);
             return View();
         }
     }

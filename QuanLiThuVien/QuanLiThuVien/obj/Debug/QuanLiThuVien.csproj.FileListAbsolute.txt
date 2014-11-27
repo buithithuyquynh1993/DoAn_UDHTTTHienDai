@@ -39,3 +39,4 @@ E:\DoAn_PTUD\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.csprojResolveAs
 E:\DoAn_PTUD\QuanLiThuVien\QuanLiThuVien\obj\Debug\Native.QuanLiThuVien.manifest
 E:\DoAn_PTUD\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.dll
 E:\DoAn_PTUD\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.pdb
+E:\DoAn_PTUD\QuanLiThuVien\QuanLiThuVien\bin\ProcessRootXML.dll
