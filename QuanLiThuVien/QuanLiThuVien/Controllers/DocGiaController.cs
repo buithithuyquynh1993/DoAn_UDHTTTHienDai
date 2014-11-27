@@ -38,9 +38,31 @@ namespace QuanLiThuVien.Controllers
 
         public ActionResult LayDsMuonTra(FormCollection f)
         {
+            
             //Lấy giá trị form
-            XmlElement node = ProcessRoot.CreateNode("NODE", "", "");
-            String Strquery = SachController.StrQuery_LayDsMuonTra(node);
+            String value = f["radTuyChon"];
+
+            //Node thể hiện cho từng giá trị tùy chọn
+            //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
+            XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "");
+
+            switch (value)
+            {
+                //Trường hợp xem sách chưa mượn
+                case "SachChuaTra":
+                    node.SetAttribute("", "");
+                    break;
+                //Trường hợp mượn sách quá hạng
+                case "SachQuaHan":
+                    node.SetAttribute("", "");
+                    break;
+                //Mặc định là trường hợp chọn tất cả
+                default:
+                    break;
+            }
+            
+            var kq = SachController.StrQuery_LayDsMuonTra(node);
+
             return View();
         }
     }
