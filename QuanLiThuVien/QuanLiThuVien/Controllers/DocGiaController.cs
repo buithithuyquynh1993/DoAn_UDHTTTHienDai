@@ -36,34 +36,41 @@ namespace QuanLiThuVien.Controllers
             return View();
         }
 
-        public ActionResult LayDsMuonTra(FormCollection f)
+        public ActionResult layDsMuonTra(FormCollection f)
         {
             
             //Lấy giá trị form
             String value = f["radTuyChon"];
+            value = "SachChuaTra";
 
-            //Node thể hiện cho từng giá trị tùy chọn
-            //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
-            XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "");
-
-            switch (value)
+            if (value != null)
             {
-                //Trường hợp xem sách chưa mượn
-                case "SachChuaTra":
-                    node.SetAttribute("", "");
-                    break;
-                //Trường hợp mượn sách quá hạng
-                case "SachQuaHan":
-                    node.SetAttribute("", "");
-                    break;
-                //Mặc định là trường hợp chọn tất cả
-                default:
-                    break;
-            }
-            
-            var kq = SachController.StrQuery_LayDsMuonTra(node);
+                //Node thể hiện cho từng giá trị tùy chọn
+                //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
+                XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "0944873");
 
+                switch (value)
+                {
+                    //Trường hợp xem sách chưa mượn
+                    case "SachChuaTra": //Có hạn trả >= ngày hệ thống
+                        node.SetAttribute("HanTra", ">" + DateTime.Now.ToString());
+                        break;
+                    //Trường hợp mượn sách quá hạng
+                    case "SachQuaHan": //Có hạn trả < ngày hệ thống
+                        node.SetAttribute("HanTra", "<" + DateTime.Now.ToString());
+                        break;
+                    //Mặc định là trường hợp chọn tất cả
+                    default:
+                        break;
+                }
+                var kq = SachController.StrQuery_LayDsMuonTra(node);
+                
+            }
             return View();
+        }
+        public ActionResult BorrowedRoom()
+        {
+            return Redirect("~/Phong/BorrowedRoom");
         }
     }
 }
