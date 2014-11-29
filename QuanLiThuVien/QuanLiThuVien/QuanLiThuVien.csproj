@@ -307,9 +307,12 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\XemChiTietDocGia.cshtml" />
     <Content Include="Views\DocGia\layDsMuonTra.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
     <Content Include="Views\Employee\BorrowedBook.cshtml" />
     <Content Include="Views\Phong\BorrowedBook.cshtml" />
+=======
+>>>>>>> be5bbc365d4ece2f3c2c3da0074e16b843dc47fb
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
