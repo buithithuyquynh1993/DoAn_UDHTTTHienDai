@@ -80,6 +80,14 @@ namespace QuanLiThuVien.Controllers
             return View(result);
         }
 
+        #region Chuc năng trả sách
+
+        public THONGTINMUONTRA layThongTinMuonSach();
+        public decimal tinhTienTienPhatQuaHan();
+        public decimal tinhTienTienPhatThem();
+        public bool thuchienTraSach();
+
+        #endregion
     }
 }
 
