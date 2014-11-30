@@ -82,10 +82,10 @@ namespace QuanLiThuVien.Controllers
 
         #region Chuc năng trả sách
 
-        public THONGTINMUONTRA layThongTinMuonSach();
-        public decimal tinhTienTienPhatQuaHan();
-        public decimal tinhTienTienPhatThem();
-        public bool thuchienTraSach();
+        public THONGTINMUONTRA layThongTinMuonSach() { return null; }
+        public decimal tinhTienTienPhatQuaHan() { return 0; }
+        public decimal tinhTienTienPhatThem() { return 0; }
+        public bool thuchienTraSach() { return false; }
 
         #endregion
     }

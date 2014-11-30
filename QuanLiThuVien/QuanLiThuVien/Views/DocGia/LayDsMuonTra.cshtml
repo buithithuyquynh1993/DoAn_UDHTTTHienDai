@@ -5,23 +5,26 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 
-<h2>Danh sách mượn trả</h2>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_normalize.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_style.css")">
+
+<h1 class="text-center">Danh sách mượn trả</h1>
 
 @using (Html.BeginForm("layDsMuonTra", "docgia", FormMethod.Get)) { 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div class="row">
-    <div class="col-md-1">
-        @Html.RadioButton("radTuyChon", "Taca", true)<label> Xem tất cả</label>
+    <div class="col-md-2 col-md-push-3">
+        @Html.RadioButton("radTuyChon", "Taca", true)<label> &nbsp;Xem tất cả</label>
     </div>
-    <div class="col-md-2">
-        @Html.RadioButton("radTuyChon", "SachChuaTra")<label> Sách chưa trả </label>
+    <div class="col-md-2 col-md-push-3">
+        @Html.RadioButton("radTuyChon", "SachChuaTra")<label> &nbsp; Sách chưa trả </label>
     </div>
-    <div class="col-md-2">
-    @Html.RadioButton("radTuyChon", "SachQuaHan")<label> Sách quá hạn</label>
+    <div class="col-md-2 col-md-push-3">
+    @Html.RadioButton("radTuyChon", "SachQuaHan")<label> &nbsp; Sách quá hạn</label>
     </div>
-    <div class="col-md-1">
-        <input type="submit" value="Xem" />
+    <div class="col-md-1 col-md-push-3 ticket-item">
+        <a class="ticket-btn" href="#" style="margin:0px; padding:8px">Xem</a>
     </div>
 </div>
 
@@ -30,7 +33,7 @@
 <table class="responstable">
     <tr>
     <th>STT</th>
-    <th data-th="Driver details"><span>Mã sách</span></th>
+    <th>Mã sách</th>
     <th>Tên sách</th>
     <th>Ngày mượn</th>
     <th>Hạn trả</th>
