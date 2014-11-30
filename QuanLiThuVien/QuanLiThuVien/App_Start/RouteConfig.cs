@@ -18,7 +18,7 @@ namespace QuanLiThuVien
                 url: "{controller}/{action}/{id}",
                 //defaults: new { controller = "Sach", action = "layDSNguoiMuon", id = UrlParameter.Optional }
                 //defaults: new { controller = "Public", action = "GetListBorrowedRoom", id = UrlParameter.Optional }
-                defaults: new { controller = "Docgia", action = "layDsMuonTra", id = UrlParameter.Optional }
+                defaults: new { controller = "Employee", action = "TraSach", id = UrlParameter.Optional }
             );
         }
     }

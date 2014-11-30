@@ -310,6 +310,7 @@
     <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
     <Content Include="Views\Employee\BorrowedBook.cshtml" />
     <Content Include="Views\Phong\BorrowedBook.cshtml" />
+    <Content Include="Views\Employee\TraSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
