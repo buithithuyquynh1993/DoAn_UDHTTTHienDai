@@ -7,53 +7,35 @@
 
 @*<h2>getListBorrowers</h2>*@
 
-<link rel="stylesheet" href="@Url.Content("~/Content/css/reader_style.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_normalize.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_style.css")">
 
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <div class="row">
     <div class="col-md-10 col-md-push-1">
-        <table class="table" style="color: black">
-              <tr class="bg-danger">
-                <th>
-                    STT
-                </th>
-                <th>
-                    Họ tên
-                </th>
-                  <th>
-                    Mã đọc giả
-                </th>
-                <th>
-                    Địa chỉ
-                </th>
-                <th>
-                    Số CMND
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Trường
-                </th>
-                <th>
-                    Khoa
-                </th>
-                <th></th>
-            </tr>
+        <table class="responstable">
+          <tr>
+            <th>STT</th>
+            <th>Ảnh đại diện</th>
+            <th>Mã đọc giả</th>
+            <th data-th="Driver details"><span>Họ tên</span></th>
+            <th>Địa chỉ</th>
+            <th>Số CMND</th>
+            <th>Email</th>
+            <th>Trường</th>
+            <th>Khoa</th>
         @foreach (var item in Model) {
             <tr class="list_reader">
                 <td class="list_reader">
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
                 <td class="list_reader">
-                    <div class="row">
-                        <div class="name_avatar">@Html.DisplayFor(modelItem => item.Hoten)</div>    
-                        <img class="img-circle img_avatar" src="@Html.DisplayTextFor(modelItem => item.Avatar)"/>
-                            
-                    </div>
-                    
+                    <img class="img-circle img_avatar" src="@Html.DisplayTextFor(modelItem => item.Avatar)"/>
+                </td>
+                <td class="list_reader">
+                    <div>@Html.DisplayFor(modelItem => item.Hoten)</div>    
                 </td>
                 <td class="list_reader">
                     @Html.DisplayFor(modelItem => item.MHV_MSSV)

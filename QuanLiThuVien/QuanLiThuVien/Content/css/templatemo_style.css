@@ -215,35 +215,36 @@ hr {
 }
 
 .main-header {
-    background: #fff;
+    background: white;
     min-height: 100px;
     height: 100px;
 }
 
 .logo {
-    margin: 25px;
+    margin: 10px;
     overflow: hidden;
 }
 
 .main-menu {
     text-align: right;
     float: right;
+    font-weight: 600;
 }
 
 .main-menu ul li {
     display: inline-block;
     float: left;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-left: 1px solid #eee;
 }
 
 .main-menu ul li a {
-	display: block;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #888;
+	color: brown;
+    display: block;
+    font-size: 15px;
     line-height: 100px;
+    text-transform: uppercase;
 }
 
 .main-menu ul li a:hover {
@@ -577,7 +578,7 @@ h3.widget-title {
 }
 
 .middle-content {
-    margin-top: 100px;
+    margin-top: 5px;
     margin-bottom: 40px;
 }
 
