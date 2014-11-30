@@ -70,6 +70,12 @@
     <Reference Include="OnBarcode.Barcode.WinForms">
       <HintPath>..\..\AppWebcam\bin\Debug\OnBarcode.Barcode.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="ProcessRootXML">
       <HintPath>.\ProcessRootXML.dll</HintPath>
     </Reference>
@@ -148,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BarCodeController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\PhongController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Controllers\DocGiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -268,6 +277,7 @@
     <Content Include="Content\js\vendor\jquery-1.11.0.min.js" />
     <Content Include="Content\js\vendor\jquery.gmap3.min.js" />
     <Content Include="Content\js\vendor\modernizr-2.6.1-respond-1.1.0.min.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -297,6 +307,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\XemChiTietDocGia.cshtml" />
     <Content Include="Views\DocGia\layDsMuonTra.cshtml" />
+    <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\BorrowedBook.cshtml" />
+    <Content Include="Views\Phong\BorrowedBook.cshtml" />
+=======
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

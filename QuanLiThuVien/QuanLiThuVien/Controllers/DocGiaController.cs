@@ -68,5 +68,9 @@ namespace QuanLiThuVien.Controllers
             }
             return View();
         }
+        public ActionResult BorrowedRoom()
+        {
+            return Redirect("~/Phong/BorrowedRoom");
+        }
     }
 }
