@@ -1,0 +1,93 @@
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.dll.config
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\Native.QuanLiThuVien.manifest
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.pdb
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AForge.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AForge.Video.DirectShow.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AForge.Video.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AppWebcam.exe
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.SqlServer.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\Microsoft.Web.Infrastructure.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\Newtonsoft.Json.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\OnBarcode.Barcode.BarcodeScanner.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\OnBarcode.Barcode.WinForms.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.Formatting.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.WebRequest.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Helpers.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.WebHost.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Mvc.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Razor.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Deployment.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Razor.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AForge.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AForge.Video.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AForge.Video.DirectShow.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\AppWebcam.pdb
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.SqlServer.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\Newtonsoft.Json.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.Formatting.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.WebRequest.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Helpers.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.WebHost.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Mvc.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Razor.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Deployment.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Razor.xml
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\obj\Debug\Native.QuanLiThuVien.manifest
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.dll
+c:\users\user\documents\visual studio 2013\Projects\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.pdb
+<<<<<<< HEAD
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.dll.config
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\Native.QuanLiThuVien.manifest
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\QuanLiThuVien.pdb
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.SqlServer.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\Newtonsoft.Json.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.Formatting.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.WebRequest.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Helpers.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.WebHost.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Mvc.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Razor.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Deployment.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Razor.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\AForge.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\AForge.Video.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\AForge.Video.DirectShow.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\AppWebcam.pdb
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\EntityFramework.SqlServer.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\Newtonsoft.Json.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.Formatting.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Net.Http.WebRequest.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Helpers.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Http.WebHost.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Mvc.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.Razor.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Deployment.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\bin\System.Web.WebPages.Razor.xml
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.csprojResolveAssemblyReference.cache
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\obj\Debug\Native.QuanLiThuVien.manifest
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.dll
+C:\Users\USER\Documents\GitHub\DoAn_UDHTTTHienDai\QuanLiThuVien\QuanLiThuVien\obj\Debug\QuanLiThuVien.pdb
+=======
+>>>>>>> a69ac8cae802dd20ef7a0f89945d2917e48e822f
