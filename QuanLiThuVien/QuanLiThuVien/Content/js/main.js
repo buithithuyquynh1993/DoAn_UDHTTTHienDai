@@ -20,8 +20,7 @@ jQuery(document).ready(function($) {
 		$('.toggle-menu').click(function(){
 	        $('.menu-responsive').slideToggle();
 	        return false;
-	    });
-
+		});
 
 });
 

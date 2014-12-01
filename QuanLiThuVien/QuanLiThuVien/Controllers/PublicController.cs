@@ -28,7 +28,6 @@ namespace QuanLiThuVien.Controllers
                              join phong in data.PHONGs on ls.IDPhong equals phong.ID
                              join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
                              where DateTime.Compare(ls.ThoiGianMuon, now).Equals(1)
-                             //select ls).OrderBy(ls=>ls.ThoiGianMuon);
                              select new
                              {
                                  HoTen = docgia.Hoten,
@@ -40,12 +39,9 @@ namespace QuanLiThuVien.Controllers
             }
             else
             {
-                // var keyword = @Request["keyword"];
-
                 DateTime date = DateTime.Today;
                 if (temp != "")
                 {
-                    // string temp = @Request["date"];
                     date = DateTime.Parse(temp);
                 }
                 if (keyword != "" && temp != "")
@@ -55,6 +51,7 @@ namespace QuanLiThuVien.Controllers
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
                                  where docgia.Hoten.Contains(@keyword)
                                  && DateTime.Compare(ls.ThoiGianMuon, now).Equals(1)
+                                 && DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
                                  select ls).OrderBy(ls => ls.IDDocGia);
                     ViewBag.data = query.ToPagedList(pageNumber, pageSize);
                     return View("GetListBorrowedRoom");
@@ -65,6 +62,7 @@ namespace QuanLiThuVien.Controllers
                                  join phong in data.PHONGs on ls.IDPhong equals phong.ID
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
                                  where docgia.Hoten.Contains(@keyword)
+                                 && DateTime.Compare(ls.ThoiGianMuon, now).Equals(1)
                                  select ls).OrderBy(ls => ls.IDDocGia);
                     ViewBag.data = query.ToPagedList(pageNumber, pageSize);
                     return View("GetListBorrowedRoom");
@@ -75,6 +73,7 @@ namespace QuanLiThuVien.Controllers
                                  join phong in data.PHONGs on ls.IDPhong equals phong.ID
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
                                  where DateTime.Compare(ls.ThoiGianMuon, now).Equals(1)
+                                 && DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
                                  select ls).OrderBy(ls => ls.IDDocGia);
                     ViewBag.data = query.ToPagedList(pageNumber, pageSize);
                     return View("GetListBorrowedRoom");
