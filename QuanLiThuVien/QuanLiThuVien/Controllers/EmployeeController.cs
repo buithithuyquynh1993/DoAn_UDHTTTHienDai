@@ -19,7 +19,7 @@ namespace QuanLiThuVien.Controllers
         public ActionResult SaveBorrowedBook()
         {
             // add borrowed book information 
-            int IDSach = int.Parse(@Request["IDSach"]);
+            int IDSach =  int.Parse(@Request["IDSach"]);
             THONGTINMUONTRA muontra = new THONGTINMUONTRA();
             muontra.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
             muontra.IDNhanVienNhan = int.Parse(@Request["IDNhanVien"].ToString());
@@ -30,17 +30,26 @@ namespace QuanLiThuVien.Controllers
             data.SaveChanges();
 
             // update status of book
-            SACH sach = (from s in data.SACHes where s.ID == IDSach select s).First();
-            sach.TrangThai = "Đang mượn";
+            SACH sach = (from s in data.SACHes where s.ID ==IDSach select s).First();
+            sach.TrangThai = "Đang mượn";           
             data.SaveChanges();
             return Redirect("Employee/BorrowedBook");
         }
         public ActionResult BorrowedRoom()
         {
-            return Redirect("~/Phong/BorrowedRoom");
-        }
-        public ActionResult TraSach() {
             return View();
+        }
+        public ActionResult SaveBorrowedRoom()
+        {
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            LICHSUMUONPHONG ls = new LICHSUMUONPHONG();
+            ls.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
+            ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
+            ls.ThoiGianMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
+            ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
+            data.LICHSUMUONPHONGs.Add(ls);
+            data.SaveChanges();
+            return View("BorrowedRoom");
         }
     }
 }

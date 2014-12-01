@@ -6,55 +6,60 @@
     ViewBag.Title = "GetListBorrowedRoom";
     Layout = "~/Views/_Layout.cshtml";
 }
-<div class="panel panel-success" align="center">
-    <div class="panel-heading">
-        <font size="6" color="blue" face="arial"><b>   Get List Borrowed Room</b> </font>
+    <div class="panel panel-success" align="center">
+        <div class="panel-heading">
+         <font size="6" color="blue" face="arial"><b>   Get List Borrowed Room</b> </font>
+        </div>
     </div>
-</div>
-<div class="col-md-4">
-    <ul class="list-group">
-        <li class="list-group-item"><a href="~/Phong/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
-        <li class=" list-group-item"><a href="~/Employee/BorrowedBook"> Nhân viên </a> </li>
-        <li class=" list-group-item"><a href="~/DocGia/BorrowedRoom"> Độc giả </a> </li>
-    </ul>
-</div>
-<div class="col-md-8">
-    <form method="get" action="/Public/GetListBorrowedRoom" class="form-group">
-        <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword" />
-        <input type="date" class="form-control" id="date" name="date" />
-
-        <input type="submit" class="btn btn-success" id="Search" value="Tìm" />
-    </form>
-    <table class="table table-bordered">
-        <tr>
-            <th> STT </th>
-            <th> Họ Tên </th>
-            <th> Thơi  Gian Mượn </th>
-            <th> Thời Gian Trả </th>
-            <th> Phòng </th>
-        </tr>
-        @foreach (object item in Model)
-        {
-            var hoten = item.GetType().GetProperty("HoTen").GetValue(item, null);
-            var tgmuon = item.GetType().GetProperty("tgmuon").GetValue(item, null);
-            var tgtra = item.GetType().GetProperty("tgtra").GetValue(item, null);
-            var phong = item.GetType().GetProperty("phong").GetValue(item, null);
-            <tr>
-                <td>  </td>
-                <td> @hoten </td>
-                <td> @tgmuon </td>
-                <td> @tgtra </td>
-                <td> @phong </td>
-            </tr>
-        }
-    </table>
-    <div class="col-md-12" align="right">
-        <ul class="pagination">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-            of @Model.PageCount
-
-            @Html.PagedListPager(Model, page => Url.Action("GetListBorrowedRoom", new { page }))
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item"><a href="~/Public/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
+            <li class=" list-group-item"><a href="~/Employee/BorrowedBook"> Nhân viên </a> </li>
+            <li class=" list-group-item"><a href="~/DocGia/BorrowedRoom"> Độc giả </a> </li>
         </ul>
     </div>
+    <div class="col-md-8">
+        <form method="get" action="/Public/GetListBorrowedRoom" class="form-group">
+            <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword" />
+            <input type='datetime-local' class="form-control" id="date" name="date" />
+
+            <input type="submit" class="btn btn-success" id="Search" value="Tìm" />
+        </form>
+        @if(Model == null)
+        {
+            <p> không có kết quả nào được tìm thấy </p>
+            return;
+        }
+            <table class="table table-bordered">
+                <tr>
+                    <th> STT </th>
+                    <th> Họ Tên </th>
+                    <th> Thơi  Gian Mượn </th>
+                    <th> Thời Gian Trả </th>
+                    <th> Phòng </th>
+                </tr>
+                @foreach (object item in Model)
+            {
+                  var hoten = item.GetType().GetProperty("HoTen").GetValue(item,null);
+                  var tgmuon = item.GetType().GetProperty("tgmuon").GetValue(item, null);
+                  var tgtra = item.GetType().GetProperty("tgtra").GetValue(item, null);
+                  var phong = item.GetType().GetProperty("phong").GetValue(item, null);
+                    <tr>
+                        <td>  </td>
+                        <td> @hoten </td>
+                        <td> @tgmuon </td>
+                        <td> @tgtra </td>
+                        <td> @phong </td>
+                    </tr>
+            }
+            </table>
+            <div class="col-md-12" align="right">
+                <ul class="pagination">
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    of @Model.PageCount
+
+                    @Html.PagedListPager(Model, page => Url.Action("GetListBorrowedRoom", new { page }))
+                </ul>
+            </div>
 </div>
 

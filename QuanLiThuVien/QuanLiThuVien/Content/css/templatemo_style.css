@@ -210,41 +210,40 @@ hr {
 
 @media screen and (min-width: 992px) {
     .site-header {
-        top: 60px;
+        top: 30px;
     }
 }
 
 .main-header {
-    background: white;
+    background: #fff;
     min-height: 100px;
     height: 100px;
 }
 
 .logo {
-    margin: 10px;
+    margin: 25px;
     overflow: hidden;
 }
 
 .main-menu {
     text-align: right;
     float: right;
-    font-weight: 600;
 }
 
 .main-menu ul li {
     display: inline-block;
     float: left;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
     border-left: 1px solid #eee;
 }
 
 .main-menu ul li a {
-	color: brown;
-    display: block;
-    font-size: 15px;
-    line-height: 100px;
+	display: block;
     text-transform: uppercase;
+    font-size: 14px;
+    color: #888;
+    line-height: 100px;
 }
 
 .main-menu ul li a:hover {
@@ -405,7 +404,7 @@ h3.widget-title {
 
 .page-top {
     width: 100%;
-    height: 230px;
+    height: 150px;
     background: #eee;
     position: relative;
     top: 0;
@@ -578,7 +577,7 @@ h3.widget-title {
 }
 
 .middle-content {
-    margin-top: 5px;
+    margin-top: 50px;
     margin-bottom: 40px;
 }
 
