@@ -23,43 +23,26 @@ namespace QuanLiThuVien.Controllers
                     //Tạo câu truy vấn
                     //Câu truy vấn tương tự:
                     //@"SELECT VALUE Contact FROM AdventureWorksEntities.Contacts as Contact where Contact.LastName = @ln"
-                    String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra where ";
-                    for (int i = 0; i < node.Attributes.Count; i++)
+
+                    String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV == '" + node.Attributes[0].Value + "'";
+                    for (int i = 1; i < node.Attributes.Count; i++)
                     {
+                        //if (i + 1 < node.Attributes.Count)
+                        sql += " and ";
                         String name = node.Attributes[i].Name;
                         String value = node.Attributes[i].Value;
-                        if( value.IndexOf('<') == 0) //Trương hợp ngày trả < ngày hệ thống => sách mượn đã quá hạn
-                            sql += "thongtinmuon_tra." + name + " < @nodeI" + i;
-                        else if ( value.IndexOf('>') == 0) //Trương hợp ngày trả >= ngày hệ thống => sách mượn và chưa trả
-                            sql += "thongtinmuon_tra." + name + " >= @nodeI" + i;
-                        else
-                            sql += "thongtinmuon_tra." + name + " = @nodeI" + i;
-                        if (i + 1 < node.Attributes.Count)
-                            sql += " and ";
+                        if (value.IndexOf('<') == 0) //Trương hợp ngày trả < ngày hệ thống => sách mượn đã quá hạn
+                            sql += "thongtinmuon_tra." + name + " < '" + value.Substring(1, value.Length - 1) + "'";
+                        else if (value.IndexOf('>') == 0) //Trương hợp ngày trả >= ngày hệ thống => sách mượn và chưa trả
+                            sql += "thongtinmuon_tra." + name + " >= '" + value.Substring(1, value.Length - 1) + "'";
                     }
 
                     //Thực hiện truy vấn
-                    query = (data as IObjectContextAdapter).ObjectContext.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu               
-
-                    for (int i = 0; i < node.Attributes.Count; i++)
-                    {
-                        String value = node.Attributes[i].Value;
-                        if(value.IndexOf('<') == 0 || value.IndexOf('>') == 0)
-                            value = value.Substring(1, value.Length - 1);
-                        query.Parameters.Add(new ObjectParameter("nodeI" + i, value));
-                    }
+                    var temp = (data as IObjectContextAdapter).ObjectContext;
+                    query = temp.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu       
                 }
-
-                string aa = "select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra where thongtinmuon_tra.MHV_MSSV = @nodeI0 and thongtinmuon_tra.HanTra >= @nodeI1";
-
-                var tem = query.CommandText;
-                //DbQuery query1 = query.Cast<DbQuery
-
-                
-                //foreach(THONGTINMUONTRA i in query1)
-                //{
-                //    var a = i.DOCGIA;
-                //}
+                    //THONGTINMUONTRA tryii = query.First<THONGTINMUONTRA>();
+                    
                 return query;
             }
             catch (Exception)

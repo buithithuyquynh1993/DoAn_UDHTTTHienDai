@@ -40,8 +40,7 @@ namespace QuanLiThuVien.Controllers
         {
             
             //Lấy giá trị form
-            String value = f["radTuyChon"];
-            value = "SachChuaTra";
+            String value = Request.Form["radTuyChon"];
 
             if (value != null)
             {
@@ -64,6 +63,7 @@ namespace QuanLiThuVien.Controllers
                         break;
                 }
                 var kq = SachController.StrQuery_LayDsMuonTra(node);
+                return View(kq);    
                 
             }
             return View();

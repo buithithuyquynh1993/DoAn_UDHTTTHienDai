@@ -10,12 +10,13 @@
 
 <h1 class="text-center">Danh sách mượn trả</h1>
 
-@using (Html.BeginForm("layDsMuonTra", "docgia", FormMethod.Get)) { 
+@using (Html.BeginForm("layDsMuonTra", "docgia", FormMethod.Post)) { 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <div class="row">
+    <div class="row" style="margin-bottom: 30px;">
     <div class="col-md-2 col-md-push-3">
-        @Html.RadioButton("radTuyChon", "Taca", true)<label> &nbsp;Xem tất cả</label>
+        @Html.RadioButton("radTuyChon", "Taca", true)
+        <label> &nbsp;Xem tất cả</label>
     </div>
     <div class="col-md-2 col-md-push-3">
         @Html.RadioButton("radTuyChon", "SachChuaTra")<label> &nbsp; Sách chưa trả </label>
@@ -24,7 +25,8 @@
     @Html.RadioButton("radTuyChon", "SachQuaHan")<label> &nbsp; Sách quá hạn</label>
     </div>
     <div class="col-md-1 col-md-push-3 ticket-item">
-        <a class="ticket-btn" href="#" style="margin:0px; padding:8px">Xem</a>
+       @*@Html.ActionLink("Xem", "layDsMuonTra", "docgia", new {@class="col-md-push-1 ticket-btn"} )*@
+         @*if htmlAttributes is class => must use <@class=""> *@
     </div>
 </div>
 
@@ -78,3 +80,10 @@ else
     }
 }
 </table>
+<script>
+    $(document).ready(function () {
+        $('input[name=radTuyChon]').change(function () {
+            $('form').submit();
+        });
+    });
+</script>
