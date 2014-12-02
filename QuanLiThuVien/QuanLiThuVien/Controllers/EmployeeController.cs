@@ -33,11 +33,24 @@ namespace QuanLiThuVien.Controllers
             SACH sach = (from s in data.SACHes where s.ID == IDSach select s).First();
             sach.TrangThai = "Đang mượn";
             data.SaveChanges();
-            return Redirect("Employee/BorrowedBook");
+            return Redirect("BorrowedBook");
         }
         public ActionResult BorrowedRoom()
         {
-            return Redirect("~/Phong/BorrowedRoom");
+            return View();
+        }
+        public ActionResult SaveBorrowedRoom()
+        {
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            LICHSUMUONPHONG ls = new LICHSUMUONPHONG();
+            ls.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
+            ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
+            ls.ThoiGianMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
+            ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
+            data.LICHSUMUONPHONGs.Add(ls);
+            data.SaveChanges();
+            System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Thêm thành công!')</SCRIPT>");
+            return RedirectToAction("BorrowedRoom");
         }
         public ActionResult TraSach() {
             return View();

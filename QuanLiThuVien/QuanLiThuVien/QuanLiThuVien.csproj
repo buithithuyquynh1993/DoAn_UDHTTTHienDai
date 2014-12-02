@@ -158,7 +158,6 @@
   <ItemGroup>
     <Compile Include="Controllers\BarCodeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\PhongController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Controllers\DocGiaController.cs" />
@@ -304,9 +303,10 @@
     <Content Include="Views\DocGia\layDsMuonTra.cshtml" />
     <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
     <Content Include="Views\Employee\BorrowedBook.cshtml" />
-    <Content Include="Views\Phong\BorrowedBook.cshtml" />
     <Content Include="Views\Employee\TraSach.cshtml" />
     <Content Include="Web.Config" />
+    <Content Include="Views\Employee\BorrowedRoom.cshtml" />
+    <Content Include="Views\DocGia\BorrowedRoom.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
