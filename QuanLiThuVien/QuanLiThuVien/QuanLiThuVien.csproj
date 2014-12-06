@@ -331,7 +331,7 @@
     <Content Include="Views\BarCode\SetBarCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\DocGia\layDSNguoiMuon.cshtml" />
     <Content Include="Views\Sach\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

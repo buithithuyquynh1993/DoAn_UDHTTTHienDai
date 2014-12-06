@@ -46,18 +46,14 @@
 @if (Model == null)
 { 
     <tr>
-    <td>1</td>
-    <td>Stan</td>
-    <td>Foo</td>
-    <td>01/01/1994</td>
-    <td>Son</td>
-    <td>Son</td>
+        <td><h2> Không có dữ liệu </h2></td>
     </tr>
 }
 else
 {
-    foreach (var item in Model) {
-    //for (int i = 0; i < Model.) {
+    foreach (var item in Model)
+    {
+        //for (int i = 0; i < Model.) {
         <tr>
             <td>@*STT*@</td>
             <td>

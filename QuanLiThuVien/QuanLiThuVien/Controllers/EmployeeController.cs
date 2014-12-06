@@ -51,8 +51,26 @@ namespace QuanLiThuVien.Controllers
             data.SaveChanges();
             return RedirectToAction("BorrowedRoom");
         }
-        public ActionResult TraSach() {
+
+        #region Chuc năng trả sách
+
+        public THONGTINMUONTRA layThongTinMuonSach() { return null; }
+        public decimal tinhTienTienPhatQuaHan() { return 0; }
+        public decimal tinhTienTienPhatThem() { return 0; }
+        public bool thuchienTraSach() { return false; }
+        public ActionResult TraSach()
+        {
             return View();
+        }
+        #endregion
+        
+
+        public ActionResult layDSNguoiMuon()
+        {
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            var result = from t in data.VIEW_BORROWERS select t;
+            var tem = result.GetType();
+            return View(result);
         }
     }
 }
