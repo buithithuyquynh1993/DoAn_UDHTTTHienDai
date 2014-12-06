@@ -33,7 +33,7 @@ namespace QuanLiThuVien.Controllers
             SACH sach = (from s in data.SACHes where s.ID == IDSach select s).First();
             sach.TrangThai = "Đang mượn";
             data.SaveChanges();
-            return Redirect("BorrowedBook");
+            return RedirectToAction("BorrowedBook");
         }
         public ActionResult BorrowedRoom()
         {
@@ -49,7 +49,6 @@ namespace QuanLiThuVien.Controllers
             ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
             data.LICHSUMUONPHONGs.Add(ls);
             data.SaveChanges();
-            System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Thêm thành công!')</SCRIPT>");
             return RedirectToAction("BorrowedRoom");
         }
         public ActionResult TraSach() {

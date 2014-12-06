@@ -68,6 +68,10 @@ namespace QuanLiThuVien.Controllers
             }
             return View();
         }
+        public ActionResult BorrowedRoom()
+        {
+            return View();
+        }
         public ActionResult SaveBorrowedRoom()
         {
             QuanLyThuVienEntities data = new QuanLyThuVienEntities();
