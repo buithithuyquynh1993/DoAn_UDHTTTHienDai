@@ -21,11 +21,11 @@
 <div class="col-md-8">
     <form method="get" action="/Public/GetListBorrowedRoom" class="form-group">
         <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword" />
-        <input type='datetime-local' class="form-control" id="date" name="date" />
+        <input type='date' class="form-control" id="date" name="date" />
 
         <input type="submit" class="btn btn-success" id="Search" value="Tìm" />
     </form>
-    @if (Model == null)
+    @if (Model == null || Model.Count() == 0)
     {
         <p> không có kết quả nào được tìm thấy </p>
         return;
