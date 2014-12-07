@@ -302,7 +302,7 @@
     <Content Include="Web.Config" />
     <Content Include="Views\Employee\BorrowedRoom.cshtml" />
     <Content Include="Views\Reader\BorrowedRoom.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml">
+    <Content Include="Views\Employee\Mail.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />

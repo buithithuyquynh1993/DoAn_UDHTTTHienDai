@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuanLiThuVien.Models;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace QuanLiThuVien.Controllers
 {
@@ -61,10 +65,6 @@ namespace QuanLiThuVien.Controllers
         public decimal tinhTienTienPhatQuaHan() { return 0; }
         public decimal tinhTienTienPhatThem() { return 0; }
         public bool thuchienTraSach() { return false; }
-        public ActionResult TraSach()
-        {
-            return View();
-        }
         #endregion
         
 
@@ -75,5 +75,30 @@ namespace QuanLiThuVien.Controllers
             var tem = result.GetType();
             return View(result);
         }
+        public ActionResult Mail()
+        {
+            return View();
+        }
+        public ActionResult SendMail()
+        {
+            var yourmail = @Request["yourmail"];
+            var pass = @Request["password"];
+            var to = @Request["to"];
+            var subject = @Request["subject"];
+            var content = @Request["content"];
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(@yourmail, @pass);
+            if(smtp.Credentials.Equals(false))
+            {
+
+            }
+            MailMessage mail = new MailMessage(@yourmail, @to, @subject, @content);
+            smtp.Send(mail);
+            
+            return View("Mail");
+        }
+        
     }
 }
