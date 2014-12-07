@@ -159,7 +159,6 @@
     <Compile Include="Controllers\BarCodeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
-    <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Controllers\DocGiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -332,7 +331,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DocGia\layDSNguoiMuon.cshtml" />
-    <Content Include="Views\Sach\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DocGia\add.cshtml" />
