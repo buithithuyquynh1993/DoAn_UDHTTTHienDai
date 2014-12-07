@@ -51,8 +51,11 @@ namespace QuanLiThuVien.Controllers
             data.SaveChanges();
             return RedirectToAction("BorrowedRoom");
         }
-
-        #region Chuc năng trả sách
+        public ActionResult TraSach()
+        {
+            return View();
+        }
+         #region Chuc năng trả sách
 
         public THONGTINMUONTRA layThongTinMuonSach() { return null; }
         public decimal tinhTienTienPhatQuaHan() { return 0; }

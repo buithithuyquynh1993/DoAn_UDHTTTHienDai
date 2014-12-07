@@ -13,7 +13,7 @@ namespace QuanLiThuVien.Controllers
 {
     public class SachController : Controller
     {
-        
+
         //
         // GET: /Sach/
 
@@ -22,7 +22,8 @@ namespace QuanLiThuVien.Controllers
             return View();
         }
 
-        public ActionResult layDSNguoiMuon() {
+        public ActionResult layDSNguoiMuon()
+        {
             QuanLyThuVienEntities data = new QuanLyThuVienEntities();
             var result = from t in data.VIEW_BORROWERS select t;
             var tem = result.GetType();
@@ -39,4 +40,3 @@ namespace QuanLiThuVien.Controllers
         #endregion
     }
 }
-
