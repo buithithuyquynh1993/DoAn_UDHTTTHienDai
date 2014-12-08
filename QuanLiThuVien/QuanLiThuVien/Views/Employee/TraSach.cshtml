@@ -7,30 +7,36 @@
 
 <div class="middle-content">
     <h1 class="text-center">Quản lý trả sách</h1>
-    <h2 class="text-right" style="margin-right: 200px">Ngày trả sách: .../.../.....</h2>
-    <form class="form-inline" role="form">
-        <div style="max-width: 500px; margin:auto">
-            <div class="row">
-                <div class="col-md-9 form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">Mã đọc giả</div>
-                        <input type="text" class="form-control" placeholder="Mã đọc giả">
+    <h2 class="text-right" style="margin-right: 200px">Ngày trả sách: <span id="ngaytrasach">
+        <script>
+            $temp = new Date().toDateString();
+            document.write($temp) ;
+       </script></span></h2>
+    @using (Html.BeginForm("layThongTinMuonSach", "Employee", FormMethod.Post))
+    {
+            <div style="max-width: 500px; margin:auto">
+                <div class="row">
+                    <div class="col-md-9 form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">Mã đọc giả</div>
+                            <input type="text" class="form-control" placeholder="Mã đọc giả" value="0944873" name="madocgia">
+                        </div>
                     </div>
-                </div>
-		    </div>
-            <div class="row" style="margin-top:10px">
-                <div class="col-md-9 form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">Mã sách</div>
-                        <input type="text" class="form-control" placeholder="Mã sách">
+		        </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-9 form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">Mã sách</div>
+                            <input type="text" class="form-control" placeholder="Mã sách" value="1" name="masach">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 ticket-item">
-	                <a class="ticket-btn" href="#" style="margin:0px; padding:8px">Xem</a>
-                </div>
-            </div>              	
-        </div>
-    </form>
+                    <div class="col-md-3 ticket-item">
+                        <a class="ticket-btn" style="margin:0px; padding:8px" id="XemTraSach">Xem</a>
+                        @*<a><input type="submit" Value="Xem" class="ticket-btn" style="margin:0px; padding:8px" /></a>*@
+                    </div>
+                </div>              	
+            </div>
+    }
     <table class="responstable">
         <tr>
         <th width="6%" class="text-center">STT</th>
@@ -64,3 +70,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#XemTraSach").click(function () {
+            $('form').submit();
+        });
+    });
+</script>

@@ -54,7 +54,14 @@ namespace QuanLiThuVien.Controllers
 
         #region Chuc năng trả sách
 
-        public THONGTINMUONTRA layThongTinMuonSach() { return null; }
+        public THONGTINMUONTRA layThongTinMuonSach(FormCollection f) { 
+            THONGTINMUONTRA KQ = new THONGTINMUONTRA();
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            String maDocGia = Request.Form["madocgia"];
+            String maSach = Request.Form["masach"];
+            var query = from docgia in data.DOCGIAs join muon in data.THONGTINMUONTRAs on docgia.ID equals muon.IDDocGia select new { docgia, muon };
+            return KQ;
+        }
         public decimal tinhTienTienPhatQuaHan() { return 0; }
         public decimal tinhTienTienPhatThem() { return 0; }
         public bool thuchienTraSach() { return false; }

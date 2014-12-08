@@ -15,14 +15,14 @@
     @Html.ValidationSummary(true)
     <div class="row" style="margin-bottom: 30px;">
     <div class="col-md-2 col-md-push-3">
-        @Html.RadioButton("radTuyChon", "Taca", true)
-        <label> &nbsp;Xem tất cả</label>
+        @Html.RadioButton("radTuyChon", "Taca", new {id = "Taca"})
+       &nbsp;Xem tất cả
     </div>
     <div class="col-md-2 col-md-push-3">
-        @Html.RadioButton("radTuyChon", "SachChuaTra")<label> &nbsp; Sách chưa trả </label>
+        @Html.RadioButton("radTuyChon", "SachChuaTra", new {id = "SachChuaTra" })&nbsp; Sách chưa trả
     </div>
     <div class="col-md-2 col-md-push-3">
-    @Html.RadioButton("radTuyChon", "SachQuaHan")<label> &nbsp; Sách quá hạn</label>
+    @Html.RadioButton("radTuyChon", "SachQuaHan", new { id = "SachQuaHan"}) &nbsp; Sách quá hạn
     </div>
     <div class="col-md-1 col-md-push-3 ticket-item">
        @*@Html.ActionLink("Xem", "layDsMuonTra", "docgia", new {@class="col-md-push-1 ticket-btn"} )*@

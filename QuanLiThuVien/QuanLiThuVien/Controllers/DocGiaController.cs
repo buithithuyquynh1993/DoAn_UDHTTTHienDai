@@ -40,40 +40,6 @@ namespace QuanLiThuVien.Controllers
 
         #region Thông tin mượn trả
 
-        private static List<THONGTINMUONTRA> StrQuery_LayDsMuonTra(XmlElement node)
-        {
-            try
-            {
-                List<THONGTINMUONTRA> KQ = new List<THONGTINMUONTRA>();   
-                using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
-                {
-                    //Tạo câu truy vấn
-                    //Câu truy vấn tương tự:
-                    
-                    String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV == '" + node.Attributes[0].Value + "'";
-                    for (int i = 1; i < node.Attributes.Count; i++)
-                    {
-                        //if (i + 1 < node.Attributes.Count)
-                        sql += " and ";
-                        String name = node.Attributes[i].Name;
-                        String value = node.Attributes[i].Value;
-                        sql += "thongtinmuon_tra." + name + value;
-                   }
-
-                    //Thực hiện truy vấn
-                    var temp = (data as IObjectContextAdapter).ObjectContext;
-                    ObjectQuery<THONGTINMUONTRA> query = temp.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
-                    foreach (THONGTINMUONTRA i in query)
-                        KQ.Add(i);
-
-                    return KQ;
-                }
-            }
-            catch (Exception)
-            { return null; }
-        }
-
-
         public ActionResult layDsMuonTra(FormCollection f)
         {
             
@@ -100,7 +66,7 @@ namespace QuanLiThuVien.Controllers
                     default:
                         break;
                 }
-                var kq = StrQuery_LayDsMuonTra(node);
+                var kq = SachController.StrQuery_LayDsMuonTra(node);
                 return View(kq);    
                 
             }
