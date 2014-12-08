@@ -160,7 +160,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\SachController.cs" />
-    <Compile Include="Controllers\DocGiaController.cs" />
+    <Compile Include="Controllers\ReaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,11 +184,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -271,6 +266,7 @@
     <Content Include="Content\images\templatemo_slide_2.jpg" />
     <Content Include="Content\images\templatemo_slide_3.jpg" />
     <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\min\main.min.js" />
     <Content Include="Content\js\min\plugins.min.js" />
@@ -300,13 +296,17 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\XemChiTietDocGia.cshtml" />
-    <Content Include="Views\DocGia\layDsMuonTra.cshtml" />
+    <Content Include="Views\Reader\layDsMuonTra.cshtml" />
     <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
     <Content Include="Views\Employee\BorrowedBook.cshtml" />
     <Content Include="Views\Employee\TraSach.cshtml" />
     <Content Include="Web.Config" />
     <Content Include="Views\Employee\BorrowedRoom.cshtml" />
-    <Content Include="Views\DocGia\BorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\BorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\Mail.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
@@ -331,11 +331,11 @@
     <Content Include="Views\BarCode\SetBarCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DocGia\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
     <Content Include="Views\Sach\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DocGia\add.cshtml" />
+    <Content Include="Views\Reader\add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\flexslider-icon.eot" />
