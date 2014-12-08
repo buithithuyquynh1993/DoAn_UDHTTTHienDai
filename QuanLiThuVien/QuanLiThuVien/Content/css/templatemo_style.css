@@ -577,7 +577,7 @@ h3.widget-title {
 }
 
 .middle-content {
-    margin-top: 50px;
+    margin-top: 10px;
     margin-bottom: 40px;
 }
 
@@ -786,7 +786,7 @@ h4.consult-title {
     margin-bottom: 25px;
 }
 
-.ticket-item a.ticket-btn {
+.ticket-item a.ticket-btn, .ticket-item input.ticket-btn {
     margin-top: 25px;
     background: #9ed034;
     color: #fff;
@@ -798,7 +798,7 @@ h4.consult-title {
     font-size: 14px;
 }
 
-.ticket-item a.ticket-btn:hover {
+.ticket-item a.ticket-btn:hover, .ticket-item input.ticket-btn:hover {
     background: #90be2c;
 }
 

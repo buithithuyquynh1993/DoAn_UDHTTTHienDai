@@ -49,8 +49,9 @@ namespace QuanLiThuVien.Controllers
                 {
                     //Tạo câu truy vấn
                     //Câu truy vấn tương tự:
-                    
-                    String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV == '" + node.Attributes[0].Value + "'";
+
+                    String sql =@"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV = '" + node.Attributes[0].Value + "'";
+ //@"select * thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra";
                     for (int i = 1; i < node.Attributes.Count; i++)
                     {
                         //if (i + 1 < node.Attributes.Count)
@@ -61,8 +62,8 @@ namespace QuanLiThuVien.Controllers
                    }
 
                     //Thực hiện truy vấn
-                    var temp = (data as IObjectContextAdapter).ObjectContext;
-                    ObjectQuery<THONGTINMUONTRA> query = temp.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
+                    //var temp = (data as IObjectContextAdapter).ObjectContext;
+                    ObjectQuery<THONGTINMUONTRA> query = (data as IObjectContextAdapter).ObjectContext.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
                     foreach (THONGTINMUONTRA i in query)
                         KQ.Add(i);
 
@@ -90,11 +91,11 @@ namespace QuanLiThuVien.Controllers
                 {
                     //Trường hợp xem sách chưa mượn
                     case "SachChuaTra": //Có hạn trả >= ngày hệ thống
-                        node.SetAttribute("HanTra", ">= '" + DateTime.Now.ToString() + "'");
+                        node.SetAttribute("HanTra", " >= '" + DateTime.Now.ToString() + "'");
                         break;
                     //Trường hợp mượn sách quá hạng
                     case "SachQuaHan": //Có hạn trả < ngày hệ thống
-                        node.SetAttribute("HanTra", "< '" + DateTime.Now.ToString() + "'");
+                        node.SetAttribute("HanTra", " < '" + DateTime.Now.ToString() + "'");
                         break;
                     //Mặc định là trường hợp chọn tất cả
                     default:
