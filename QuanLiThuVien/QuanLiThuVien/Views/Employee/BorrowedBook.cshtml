@@ -2,9 +2,9 @@
     ViewBag.Title = "BorrowedBook";
     Layout = "~/Views/_Layout.cshtml";
 }
-@if(@ViewBag["insert"] != null)
+@if(@TempData["insert"] != null)
 {
-    if (ViewBag["insert"] == "1")
+    if (TempData["insert"] == "1")
     {
         <script type="text/javascript">
             alert('Thêm thành công!');
