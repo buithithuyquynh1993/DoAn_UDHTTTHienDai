@@ -2,6 +2,21 @@
     ViewBag.Title = "BorrowedBook";
     Layout = "~/Views/_Layout.cshtml";
 }
+@if(@ViewBag["insert"] != null)
+{
+    if (ViewBag["insert"] == "1")
+    {
+        <script type="text/javascript">
+            alert('Thêm thành công!');
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            alert('Thêm không thành công!');
+        </script>
+    }
+}
 <div class="panel panel-success" align="center">
     <div class="panel-heading">
         <font size="6" color="blue" face="arial"><b>   Mượn sách </b> </font>

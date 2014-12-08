@@ -266,6 +266,7 @@
     <Content Include="Content\images\templatemo_slide_2.jpg" />
     <Content Include="Content\images\templatemo_slide_3.jpg" />
     <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\min\main.min.js" />
     <Content Include="Content\js\min\plugins.min.js" />
