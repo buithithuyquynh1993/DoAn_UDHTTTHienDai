@@ -38,12 +38,12 @@ namespace QuanLiThuVien.Controllers
                 SACH sach = (from s in data.SACHes where s.ID == IDSach select s).First();
                 sach.TrangThai = "Đang mượn";
                 data.SaveChanges();
-                ViewBag["insert"] = "1";
+                TempData["insert"] = "1";
                 return RedirectToAction("BorrowedBook");
             }
             catch(Exception)
             {
-                ViewBag["insert"] = "0";
+                TempData["insert"] = "0";
                 return RedirectToAction("BorrowedBook");
             }
         }
@@ -65,12 +65,12 @@ namespace QuanLiThuVien.Controllers
                 ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
                 data.LICHSUMUONPHONGs.Add(ls);
                 data.SaveChanges();
-                ViewBag["insert"] = "1";
+                TempData["insert"] = "1";
                 return RedirectToAction("BorrowedRoom");
             }
             catch(Exception)
             {
-                ViewBag["insert"] = "0";
+                TempData["insert"] = "0";
                 return RedirectToAction("BorrowedRoom");
             }
         }
@@ -80,14 +80,7 @@ namespace QuanLiThuVien.Controllers
         }
          #region Chuc năng trả sách
 
-        public THONGTINMUONTRA layThongTinMuonSach(FormCollection f) { 
-            THONGTINMUONTRA KQ = new THONGTINMUONTRA();
-            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-            String maDocGia = Request.Form["madocgia"];
-            String maSach = Request.Form["masach"];
-            var query = from docgia in data.DOCGIAs join muon in data.THONGTINMUONTRAs on docgia.ID equals muon.IDDocGia select new { docgia, muon };
-            return KQ;
-        }
+        public THONGTINMUONTRA layThongTinMuonSach() { return null; }
         public decimal tinhTienTienPhatQuaHan() { return 0; }
         public decimal tinhTienTienPhatThem() { return 0; }
         public bool thuchienTraSach() { return false; }
