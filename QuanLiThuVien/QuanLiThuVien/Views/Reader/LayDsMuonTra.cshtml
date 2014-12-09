@@ -10,12 +10,13 @@
 
 <h1 class="text-center">Danh sách mượn trả</h1>
 
-@using (Html.BeginForm("layDsMuonTra", "docgia", FormMethod.Post)) { 
+@using (Html.BeginForm("layDsMuonTra", "Reader", FormMethod.Post))
+{ 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div class="row" style="margin-bottom: 30px;">
     <div class="col-md-2 col-md-push-3">
-        @Html.RadioButton("radTuyChon", "Taca", true)
+        @Html.RadioButton("radTuyChon", "Taca")
          &nbsp;Xem tất cả
     </div>
     <div class="col-md-2 col-md-push-3">
@@ -51,10 +52,11 @@
 }
 else
 {
+    int i = 1;
     foreach (var item in Model)
     {
         <tr>
-            <td>@*STT*@</td>
+            <td>@Html.DisplayName((i++).ToString())</td>
             <td>
                 @Html.DisplayFor(modelItem => item.IDSach)
             </td>
@@ -75,10 +77,15 @@ else
     }
 }
 </table>
-<script>
-    $(document).ready(function () {
-        $('input[name=radTuyChon]').change(function () {
-            $('form').submit();
-        });
-    });
-</script>
+
+
+    @section script{
+        <script>
+            $(document).ready(function () {
+                $('input[name="radTuyChon"]').change(function () {
+                    $('form').submit();
+                });
+            });
+        </script>
+        }
+    

@@ -50,7 +50,7 @@ namespace QuanLiThuVien.Controllers
                     //Tạo câu truy vấn
                     //Câu truy vấn tương tự:
 
-                    String sql =@"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV = '" + node.Attributes[0].Value + "'";
+                    String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV = '" + node.Attributes[0].Value + "'";
  //@"select * thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra";
                     for (int i = 1; i < node.Attributes.Count; i++)
                     {
@@ -66,6 +66,8 @@ namespace QuanLiThuVien.Controllers
                     ObjectQuery<THONGTINMUONTRA> query = (data as IObjectContextAdapter).ObjectContext.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
                     foreach (THONGTINMUONTRA i in query)
                         KQ.Add(i);
+                    if (KQ.Count == 0)
+                        KQ = null;
 
                     return KQ;
                 }
@@ -80,32 +82,30 @@ namespace QuanLiThuVien.Controllers
             
             //Lấy giá trị form
             String value = Request.Form["radTuyChon"];
+            if (value == null) value = "tatca";
 
-            if (value != null)
+            //Node thể hiện cho từng giá trị tùy chọn
+            //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
+            XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "0944873");
+
+            switch (value)
             {
-                //Node thể hiện cho từng giá trị tùy chọn
-                //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
-                XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "0944873");
-
-                switch (value)
-                {
-                    //Trường hợp xem sách chưa mượn
-                    case "SachChuaTra": //Có hạn trả >= ngày hệ thống
-                        node.SetAttribute("HanTra", " >= '" + DateTime.Now.ToString() + "'");
-                        break;
-                    //Trường hợp mượn sách quá hạng
-                    case "SachQuaHan": //Có hạn trả < ngày hệ thống
-                        node.SetAttribute("HanTra", " < '" + DateTime.Now.ToString() + "'");
-                        break;
-                    //Mặc định là trường hợp chọn tất cả
-                    default:
-                        break;
-                }
-                var kq = StrQuery_LayDsMuonTra(node);
-                return View(kq);    
-                
+                //Trường hợp xem sách chưa mượn
+                case "SachChuaTra": //Có hạn trả >= ngày hệ thống
+                    node.SetAttribute("HanTra", " >= '" + DateTime.Now.ToString() + "'");
+                    node.SetAttribute("NgayTra", " is null ");
+                    break;
+                //Trường hợp mượn sách quá hạng
+                case "SachQuaHan": //Có hạn trả < ngày hệ thống
+                    node.SetAttribute("HanTra", " < '" + DateTime.Now.ToString() + "'");
+                    node.SetAttribute("NgayTra", " is null ");
+                    break;
+                //Mặc định là trường hợp chọn tất cả
+                default:
+                    break;
             }
-            return View();
+            var kq = StrQuery_LayDsMuonTra(node);
+            return View(kq);    
         }
 
         #endregion
