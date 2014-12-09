@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuanLiThuVien.Models.THONGTINMUONTRA>
+﻿@model IEnumerable<QuanLiThuVien.Models.proc_layDSMuonTra_Result>
 
 @{
     ViewBag.Title = "layDsMuonTra";
@@ -36,7 +36,7 @@
 <table class="responstable">
     <tr>
     <th>STT</th>
-    <th>Mã sách</th>
+    @*<th>Mã sách</th>*@
     <th>Tên sách</th>
     <th>Ngày mượn</th>
     <th>Hạn trả</th>
@@ -47,7 +47,7 @@
 @if (Model == null)
 { 
     <tr>
-        <td><h2> Không có dữ liệu </h2></td>
+        <td colspan="6"><h2> Không có dữ liệu </h2></td>
     </tr>
 }
 else
@@ -57,10 +57,10 @@ else
     {
         <tr>
             <td>@Html.DisplayName((i++).ToString())</td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IDSach)
-            </td>
-            <td>@*Tên sách*@</td>
+            </td>*@
+            <td>@Html.DisplayFor(modelItem => item.TenSach)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.NgayMuon)
             </td>

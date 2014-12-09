@@ -8,6 +8,7 @@ using QuanLiThuVien.Models;
 using ProcessRootXML;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 namespace QuanLiThuVien.Controllers
 {
@@ -40,41 +41,42 @@ namespace QuanLiThuVien.Controllers
 
         #region Lấy thông tin mượn trả
 
-        private static List<THONGTINMUONTRA> StrQuery_LayDsMuonTra(XmlElement node)
-        {
-            try
-            {
-                List<THONGTINMUONTRA> KQ = new List<THONGTINMUONTRA>();   
-                using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
-                {
-                    //Tạo câu truy vấn
-                    //Câu truy vấn tương tự:
+        //private static List<THONGTINMUONTRA> StrQuery_LayDsMuonTra(XmlElement node)
+        //{
+        //    try
+        //    {
+        //        List<THONGTINMUONTRA> KQ = new List<THONGTINMUONTRA>();   
+        //        using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
+        //        {
+        //            //Tạo câu truy vấn
+        //            //Câu truy vấn tương tự:
 
-                    String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV = '" + node.Attributes[0].Value + "'";
- //@"select * thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra";
-                    for (int i = 1; i < node.Attributes.Count; i++)
-                    {
-                        //if (i + 1 < node.Attributes.Count)
-                        sql += " and ";
-                        String name = node.Attributes[i].Name;
-                        String value = node.Attributes[i].Value;
-                        sql += "thongtinmuon_tra." + name + value;
-                   }
+        //            String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV = '" + node.Attributes[0].Value + "'";
 
-                    //Thực hiện truy vấn
-                    //var temp = (data as IObjectContextAdapter).ObjectContext;
-                    ObjectQuery<THONGTINMUONTRA> query = (data as IObjectContextAdapter).ObjectContext.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
-                    foreach (THONGTINMUONTRA i in query)
-                        KQ.Add(i);
-                    if (KQ.Count == 0)
-                        KQ = null;
+        //            for (int i = 1; i < node.Attributes.Count; i++)
+        //            {
+        //                //if (i + 1 < node.Attributes.Count)
+        //                sql += " and ";
+        //                String name = node.Attributes[i].Name;
+        //                String value = node.Attributes[i].Value;
+        //                sql += "thongtinmuon_tra." + name + value;
+        //                break;
+        //            }
 
-                    return KQ;
-                }
-            }
-            catch (Exception)
-            { return null; }
-        }
+        //            //Thực hiện truy vấn
+        //            //var temp = (data as IObjectContextAdapter).ObjectContext;
+        //            ObjectQuery<THONGTINMUONTRA> query = (data as IObjectContextAdapter).ObjectContext.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
+        //            foreach (THONGTINMUONTRA i in query)
+        //                KQ.Add(i);
+        //            if (KQ.Count == 0)
+        //                KQ = null;
+
+        //            return KQ;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    { return null; }
+        //}
 
 
         public ActionResult layDsMuonTra(FormCollection f)
@@ -84,28 +86,34 @@ namespace QuanLiThuVien.Controllers
             String value = Request.Form["radTuyChon"];
             if (value == null) value = "tatca";
 
-            //Node thể hiện cho từng giá trị tùy chọn
-            //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
-            XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "0944873");
+            ////Node thể hiện cho từng giá trị tùy chọn
+            ////XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
+            //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "0944873");
 
-            switch (value)
+            using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
             {
-                //Trường hợp xem sách chưa mượn
-                case "SachChuaTra": //Có hạn trả >= ngày hệ thống
-                    node.SetAttribute("HanTra", " >= '" + DateTime.Now.ToString() + "'");
-                    node.SetAttribute("NgayTra", " is null ");
-                    break;
-                //Trường hợp mượn sách quá hạng
-                case "SachQuaHan": //Có hạn trả < ngày hệ thống
-                    node.SetAttribute("HanTra", " < '" + DateTime.Now.ToString() + "'");
-                    node.SetAttribute("NgayTra", " is null ");
-                    break;
-                //Mặc định là trường hợp chọn tất cả
-                default:
-                    break;
+                switch (value)
+                {
+                    //Trường hợp xem sách chưa mượn
+                    case "SachChuaTra": //Có hạn trả >= ngày hệ thống
+                        var query1 = data.proc_layDSMuonTra("0944873", 1);
+                        return View(query1);    
+                        //node.SetAttribute("HanTra", " >= '" + DateTime.Now.ToString() + "'");
+                        //node.SetAttribute("NgayTra", " is null ");
+                    //Trường hợp mượn sách quá hạng
+                    case "SachQuaHan": //Có hạn trả < ngày hệ thống
+                        var query2 = data.proc_layDSMuonTra("0944873", 2);
+                        return View(query2);   
+                        //node.SetAttribute("HanTra", " < '" + DateTime.Now.ToString() + "'");
+                        //node.SetAttribute("NgayTra", " is null ");
+                    //Mặc định là trường hợp chọn tất cả
+                    default:
+                        var query = data.proc_layDSMuonTra("0944873", 0);
+                        return View(query);  
+                }
             }
-            var kq = StrQuery_LayDsMuonTra(node);
-            return View(kq);    
+            //var kq = StrQuery_LayDsMuonTra(node);
+            //return View(kq);    
         }
 
         #endregion

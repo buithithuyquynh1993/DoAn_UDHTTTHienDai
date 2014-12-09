@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
@@ -349,6 +349,10 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="proc_layDSMuonTra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maDocGia" Type="varchar" Mode="In" />
+          <Parameter Name="dieukien" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="QuanLyThuVienModelStoreContainer">
           <EntitySet Name="BANPHAT" EntityType="Self.BANPHAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHUDE" EntityType="Self.CHUDE" Schema="dbo" store:Type="Tables" />
@@ -436,8 +440,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -850,7 +853,23 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <End Role="SACH" EntitySet="SACHes" />
             <End Role="TACGIA" EntitySet="TACGIAs" />
           </AssociationSet>
+          <FunctionImport Name="proc_layDSMuonTra" ReturnType="Collection(QuanLyThuVienModel.proc_layDSMuonTra_Result)">
+            <Parameter Name="maDocGia" Mode="In" Type="String" />
+            <Parameter Name="dieukien" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="proc_layDSMuonTra_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="NgayMuon" Nullable="true" />
+          <Property Type="DateTime" Name="NgayTra" Nullable="true" />
+          <Property Type="DateTime" Name="HanTra" Nullable="true" />
+          <Property Type="Boolean" Name="GiaHan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienNhan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
+          <Property Type="Int32" Name="IDDocGia" Nullable="true" />
+          <Property Type="Int32" Name="IDSach" Nullable="true" />
+          <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1045,6 +1064,22 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
               <ScalarProperty Name="ID" ColumnName="IDTacGia" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="proc_layDSMuonTra" FunctionName="QuanLyThuVienModel.Store.proc_layDSMuonTra">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyThuVienModel.proc_layDSMuonTra_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+                <ScalarProperty Name="NgayTra" ColumnName="NgayTra" />
+                <ScalarProperty Name="HanTra" ColumnName="HanTra" />
+                <ScalarProperty Name="GiaHan" ColumnName="GiaHan" />
+                <ScalarProperty Name="IDNhanVienNhan" ColumnName="IDNhanVienNhan" />
+                <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
+                <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
+                <ScalarProperty Name="IDSach" ColumnName="IDSach" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
