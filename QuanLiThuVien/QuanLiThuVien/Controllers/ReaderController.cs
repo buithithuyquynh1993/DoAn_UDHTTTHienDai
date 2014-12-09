@@ -38,7 +38,7 @@ namespace QuanLiThuVien.Controllers
             return View();
         }
 
-        #region Thông tin mượn trả
+        #region Lấy thông tin mượn trả
 
         private static List<THONGTINMUONTRA> StrQuery_LayDsMuonTra(XmlElement node)
         {

@@ -67,6 +67,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\OnBarcode.Barcode.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="ProcessRootXML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\ProcessRootXML.dll</HintPath>
@@ -205,13 +213,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AuthConfig.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BarCodeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\ReaderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -452,6 +459,7 @@
     <Content Include="Views\Employee\TraSach.cshtml" />
     <Content Include="Views\Reader\add.cshtml" />
     <Content Include="Views\Reader\LayDsMuonTra.cshtml" />
+    <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
