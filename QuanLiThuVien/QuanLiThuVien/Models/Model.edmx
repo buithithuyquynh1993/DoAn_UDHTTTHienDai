@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
@@ -368,16 +368,16 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <EntitySet Name="VITRI" EntityType="Self.VITRI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [VIEW_BORROWERS].[ID] AS [ID], 
-    [VIEW_BORROWERS].[MHV_MSSV] AS [MHV_MSSV], 
-    [VIEW_BORROWERS].[Hoten] AS [Hoten], 
-    [VIEW_BORROWERS].[DiaChi] AS [DiaChi], 
-    [VIEW_BORROWERS].[CMND] AS [CMND], 
-    [VIEW_BORROWERS].[Email] AS [Email], 
-    [VIEW_BORROWERS].[Truong] AS [Truong], 
-    [VIEW_BORROWERS].[Khoa] AS [Khoa], 
-    [VIEW_BORROWERS].[Avatar] AS [Avatar]
-    FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
+[VIEW_BORROWERS].[ID] AS [ID], 
+[VIEW_BORROWERS].[MHV_MSSV] AS [MHV_MSSV], 
+[VIEW_BORROWERS].[Hoten] AS [Hoten], 
+[VIEW_BORROWERS].[DiaChi] AS [DiaChi], 
+[VIEW_BORROWERS].[CMND] AS [CMND], 
+[VIEW_BORROWERS].[Email] AS [Email], 
+[VIEW_BORROWERS].[Truong] AS [Truong], 
+[VIEW_BORROWERS].[Khoa] AS [Khoa], 
+[VIEW_BORROWERS].[Avatar] AS [Avatar]
+FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
@@ -440,7 +440,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
@@ -1061,7 +1061,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
