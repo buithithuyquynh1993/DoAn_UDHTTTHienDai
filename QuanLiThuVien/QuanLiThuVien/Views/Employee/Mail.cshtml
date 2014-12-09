@@ -22,22 +22,20 @@
     }
     
 }
-
-<h2>Mail</h2>
-<div class="panel panel-success" align="center">
-    <div class="panel-heading">
-        <font size="6" color="blue" face="arial"><b>   Soạn mail </b> </font>
-    </div>
-</div>
 <div class="col-md-4">
     <ul class="list-group">
+        <li class=" list-group-item"><a href="~/Public/GetListBorrowedRoom"> Trang chủ </a> </li>
         <li class="list-group-item"><a href="~/Employee/BorrowedBook"> Mượn sách </a> </li>
         <li class="list-group-item"><a href="~/Employee/BorrowedRoom"> Mượn phòng </a> </li>
-        <li class=" list-group-item"><a href="~/Public/GetListBorrowedRoom"> Trang chủ </a> </li>
         <li class=" list-group-item"><a href="~/Employee/Mail"> Soạn mail </a> </li>
     </ul>
 </div>
 <div class="col-md-8">
+    <div class="panel panel-success" align="center">
+        <div class="panel-heading">
+            <font size="6" color="blue" face="arial"><b>   Soạn mail </b> </font>
+        </div>
+    </div>
     @using (Html.BeginForm("SendMail", "Employee", FormMethod.Post))
     {
     <div class="form-group">

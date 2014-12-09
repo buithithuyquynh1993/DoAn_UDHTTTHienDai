@@ -294,6 +294,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Employee\BorrowedBook.cshtml" />
+    <Content Include="Views\Employee\BorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\Mail.cshtml" />
+    <Content Include="Views\Employee\TraSach.cshtml" />
+    <Content Include="Views\Reader\BorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\layDsMuonTra.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
@@ -304,7 +310,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Test\vendor\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

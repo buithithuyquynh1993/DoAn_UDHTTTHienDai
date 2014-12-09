@@ -17,23 +17,23 @@
         </script>
     }
 }
-<div class="panel panel-success" align="center">
-    <div class="panel-heading">
-        <font size="6" color="blue" face="arial"><b>   Đặt Phòng </b> </font>
-    </div>
-</div>
 <div class="col-md-4">
     <ul class="list-group">
+        <li class=" list-group-item"><a href="~/Public/GetListBorrowedRoom"> Trang chủ </a> </li>
         <li class="list-group-item"><a href="~/Employee/BorrowedBook"> Mượn sách </a> </li>
         <li class="list-group-item"><a href="~/Employee/BorrowedRoom"> Mượn phòng </a> </li>
-        <li class=" list-group-item"><a href="~/Public/GetListBorrowedRoom"> Trang chủ </a> </li>
         <li class=" list-group-item"><a href="~/Employee/Mail"> Soạn mail </a> </li>
     </ul>
 </div>
 <div class="col-md-8">
+    <div class="panel panel-success" align="center">
+        <div class="panel-heading">
+            <font size="6" color="blue" face="arial"><b>   Đặt Phòng </b> </font>
+        </div>
+    </div>
     <form action="~/Employee/SaveBorrowedRoom" method="get" class="form-horizontal" role="form">
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label"> Mã Độc Giả: </label>
+            <label for="inputEmail3" class="col-sm-2 control-label" > Mã Độc Giả: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" placeholder="Mã độc giả" name="IDDocGia">
             </div>

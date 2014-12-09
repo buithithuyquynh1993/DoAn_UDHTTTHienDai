@@ -6,11 +6,6 @@
     ViewBag.Title = "GetListBorrowedRoom";
     Layout = "~/Views/_Layout.cshtml";
 }
-<div class="panel panel-success" align="center">
-    <div class="panel-heading">
-        <font size="6" color="blue" face="arial"><b>   Get List Borrowed Room</b> </font>
-    </div>
-</div>
 <div class="col-md-4">
     <ul class="list-group">
         <li class="list-group-item"><a href="~/Public/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
@@ -19,6 +14,11 @@
     </ul>
 </div>
 <div class="col-md-8">
+	<div class="panel panel-success" align="center">
+		<div class="panel-heading">
+			<font size="6" color="blue" face="arial"><b>   Get List Borrowed Room</b> </font>
+		</div>
+	</div>
     <form method="get" action="/Public/GetListBorrowedRoom" class="form-group">
         <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword" />
         <input type='date' class="form-control" id="date" name="date" />
