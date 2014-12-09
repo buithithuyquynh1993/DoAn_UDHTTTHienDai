@@ -86,10 +86,6 @@ namespace QuanLiThuVien.Controllers
             String value = Request.Form["radTuyChon"];
             if (value == null) value = "tatca";
 
-            ////Node thể hiện cho từng giá trị tùy chọn
-            ////XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", ""); // "": đưa mã đọc giả vào, dùng session
-            //XmlElement node = ProcessRoot.CreateNode("NODE", "MHV_MSSV", "0944873");
-
             using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
             {
                 switch (value)
@@ -98,22 +94,16 @@ namespace QuanLiThuVien.Controllers
                     case "SachChuaTra": //Có hạn trả >= ngày hệ thống
                         var query1 = data.proc_layDSMuonTra("0944873", 1);
                         return View(query1);    
-                        //node.SetAttribute("HanTra", " >= '" + DateTime.Now.ToString() + "'");
-                        //node.SetAttribute("NgayTra", " is null ");
                     //Trường hợp mượn sách quá hạng
                     case "SachQuaHan": //Có hạn trả < ngày hệ thống
                         var query2 = data.proc_layDSMuonTra("0944873", 2);
                         return View(query2);   
-                        //node.SetAttribute("HanTra", " < '" + DateTime.Now.ToString() + "'");
-                        //node.SetAttribute("NgayTra", " is null ");
                     //Mặc định là trường hợp chọn tất cả
                     default:
                         var query = data.proc_layDSMuonTra("0944873", 0);
                         return View(query);  
                 }
             }
-            //var kq = StrQuery_LayDsMuonTra(node);
-            //return View(kq);    
         }
 
         #endregion

@@ -26,8 +26,4 @@ namespace QuanLiThuVien.Models
         public string TenSach { get; set; }
         
     }
-    //public class proc_layDSMuonTra_ResultContext : DbContext
-    //{
-    //    public DbSet<proc_layDSMuonTra_Result> proc_layDSMuonTra_Results { get; set; }
-    //}
 }
