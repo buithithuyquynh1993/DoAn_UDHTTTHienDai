@@ -59,7 +59,7 @@ namespace QuanLiThuVien.Controllers
             QuanLyThuVienEntities data = new QuanLyThuVienEntities();
             String maDocGia = Request.Form["madocgia"];
             String maSach = Request.Form["masach"];
-            var query = from docgia in data.DOCGIAs join muon in data.THONGTINMUONTRAs 
+            var query = from docgia in data.DOCGIAs join muon in data.THONGTINMUONTRAs on docgia.ID equals muon.IDDocGia select new { docgia, muon };
             return KQ;
         }
         public decimal tinhTienTienPhatQuaHan() { return 0; }
