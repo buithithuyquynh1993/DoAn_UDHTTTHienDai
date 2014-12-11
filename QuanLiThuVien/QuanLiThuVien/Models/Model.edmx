@@ -353,6 +353,9 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <Parameter Name="maDocGia" Type="varchar" Mode="In" />
           <Parameter Name="dieukien" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_layTTMuonSach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maSach" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="QuanLyThuVienModelStoreContainer">
           <EntitySet Name="BANPHAT" EntityType="Self.BANPHAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHUDE" EntityType="Self.CHUDE" Schema="dbo" store:Type="Tables" />
@@ -857,6 +860,9 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <Parameter Name="maDocGia" Mode="In" Type="String" />
             <Parameter Name="dieukien" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="proc_layTTMuonSach" ReturnType="Collection(QuanLyThuVienModel.proc_layTTMuonSach_Result)">
+          <Parameter Name="maSach" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_layDSMuonTra_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -869,6 +875,18 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <Property Type="Int32" Name="IDDocGia" Nullable="true" />
           <Property Type="Int32" Name="IDSach" Nullable="true" />
           <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="proc_layTTMuonSach_Result">
+          <Property Type="Int32" Name="TienPhat" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="NgayMuon" Nullable="true" />
+          <Property Type="DateTime" Name="NgayTra" Nullable="true" />
+          <Property Type="DateTime" Name="HanTra" Nullable="true" />
+          <Property Type="Boolean" Name="GiaHan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienNhan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
+          <Property Type="Int32" Name="IDDocGia" Nullable="true" />
+          <Property Type="Int32" Name="IDSach" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1077,6 +1095,22 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
                 <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
                 <ScalarProperty Name="IDSach" ColumnName="IDSach" />
                 <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_layTTMuonSach" FunctionName="QuanLyThuVienModel.Store.proc_layTTMuonSach">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyThuVienModel.proc_layTTMuonSach_Result">
+                <ScalarProperty Name="TienPhat" ColumnName="TienPhat" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+                <ScalarProperty Name="NgayTra" ColumnName="NgayTra" />
+                <ScalarProperty Name="HanTra" ColumnName="HanTra" />
+                <ScalarProperty Name="GiaHan" ColumnName="GiaHan" />
+                <ScalarProperty Name="IDNhanVienNhan" ColumnName="IDNhanVienNhan" />
+                <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
+                <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
+                <ScalarProperty Name="IDSach" ColumnName="IDSach" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

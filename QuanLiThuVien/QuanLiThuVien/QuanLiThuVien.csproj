@@ -271,6 +271,9 @@
     <Compile Include="Models\proc_layDSMuonTra_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\proc_layTTMuonSach_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SACH.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

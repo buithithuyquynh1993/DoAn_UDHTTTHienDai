@@ -10,12 +10,9 @@
 namespace QuanLiThuVien.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-    //using System.Data.Objects;
-    //using System.Data.Objects.DataClasses;
     using System.Linq;
     
     public partial class QuanLyThuVienEntities : DbContext
@@ -47,9 +44,8 @@ namespace QuanLiThuVien.Models
         public DbSet<VITRI> VITRIs { get; set; }
         public DbSet<VIEW_BORROWERS> VIEW_BORROWERS { get; set; }
     
-        public virtual List<proc_layDSMuonTra_Result> proc_layDSMuonTra(string maDocGia, Nullable<int> dieukien)
+        public virtual ObjectResult<proc_layDSMuonTra_Result> proc_layDSMuonTra(string maDocGia, Nullable<int> dieukien)
         {
-            List<proc_layDSMuonTra_Result> result = new List<proc_layDSMuonTra_Result>();
             var maDocGiaParameter = maDocGia != null ?
                 new ObjectParameter("maDocGia", maDocGia) :
                 new ObjectParameter("maDocGia", typeof(string));
@@ -57,11 +53,17 @@ namespace QuanLiThuVien.Models
             var dieukienParameter = dieukien.HasValue ?
                 new ObjectParameter("dieukien", dieukien) :
                 new ObjectParameter("dieukien", typeof(int));
-
-           ObjectResult<proc_layDSMuonTra_Result> _resultQr = ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_layDSMuonTra_Result>("proc_layDSMuonTra", maDocGiaParameter, dieukienParameter);
-           foreach (proc_layDSMuonTra_Result i in _resultQr)
-               result.Add(i);
-           return result;
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_layDSMuonTra_Result>("proc_layDSMuonTra", maDocGiaParameter, dieukienParameter);
+        }
+    
+        public virtual ObjectResult<proc_layTTMuonSach_Result> proc_layTTMuonSach(string maSach)
+        {
+            var maSachParameter = maSach != null ?
+                new ObjectParameter("maSach", maSach) :
+                new ObjectParameter("maSach", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_layTTMuonSach_Result>("proc_layTTMuonSach", maSachParameter);
         }
     }
 }

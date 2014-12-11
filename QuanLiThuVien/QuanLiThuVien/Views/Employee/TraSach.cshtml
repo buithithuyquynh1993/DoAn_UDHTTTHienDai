@@ -1,4 +1,5 @@
-﻿@{
+﻿@model QuanLiThuVien.Models.proc_layTTMuonSach_Result
+@{
     ViewBag.Title = "TraSach";
     Layout = "~/Views/_Layout.cshtml";
 }
@@ -42,16 +43,16 @@
         <th width="6%" class="text-center">STT</th>
         <th width="43%" class="text-center">Tên sách</th>
         <th width="13%" class="text-center">Ngày mượn</th>
-        <th width="13%" class="text-center">Ngày trả</th>
+        <th width="13%" class="text-center">Hạn trả</th>
         <th width="14%" class="text-center">Tiền quá hạn</th>
 		<th width="11%" class="text-center">Sách rách/mất</th>
         </tr>
         <tr>
-        <td>1</td>
-        <td>Stan</td>
-        <td>Foo</td>
-        <td>01/01/1994</td>
-        <td>Son</td>
+        <td>@Html.DisplayFor(modelItem => Model.ID)</td>
+        <td>@Html.DisplayFor(modelItem => Model.TenSach)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NgayMuon)</td>
+        <td>@Html.DisplayFor(modelItem => Model.HanTra)</td>
+        <td>@Html.DisplayFor(modelItem => Model.TienPhat)</td>
         <td><input type="checkbox"/></td>
         </tr>
     </table>
@@ -70,10 +71,12 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $("#XemTraSach").click(function () {
-            $('form').submit();
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("#XemTraSach").click(function () {
+                $('form').submit();
+            });
         });
-    });
-</script>
+    </script>
+}

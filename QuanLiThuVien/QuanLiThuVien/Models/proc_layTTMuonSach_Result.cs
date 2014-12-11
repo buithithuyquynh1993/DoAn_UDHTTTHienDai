@@ -11,8 +11,9 @@ namespace QuanLiThuVien.Models
 {
     using System;
     
-    public partial class proc_layDSMuonTra_Result
+    public partial class proc_layTTMuonSach_Result
     {
+        public Nullable<int> TienPhat { get; set; }
         public int ID { get; set; }
         public Nullable<System.DateTime> NgayMuon { get; set; }
         public Nullable<System.DateTime> NgayTra { get; set; }
@@ -22,6 +23,5 @@ namespace QuanLiThuVien.Models
         public Nullable<int> IDNhanVienTra { get; set; }
         public Nullable<int> IDDocGia { get; set; }
         public Nullable<int> IDSach { get; set; }
-        public string TenSach { get; set; }
     }
 }
