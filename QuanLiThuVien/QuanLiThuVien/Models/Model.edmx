@@ -861,7 +861,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <Parameter Name="dieukien" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_layTTMuonSach" ReturnType="Collection(QuanLyThuVienModel.proc_layTTMuonSach_Result)">
-          <Parameter Name="maSach" Mode="In" Type="String" />
+            <Parameter Name="maSach" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_layDSMuonTra_Result">
@@ -887,6 +887,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
           <Property Type="Int32" Name="IDDocGia" Nullable="true" />
           <Property Type="Int32" Name="IDSach" Nullable="true" />
+          <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1111,6 +1112,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
                 <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
                 <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
                 <ScalarProperty Name="IDSach" ColumnName="IDSach" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

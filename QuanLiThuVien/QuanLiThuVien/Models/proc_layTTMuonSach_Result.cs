@@ -23,5 +23,6 @@ namespace QuanLiThuVien.Models
         public Nullable<int> IDNhanVienTra { get; set; }
         public Nullable<int> IDDocGia { get; set; }
         public Nullable<int> IDSach { get; set; }
+        public string TenSach { get; set; }
     }
 }
