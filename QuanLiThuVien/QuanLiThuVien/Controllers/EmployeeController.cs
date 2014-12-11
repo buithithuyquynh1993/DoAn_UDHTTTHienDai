@@ -65,7 +65,10 @@ namespace QuanLiThuVien.Controllers
             return View ("TraSach", KQ);
         }
         public decimal tinhTienTienPhatThem() { return 0; }
-        public bool thuchienTraSach() { return false; }
+        public bool thuchienTraSach(String ID) {
+            String ID1 = ID;
+            return false; 
+        }
         public ActionResult TraSach()
         {
             return View();

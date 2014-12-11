@@ -49,22 +49,28 @@
         </tr>
         <tr>
         <td>@Html.DisplayFor(modelItem => Model.ID)</td>
-        @*<td>@Html.DisplayFor(modelItem => Model.TenSach)</td>*@
+        <td>@Html.DisplayFor(modelItem => Model.TenSach)</td>
         <td>@Html.DisplayFor(modelItem => Model.NgayMuon)</td>
         <td>@Html.DisplayFor(modelItem => Model.HanTra)</td>
         <td>@Html.DisplayFor(modelItem => Model.TienPhat)</td>
-        <td><input type="checkbox"/></td>
+        <td><input type="checkbox" id="check_sachmat_rach"/></td>
         </tr>
     </table>
     <div class="row">
         <div class="col-md-6 col-md-push-8">
             <label style="width: 20%">Tổng phí phạt: </label>
-            <input type="text" readonly="readonly" />
+            <input type="text" readonly="readonly" id="tongphiphat" value="@Html.DisplayFor(modelItem => Model.TienPhat)"/>
         </div>
     </div>
     <div class="row ticket-item" style="margin-top: 20px">
         <div class="col-md-2 col-md-push-4">
-	        <a class="ticket-btn" href="#">Trả sách</a>
+            @if(Model != null)
+            {
+                string tem = Model.ID.ToString();
+                @Html.ActionLink("Trả sách", "thuchienTraSach", new { ID = tem }, new { @class = "ticket-btn" });
+            }
+            else
+            { <a class="ticket-btn" href="#" id="trasach">Trả sách</a> }
         </div>
         <div class="col-md-2 col-md-push-5">
 			<a class="ticket-btn" href="#">Thoát</a>
@@ -77,6 +83,10 @@
             $("#XemTraSach").click(function () {
                 $('form').submit();
             });
+            @*$("#check_sachmat_rach").checked(function () {
+                $("#tongphiphat").val(@Html.Value(Model.TienPhat).ToString());
+            });*@
         });
     </script>
 }
+            
