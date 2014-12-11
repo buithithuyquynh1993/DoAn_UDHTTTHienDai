@@ -56,18 +56,40 @@ namespace QuanLiThuVien.Controllers
 
         public ActionResult layThongTinMuonSach(FormCollection f)
         {
-            proc_layTTMuonSach_Result KQ = new proc_layTTMuonSach_Result();
-            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-            String maDocGia = Request.Form["madocgia"];
-            String maSach = Request.Form["masach"];
-            var query = data.proc_layTTMuonSach(maSach);
-            KQ = query.First();
-            return View ("TraSach", KQ);
+            try
+            {
+                proc_layTTMuonSach_Result KQ = new proc_layTTMuonSach_Result();
+                QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                String maDocGia = Request.Form["madocgia"];
+                String maSach = Request.Form["masach"];
+                var query = data.proc_layTTMuonSach(maSach);
+                KQ = query.First();
+                return View("TraSach", KQ);
+            }
+            catch (Exception)
+            {
+                return View("TraSach", null);
+            }
         }
         public decimal tinhTienTienPhatThem() { return 0; }
-        public bool thuchienTraSach(String ID) {
-            String ID1 = ID;
-            return false; 
+        public bool thuchienTraSach(int ID, int? phat) {
+            try
+            {
+                QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                THONGTINMUONTRA result = (from tt in data.THONGTINMUONTRAs where tt.ID == ID select tt).First();
+                result.NgayTra = DateTime.Now;
+                if (phat != null)
+                {
+                    BANPHAT bphat = new BANPHAT();
+                    bphat.IDThongTinMuonTra = ID;
+                    bphat.PhiPhat = phat;
+                    data.BANPHATs.Add(bphat);
+                }
+                data.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            { return false; }
         }
         public ActionResult TraSach()
         {
