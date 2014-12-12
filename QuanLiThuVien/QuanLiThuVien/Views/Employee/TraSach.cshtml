@@ -55,15 +55,8 @@
             <td>@Html.DisplayFor(modelItem => Model.NgayMuon)</td>
             <td>@Html.DisplayFor(modelItem => Model.HanTra)</td>
             <td>@Html.DisplayFor(modelItem => Model.TienPhat)</td>
-            <td><input type="checkbox" id="check_sachmat_rach" style="margin-left:30%"/></td>
+            <td><input type="checkbox" id="check_sachmat_rach" style="margin-left:30%" onclick="tinhtienSachRach()"/></td>   
             </tr>
-            @*<script>
-                $(document).ready(function () {
-                    $("#check_sachmat_rach").checked(function () {
-                        @Model.TienPhat += 50000;
-                    });
-                });
-            </script>*@
         }
         else
         {<tr><td colspan="5">Không có dữ liệu</td></tr>}
@@ -98,9 +91,13 @@
             $("#XemTraSach").click(function () {
                 $('form').submit();
             });
-            
         });
-       
+
+        function tinhtienSachRach() {
+            var tem = parseInt($("#tongphiphat").val());
+            var tienphat = 50000 + tem;
+            $("#tongphiphat").val(tienphat);
+        }
     </script>
 }
             

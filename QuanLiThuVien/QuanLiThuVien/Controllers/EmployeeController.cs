@@ -104,6 +104,12 @@ namespace QuanLiThuVien.Controllers
             var query = from p in data.THUGOPies where p.DaXem == false select p;
             return View(query);
         }
+        public bool xacnhanDaXemGopY(FormCollection f)
+        {
+            var checkList = f["checkGopY"];
+            int tem = checkList.Count();
+            return false;
+        }
         #endregion
 
         public ActionResult layDSNguoiMuon()

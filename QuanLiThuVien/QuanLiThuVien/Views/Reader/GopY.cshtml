@@ -20,7 +20,7 @@
     }
     <div class="row ticket-item" style="margin-top: 20px">
         <div class="col-md-2 col-md-push-4">
-           <a class="ticket-btn" href="#" id="trasach">Gửi</a>
+           <a class="ticket-btn" href="#" id="guiGopY">Gửi</a>
         </div>
         <div class="col-md-2 col-md-push-5">
 			<a class="ticket-btn" href="#">Thoát</a>
@@ -39,15 +39,12 @@
 {
     <script>
         $(document).ready(function () {
-            $("#trasach").click(function () {
-                alert("hikhik");    
-                $("form").submit();
+            $("#guiGopY").click(function () {
+                if ($("textarea").val() == "") 
+                    alert("Vui lòng nhập nội dung");
+                else
+                    $("form").submit();
             });
-
-            //if (model != null)
-            //    alert("Cảm ơn! Gửi góp ý thành công.");
-            //else
-            //    alert("Gửi góp ý thất bại!");
         });
         
     </script>

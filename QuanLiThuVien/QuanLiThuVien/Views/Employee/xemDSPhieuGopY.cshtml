@@ -7,17 +7,21 @@
 <link rel="stylesheet" href="@Url.Content("~/Content/css/table_normalize.css")">
 <link rel="stylesheet" href="@Url.Content("~/Content/css/table_style.css")">
 
-<h1 class="text-center">Danh Sách Phiếu Góp Ý</h1>
-<table class="responstable">
-    <tr>
-        <th style="width:5%; text-align:center">STT</th>
-        <th style="width:15%; text-align:center">Ngày gửi</th>
-        <th style="width:70%; text-align:center">Nội dung</th>
-        <th style="width:10%; text-align:center">
-            Đã xem<br />
-            <a style="visibility:visible">Chọn tất cả</a>
-        </th>
-    </tr>
+<div class="middle-content">
+    <h1 class="text-center">Danh Sách Phiếu Góp Ý</h1>
+@using (Html.BeginForm("xacnhanDaXemGopY", "Employee", FormMethod.Post))
+{
+    <table class="responstable">
+        <tr>
+            <th style="width:5%; text-align:center">STT</th>
+            <th style="width:15%; text-align:center">Ngày gửi</th>
+            <th style="width:70%; text-align:center">Nội dung</th>
+            <th style="width:10%; text-align:center">
+                Đã xem<br />
+                @Html.CheckBox("all", new { id = "checkall"}) <span>All</span>
+            </th>
+        </tr>
+
     @if (Model != null)
     { 
         int i = 1;
@@ -25,15 +29,14 @@
         {
         <tr>
             <td>@Html.DisplayName((i++).ToString())</td>
-             <td>
+                <td>
                 @Html.DisplayFor(modelItem => item.NgayGopY)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NoiDung)
             </td>
-       
             <td style="padding-left: 5%">
-                @Html.CheckBox("gopy" + item.ID)
+                @Html.CheckBox("checkGopY", new { @class="checkall", value = @item.ID})
             </td>
         </tr>
         };
@@ -42,7 +45,29 @@
     {
         <tr><td colspan="4">Không có dữ liệu</td></tr>
     }
+    </table>
+}
+     <div class="row ticket-item" style="margin-top: 20px">
+        <div class="col-md-2 col-md-push-4">
+            @*@Html.ActionLink("Đã xem", "xacnhanDaXemGopY", new 
+            *@<a class="ticket-btn" href="#" id="dadoc">Đã đọc</a>
+        </div>
+        <div class="col-md-2 col-md-push-5">
+			<a class="ticket-btn" href="#">Thoát</a>
+        </div>
+    </div>
+</div>
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("#checkall").click(function () {
+                var var_checked = this.checked;
+                $(".checkall").prop('checked', var_checked);
+            });
+            $("#dadoc").click(function () {
+                $("form").submit();
+            });
+        });
+    </script>
     
 }
-
-</table>
