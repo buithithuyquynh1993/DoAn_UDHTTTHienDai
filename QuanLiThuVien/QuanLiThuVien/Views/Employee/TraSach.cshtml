@@ -13,7 +13,7 @@
             $temp = new Date().toDateString();
             document.write($temp) ;
        </script></span></h2>
-    @using (Html.BeginForm("layThongTinMuonSach", "Employee", FormMethod.Post))
+    @using (Html.BeginForm("layThongTinMuonSach", "Employee", FormMethod.Post, new { name = "layThongTinMuonSach" }))
     {
             <div style="max-width: 500px; margin:auto">
                 <div class="row">
@@ -63,14 +63,19 @@
         
     </table>
     <div class="row">
-        <div class="col-md-6 col-md-push-8">
+        @*<div class="col-md-7" style="color: red"><h2>Sách bị rách / mất</h2></div>*@
+        <div class="col-md-5 col-md-push-8">
             <label style="width: 20%">Tổng phí phạt: </label>
-            <input type="text" readonly="readonly" id="tongphiphat" value="@Html.DisplayFor(modelItem => Model.TienPhat)"/>
-            <input hidden id="lido" value=""/>
+           @* @using (Html.BeginForm("thuchienTraSach", "Employee", FormMethod.Post, new { style = "display:inline", name = "thuchienTraSach" }))
+            {
+                *@<input type="text" readonly="readonly" id="tongphiphat" value="@Html.DisplayFor(modelItem => Model.TienPhat)" style="font-size:20px"/>
+                <input hidden id="lidophat" name="lidophat" style="visibility:hidden"/>
+          @*  }*@
         </div>
     </div>
     <div class="row ticket-item" style="margin-top: 20px">
         <div class="col-md-2 col-md-push-4">
+            @*<a class = "ticket-btn" id="trasach_click">Trả sách</a>*@
             @if (Model != null)
             {
                 int _ID = Model.ID;
@@ -89,13 +94,20 @@
     <script>
         $(document).ready(function () {
             $("#XemTraSach").click(function () {
-                $('form').submit();
+                $('form[name="layThongTinMuonSach"]').submit();
             });
+            //$('#trasach_click').click(function () {
+            //    $('form[name=thuchienTraSach]').submit();
+            //});
         });
 
         function tinhtienSachRach() {
             var tem = parseInt($("#tongphiphat").val());
-            var tienphat = 50000 + tem;
+            var tienphat;
+            if ($("#check_sachmat_rach").is(":checked"))
+                tienphat = 50000 + tem;
+            else
+                tienphat = tem - 50000;
             $("#tongphiphat").val(tienphat);
         }
     </script>
