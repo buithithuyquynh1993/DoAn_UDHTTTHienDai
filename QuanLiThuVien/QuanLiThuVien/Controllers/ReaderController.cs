@@ -41,44 +41,6 @@ namespace QuanLiThuVien.Controllers
 
         #region Lấy thông tin mượn trả
 
-        //private static List<THONGTINMUONTRA> StrQuery_LayDsMuonTra(XmlElement node)
-        //{
-        //    try
-        //    {
-        //        List<THONGTINMUONTRA> KQ = new List<THONGTINMUONTRA>();   
-        //        using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
-        //        {
-        //            //Tạo câu truy vấn
-        //            //Câu truy vấn tương tự:
-
-        //            String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV = '" + node.Attributes[0].Value + "'";
-
-        //            for (int i = 1; i < node.Attributes.Count; i++)
-        //            {
-        //                //if (i + 1 < node.Attributes.Count)
-        //                sql += " and ";
-        //                String name = node.Attributes[i].Name;
-        //                String value = node.Attributes[i].Value;
-        //                sql += "thongtinmuon_tra." + name + value;
-        //                break;
-        //            }
-
-        //            //Thực hiện truy vấn
-        //            //var temp = (data as IObjectContextAdapter).ObjectContext;
-        //            ObjectQuery<THONGTINMUONTRA> query = (data as IObjectContextAdapter).ObjectContext.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
-        //            foreach (THONGTINMUONTRA i in query)
-        //                KQ.Add(i);
-        //            if (KQ.Count == 0)
-        //                KQ = null;
-
-        //            return KQ;
-        //        }
-        //    }
-        //    catch (Exception)
-        //    { return null; }
-        //}
-
-
         public ActionResult layDsMuonTra(FormCollection f)
         {
             
@@ -106,6 +68,32 @@ namespace QuanLiThuVien.Controllers
             }
         }
 
+        #endregion
+
+        #region Góp ý
+        public ActionResult GopY()
+        {
+            return View();
+        }
+        public ActionResult luuGopY(FormCollection f)
+        {
+            try
+            {
+                String noidungGopY = Request["noidungGopY"];
+
+                QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                THUGOPY gopy = new THUGOPY();
+                gopy.NgayGopY = DateTime.Now;
+                gopy.NoiDung = noidungGopY;
+                data.THUGOPies.Add(gopy);
+                data.SaveChanges();
+
+                return View("GopY", gopy);
+            }
+            catch (Exception) {
+                return View("GopY", null);
+            }
+        }
         #endregion
 
         public ActionResult BorrowedRoom()

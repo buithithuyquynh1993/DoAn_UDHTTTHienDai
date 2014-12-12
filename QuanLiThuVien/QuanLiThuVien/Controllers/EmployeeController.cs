@@ -71,7 +71,6 @@ namespace QuanLiThuVien.Controllers
                 return View("TraSach", null);
             }
         }
-        public decimal tinhTienTienPhatThem() { return 0; }
         public bool thuchienTraSach(int ID, int? phat) {
             try
             {
@@ -96,7 +95,16 @@ namespace QuanLiThuVien.Controllers
             return View();
         }
         #endregion
-        
+
+
+        #region xem danh sách phiếu góp ý
+        public ActionResult xemDSPhieuGopY()
+        {
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            var query = from p in data.THUGOPies where p.DaXem == false select p;
+            return View(query);
+        }
+        #endregion
 
         public ActionResult layDSNguoiMuon()
         {

@@ -40,12 +40,12 @@
     }
     <table class="responstable">
         <tr>
-        <th width="6%" class="text-center">STT</th>
-        <th width="41%" class="text-center">Tên sách</th>
-        <th width="16%" class="text-center">Ngày mượn</th>
-        <th width="16%" class="text-center">Hạn trả</th>
-        <th width="14%" class="text-center">Tiền quá hạn</th>
-		<th width="11%" class="text-center">Sách rách/mất</th>
+        <th width="6%" style="text-align:center">STT</th>
+        <th width="41%" style="text-align:center">Tên sách</th>
+        <th width="16%" style="text-align:center">Ngày mượn</th>
+        <th width="16%" style="text-align:center">Hạn trả</th>
+        <th width="14%" style="text-align:center">Tiền quá hạn</th>
+		<th width="11%" style="text-align:center">Sách rách/mất</th>
         </tr>
         @if (Model != null)
         { 
@@ -55,7 +55,7 @@
             <td>@Html.DisplayFor(modelItem => Model.NgayMuon)</td>
             <td>@Html.DisplayFor(modelItem => Model.HanTra)</td>
             <td>@Html.DisplayFor(modelItem => Model.TienPhat)</td>
-            <td><input type="checkbox" id="check_sachmat_rach"/></td>
+            <td><input type="checkbox" id="check_sachmat_rach" style="margin-left:30%"/></td>
             </tr>
             @*<script>
                 $(document).ready(function () {

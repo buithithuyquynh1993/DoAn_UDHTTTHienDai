@@ -155,6 +155,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayGopY" Type="date" />
+          <Property Name="DaXem" Type="bit" />
         </EntityType>
         <EntityType Name="VITRI">
           <Key>
@@ -614,6 +615,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayGopY" Type="DateTime" Precision="0" />
+          <Property Name="DaXem" Type="Boolean" />
         </EntityType>
         <EntityType Name="VITRI">
           <Key>
@@ -861,7 +863,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <Parameter Name="dieukien" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_layTTMuonSach" ReturnType="Collection(QuanLyThuVienModel.proc_layTTMuonSach_Result)">
-            <Parameter Name="maSach" Mode="In" Type="String" />
+          <Parameter Name="maSach" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_layDSMuonTra_Result">
@@ -1044,6 +1046,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <EntitySetMapping Name="THUGOPies">
             <EntityTypeMapping TypeName="QuanLyThuVienModel.THUGOPY">
               <MappingFragment StoreEntitySet="THUGOPY">
+                <ScalarProperty Name="DaXem" ColumnName="DaXem" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="NgayGopY" ColumnName="NgayGopY" />

@@ -17,5 +17,6 @@ namespace QuanLiThuVien.Models
         public int ID { get; set; }
         public string NoiDung { get; set; }
         public Nullable<System.DateTime> NgayGopY { get; set; }
+        public Nullable<bool> DaXem { get; set; }
     }
 }

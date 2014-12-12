@@ -480,6 +480,8 @@
     <Content Include="Views\Reader\add.cshtml" />
     <Content Include="Views\Reader\LayDsMuonTra.cshtml" />
     <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\GopY.cshtml" />
+    <Content Include="Views\Employee\xemDSPhieuGopY.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
