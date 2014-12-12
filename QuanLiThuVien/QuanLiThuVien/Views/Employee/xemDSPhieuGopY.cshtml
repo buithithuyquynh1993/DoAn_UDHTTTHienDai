@@ -1,0 +1,48 @@
+﻿@model IEnumerable<QuanLiThuVien.Models.THUGOPY>
+
+@{
+    ViewBag.Title = "xemDSPhieuGopY";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_normalize.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_style.css")">
+
+<h1 class="text-center">Danh Sách Phiếu Góp Ý</h1>
+<table class="responstable">
+    <tr>
+        <th style="width:5%; text-align:center">STT</th>
+        <th style="width:15%; text-align:center">Ngày gửi</th>
+        <th style="width:70%; text-align:center">Nội dung</th>
+        <th style="width:10%; text-align:center">
+            Đã xem<br />
+            <a style="visibility:visible">Chọn tất cả</a>
+        </th>
+    </tr>
+    @if (Model != null)
+    { 
+        int i = 1;
+        foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayName((i++).ToString())</td>
+             <td>
+                @Html.DisplayFor(modelItem => item.NgayGopY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+       
+            <td style="padding-left: 5%">
+                @Html.CheckBox("gopy" + item.ID)
+            </td>
+        </tr>
+        };
+    }
+    else
+    {
+        <tr><td colspan="4">Không có dữ liệu</td></tr>
+    }
+    
+}
+
+</table>
