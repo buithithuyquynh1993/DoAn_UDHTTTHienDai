@@ -65,25 +65,18 @@
     <div class="row">
         @*<div class="col-md-7" style="color: red"><h2>Sách bị rách / mất</h2></div>*@
         <div class="col-md-5 col-md-push-8">
-            <label style="width: 20%">Tổng phí phạt: </label>
-           @* @using (Html.BeginForm("thuchienTraSach", "Employee", FormMethod.Post, new { style = "display:inline", name = "thuchienTraSach" }))
+            <label style="width: 20%" onclick="thuchienTraSach()">Tổng phí phạt: </label>
+            @using (Html.BeginForm("thuchienTraSach", "Employee", FormMethod.Post, new { name = "form_thuchienTraSach" , style = "display:inline"}))
             {
-                *@<input type="text" readonly="readonly" id="tongphiphat" value="@Html.DisplayFor(modelItem => Model.TienPhat)" style="font-size:20px"/>
+                <input type="text" readonly="readonly"  name="tongphiphat" id="tongphiphat" value="@Html.DisplayFor(modelItem => Model.TienPhat)" style="font-size:20px"/>
                 <input hidden id="lidophat" name="lidophat" style="visibility:hidden"/>
-          @*  }*@
+                <input hidden name="IDPhieuMuon" style="visibility:hidden" value="@Html.DisplayFor(modelItem => Model.ID)"/>
+            }
         </div>
     </div>
     <div class="row ticket-item" style="margin-top: 20px">
         <div class="col-md-2 col-md-push-4">
-            @*<a class = "ticket-btn" id="trasach_click">Trả sách</a>*@
-            @if (Model != null)
-            {
-                int _ID = Model.ID;
-                var _phat = Model.TienPhat;
-                @Html.ActionLink("Trả sách", "thuchienTraSach", new { ID = _ID, phat = _phat }, new { @class = "ticket-btn" });
-            }
-            else
-            { <a class="ticket-btn" href="#" id="trasach">Trả sách</a> }
+            <a class = "ticket-btn" id="trasach_click" onclick="funcTraSach()">Trả sách</a>
         </div>
         <div class="col-md-2 col-md-push-5">
 			<a class="ticket-btn" href="#">Thoát</a>
@@ -96,20 +89,37 @@
             $("#XemTraSach").click(function () {
                 $('form[name="layThongTinMuonSach"]').submit();
             });
-            //$('#trasach_click').click(function () {
-            //    $('form[name=thuchienTraSach]').submit();
-            //});
         });
 
-        function tinhtienSachRach() {
-            var tem = parseInt($("#tongphiphat").val());
-            var tienphat;
-            if ($("#check_sachmat_rach").is(":checked"))
-                tienphat = 50000 + tem;
-            else
-                tienphat = tem - 50000;
-            $("#tongphiphat").val(tienphat);
+        function funcTraSach() {
+            $('form[name="form_thuchienTraSach"]').submit();
         }
+
+        function tinhtienSachRach() {
+            var strLyDoQuaHan = " Sách quá hạn ";
+            var strLyDoSachRach = " Sách rách, mất";
+            var phiPhatSachRach = 50000;
+
+            var strLyDo = $("#lidophat").val();
+            var tienQuaHan = parseInt($("#tongphiphat").val());
+            if (tienQuaHan != "" && strLyDo == "") {
+                strLyDo += strLyDoQuaHan;
+            }
+            var tienphat;
+            if ($("#check_sachmat_rach").is(":checked")) {
+                tienphat = tienQuaHan + phiPhatSachRach;
+                strLyDo += strLyDoSachRach;
+            }
+            else {
+                tienphat = tienQuaHan - phiPhatSachRach;
+                strLyDo = strLyDo.substr(0, strLyDo.length - strLyDoSachRach.length);
+            }
+            
+            $("#tongphiphat").val(tienphat);
+            $("#lidophat").val(strLyDo);
+        }
+
+        
     </script>
 }
             

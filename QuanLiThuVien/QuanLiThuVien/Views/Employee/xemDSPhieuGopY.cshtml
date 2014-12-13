@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.NoiDung)
             </td>
             <td style="padding-left: 5%">
-                @Html.CheckBox("checkGopY", new { @class="checkall", value = @item.ID})
+                @Html.CheckBox("checkGopY", new { @class="checkall"})@*, value = @item.ID*@
             </td>
         </tr>
         };

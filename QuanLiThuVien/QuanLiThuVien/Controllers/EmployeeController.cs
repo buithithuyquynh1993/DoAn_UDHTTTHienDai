@@ -71,9 +71,14 @@ namespace QuanLiThuVien.Controllers
                 return View("TraSach", null);
             }
         }
-        public bool thuchienTraSach(int ID, int? phat) {
+        //public bool thuchienTraSach(int ID, int? phat)
+        public bool thuchienTraSach(FormCollection f){
             try
             {
+                int? ID = int.Parse(f["IDPhieuMuon"]);
+                int phat = int.Parse(f["tongphiphat"]);
+                String lido = (f["lidophat"]);
+                
                 QuanLyThuVienEntities data = new QuanLyThuVienEntities();
                 THONGTINMUONTRA result = (from tt in data.THONGTINMUONTRAs where tt.ID == ID select tt).First();
                 result.NgayTra = DateTime.Now;
@@ -82,6 +87,7 @@ namespace QuanLiThuVien.Controllers
                     BANPHAT bphat = new BANPHAT();
                     bphat.IDThongTinMuonTra = ID;
                     bphat.PhiPhat = phat;
+                    bphat.LiDo = lido;
                     data.BANPHATs.Add(bphat);
                 }
                 data.SaveChanges();
