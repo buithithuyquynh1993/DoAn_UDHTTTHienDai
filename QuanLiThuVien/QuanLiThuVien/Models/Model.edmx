@@ -34,19 +34,18 @@
           <Property Name="Truong" Type="nvarchar" MaxLength="50" />
           <Property Name="Khoa" Type="nvarchar" MaxLength="50" />
           <Property Name="Avatar" Type="nvarchar" MaxLength="200" />
-          <Property Name="MatKhau" Type="varchar" MaxLength="100" />
           <Property Name="LoaiDocGia" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LICHSUMUONPHONG">
           <Key>
-            <PropertyRef Name="IDDocGia" />
-            <PropertyRef Name="IDPhong" />
-            <PropertyRef Name="ThoiGianMuon" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="IDDocGia" Type="int" Nullable="false" />
-          <Property Name="IDPhong" Type="int" Nullable="false" />
-          <Property Name="ThoiGianMuon" Type="datetime" Nullable="false" />
+          <Property Name="IDDocGia" Type="int" />
+          <Property Name="IDPhong" Type="int" />
+          <Property Name="ThoiGianMuon" Type="datetime" />
           <Property Name="ThoiGianTra" Type="datetime" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="delete_flag" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="LOPTAPHUAN">
           <Key>
@@ -156,6 +155,15 @@
           <Property Name="NoiDung" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayGopY" Type="date" />
         </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="int" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD_SALT" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="VITRI">
           <Key>
             <PropertyRef Name="ID" />
@@ -194,7 +202,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_DOCGIA">
-          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
@@ -206,7 +214,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_PHONG">
-          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHONG">
@@ -349,6 +357,30 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_DOCGIA">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QuanLyThuVienModelStoreContainer">
           <EntitySet Name="BANPHAT" EntityType="Self.BANPHAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHUDE" EntityType="Self.CHUDE" Schema="dbo" store:Type="Tables" />
@@ -365,6 +397,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <EntitySet Name="TACGIA_SACH" EntityType="Self.TACGIA_SACH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THONGTINMUONTRA" EntityType="Self.THONGTINMUONTRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUGOPY" EntityType="Self.THUGOPY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VITRI" EntityType="Self.VITRI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -435,6 +468,14 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             <End Role="SACH" EntitySet="SACH" />
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_DOCGIA" Association="Self.FK_USER_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_NHANVIEN" Association="Self.FK_USER_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -472,21 +513,21 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <Property Name="Truong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Khoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LoaiDocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LICHSUMUONPHONGs" Relationship="Self.FK_LICHSUMUONPHONG_DOCGIA" FromRole="DOCGIA" ToRole="LICHSUMUONPHONG" />
           <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_DOCGIA" FromRole="DOCGIA" ToRole="THONGTINMUONTRA" />
+          <NavigationProperty Name="USERs" Relationship="Self.FK_USER_DOCGIA" FromRole="DOCGIA" ToRole="USER" />
         </EntityType>
         <EntityType Name="LICHSUMUONPHONG">
           <Key>
-            <PropertyRef Name="IDDocGia" />
-            <PropertyRef Name="IDPhong" />
-            <PropertyRef Name="ThoiGianMuon" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="IDDocGia" Type="Int32" Nullable="false" />
-          <Property Name="IDPhong" Type="Int32" Nullable="false" />
-          <Property Name="ThoiGianMuon" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IDDocGia" Type="Int32" />
+          <Property Name="IDPhong" Type="Int32" />
+          <Property Name="ThoiGianMuon" Type="DateTime" Precision="3" />
           <Property Name="ThoiGianTra" Type="DateTime" Precision="3" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="delete_flag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="DOCGIA" Relationship="Self.FK_LICHSUMUONPHONG_DOCGIA" FromRole="LICHSUMUONPHONG" ToRole="DOCGIA" />
           <NavigationProperty Name="PHONG" Relationship="Self.FK_LICHSUMUONPHONG_PHONG" FromRole="LICHSUMUONPHONG" ToRole="PHONG" />
         </EntityType>
@@ -524,6 +565,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
           <NavigationProperty Name="THONGTINMUONTRAs1" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN1" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
+          <NavigationProperty Name="USERs" Relationship="Self.FK_USER_NHANVIEN" FromRole="NHANVIEN" ToRole="USER" />
         </EntityType>
         <EntityType Name="NHAXUATBAN">
           <Key>
@@ -609,6 +651,17 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <Property Name="NoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayGopY" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="Int32" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD_SALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK_USER_DOCGIA" FromRole="USER" ToRole="DOCGIA" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_USER_NHANVIEN" FromRole="USER" ToRole="NHANVIEN" />
+        </EntityType>
         <EntityType Name="VITRI">
           <Key>
             <PropertyRef Name="ID" />
@@ -658,7 +711,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_DOCGIA">
-          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
@@ -681,8 +734,20 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_DOCGIA">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LICHSUMUONPHONG_PHONG">
-          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHONG">
@@ -726,6 +791,18 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             </Principal>
             <Dependent Role="THONGTINMUONTRA">
               <PropertyRef Name="IDNhanVienTra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -796,6 +873,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <EntitySet Name="TACGIAs" EntityType="Self.TACGIA" />
           <EntitySet Name="THONGTINMUONTRAs" EntityType="Self.THONGTINMUONTRA" />
           <EntitySet Name="THUGOPies" EntityType="Self.THUGOPY" />
+          <EntitySet Name="USERs" EntityType="Self.USER" />
           <EntitySet Name="VITRIs" EntityType="Self.VITRI" />
           <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" />
           <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
@@ -814,6 +892,10 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             <End Role="DOCGIA" EntitySet="DOCGIAs" />
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_DOCGIA" Association="Self.FK_USER_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="USER" EntitySet="USERs" />
+          </AssociationSet>
           <AssociationSet Name="FK_LICHSUMUONPHONG_PHONG" Association="Self.FK_LICHSUMUONPHONG_PHONG">
             <End Role="PHONG" EntitySet="PHONGs" />
             <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONGs" />
@@ -829,6 +911,10 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN1" Association="Self.FK_THONGTINMUONTRA_NHANVIEN1">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_NHANVIEN" Association="Self.FK_USER_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="USER" EntitySet="USERs" />
           </AssociationSet>
           <AssociationSet Name="FK_SACH_NHAXUATBAN" Association="Self.FK_SACH_NHAXUATBAN">
             <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
@@ -887,7 +973,6 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
                 <ScalarProperty Name="Truong" ColumnName="Truong" />
                 <ScalarProperty Name="Khoa" ColumnName="Khoa" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="LoaiDocGia" ColumnName="LoaiDocGia" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -899,6 +984,8 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
                 <ScalarProperty Name="IDPhong" ColumnName="IDPhong" />
                 <ScalarProperty Name="ThoiGianMuon" ColumnName="ThoiGianMuon" />
                 <ScalarProperty Name="ThoiGianTra" ColumnName="ThoiGianTra" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1009,6 +1096,16 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="NgayGopY" ColumnName="NgayGopY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="QuanLyThuVienModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

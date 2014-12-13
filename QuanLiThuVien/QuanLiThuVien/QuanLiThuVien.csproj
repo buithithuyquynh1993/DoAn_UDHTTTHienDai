@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FC820088-4490-4C62-9720-B490109F752D}</ProjectGuid>
+    <ProjectGuid>{9F23C410-B464-481A-903E-2885FBCBB37C}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -20,7 +20,6 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +29,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,7 +37,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge">
@@ -60,8 +57,14 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="NuGet.Core, Version=1.6.30117.9648, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\NuGet.Core.dll</HintPath>
+    </Reference>
     <Reference Include="OnBarcode.Barcode.BarcodeScanner">
       <HintPath>..\..\AppWebcam\bin\Debug\OnBarcode.Barcode.BarcodeScanner.dll</HintPath>
     </Reference>
@@ -74,15 +77,8 @@
     <Reference Include="PagedList.Mvc">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="ProcessRootXML">
-      <HintPath>.\ProcessRootXML.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -90,9 +86,12 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -150,15 +149,15 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BarCodeController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\PublicController.cs" />
-    <Compile Include="Controllers\SachController.cs" />
-    <Compile Include="Controllers\ReaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
+    <Compile Include="Controllers\ReaderController.cs" />
+    <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,6 +180,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -212,6 +216,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THUGOPY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VIEW_BORROWERS.cs">
@@ -250,6 +257,7 @@
     <Content Include="Content\images\event_4.jpg" />
     <Content Include="Content\images\event_5.jpg" />
     <Content Include="Content\images\grabbing.png" />
+    <Content Include="Content\images\khtnlarge.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\partners\partner1.png" />
     <Content Include="Content\images\partners\partner2.png" />
@@ -263,6 +271,7 @@
     <Content Include="Content\images\templatemo_slide_2.jpg" />
     <Content Include="Content\images\templatemo_slide_3.jpg" />
     <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\min\jquery.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\min\main.min.js" />
     <Content Include="Content\js\min\plugins.min.js" />
@@ -273,39 +282,20 @@
     <Content Include="Content\js\vendor\modernizr-2.6.1-respond-1.1.0.min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-2.2.0.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <None Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Web.Config">
-      <SubType>Designer</SubType>
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Content\css\jquery.datetimepicker.css" />
+    <Content Include="Content\js\jquery.datetimepicker.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
-    <Content Include="Views\Employee\BorrowedBook.cshtml" />
-    <Content Include="Views\Employee\BorrowedRoom.cshtml" />
-    <Content Include="Views\Employee\Mail.cshtml" />
-    <Content Include="Views\Employee\TraSach.cshtml" />
-    <Content Include="Views\Reader\BorrowedRoom.cshtml" />
-    <Content Include="Views\Reader\layDsMuonTra.cshtml" />
-    <None Include="Web.Debug.Config">
-      <DependentUpon>Web.Config</DependentUpon>
-    </None>
-    <None Include="Web.Release.Config">
-      <DependentUpon>Web.Config</DependentUpon>
-    </None>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -313,21 +303,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\_Layout.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\BarCode\Index.cshtml" />
-    <Content Include="Views\BarCode\SetBarCode.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
-    <Content Include="Views\Sach\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reader\add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\flexslider-icon.eot" />
@@ -339,8 +314,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\sass\bourbon\addons\_button.scss" />
     <Content Include="Content\sass\bourbon\addons\_clearfix.scss" />
     <Content Include="Content\sass\bourbon\addons\_font-family.scss" />
@@ -426,14 +399,44 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BarCode\Index.cshtml" />
+    <Content Include="Views\BarCode\SetBarCode.cshtml" />
+    <Content Include="Views\Book\getListBorrowers.cshtml" />
+    <Content Include="Views\Book\getListBorrowers.cshtml~HEAD" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Employee\BorrowedBook.cshtml" />
+    <Content Include="Views\Employee\BorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Employee\Mail.cshtml" />
+    <Content Include="Views\Employee\TraSach.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\XemChiTietDocGia.cshtml" />
+    <Content Include="Views\Home\XemChiTietSach.cshtml" />
+    <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Public\Instructions.cshtml" />
+    <Content Include="Views\Reader\add.cshtml" />
+    <Content Include="Views\Reader\BorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\layDsMuonTra.cshtml" />
+    <Content Include="Views\Reader\UpdateBrrowedRoom.cshtml" />
+    <Content Include="Views\Sach\Index.cshtml" />
+    <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <NativeReference Include="MyApplication.app, Version=1.0.0.0">
       <Name>AppWebcam.vshost.exe.manifest</Name>
       <HintPath>..\..\AppWebcam\bin\Debug\AppWebcam.vshost.exe.manifest</HintPath>
     </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -451,7 +454,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49182</DevelopmentServerPort>
+          <DevelopmentServerPort>51446</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49344/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

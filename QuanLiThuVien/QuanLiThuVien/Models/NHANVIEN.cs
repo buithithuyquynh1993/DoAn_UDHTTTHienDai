@@ -18,6 +18,7 @@ namespace QuanLiThuVien.Models
         {
             this.THONGTINMUONTRAs = new HashSet<THONGTINMUONTRA>();
             this.THONGTINMUONTRAs1 = new HashSet<THONGTINMUONTRA>();
+            this.USERs = new HashSet<USER>();
         }
     
         public int ID { get; set; }
@@ -28,5 +29,6 @@ namespace QuanLiThuVien.Models
     
         public virtual ICollection<THONGTINMUONTRA> THONGTINMUONTRAs { get; set; }
         public virtual ICollection<THONGTINMUONTRA> THONGTINMUONTRAs1 { get; set; }
+        public virtual ICollection<USER> USERs { get; set; }
     }
 }

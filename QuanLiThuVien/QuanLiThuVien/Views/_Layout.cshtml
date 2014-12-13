@@ -11,8 +11,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="templatemo">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/css/animate.css")">
@@ -20,12 +20,15 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/templatemo_style.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/css/reader_style.css")">
 
-    <script src="@Url.Content("~/Content/js/vendor/jquery-1.11.0.min.js")"></script>
-    <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js")"></script>
-   
-    <!--  PHẦN DATEPICKER -->
-     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datetimepicker.css")">
+    <script src="@Url.Content("~/Content/js/jquery.js")"> </script>
+    <script src="@Url.Content("~/Content/js/jquery.datetimepicker.js")"> </script>
 
+    @*<script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/jquery-1.11.0.min.js")"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>*@ 
+
+   
     @RenderSection("head", required: false)
 </head>
 <body>
@@ -33,21 +36,21 @@
         <div class="container">
             <div class="main-header">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-10">
+                    <div class="col-md-2 col-sm-6 col-xs-10">
                         <div class="logo">
                             <a rel="nofollow">
                                 <img src="@Url.Content("~/Content/images/logo.png")" alt="travel html5 website template - templatemo" title="travel - free html5 template">
                             </a>
                         </div> <!-- /.logo -->
                     </div> <!-- /.col-md-4 -->
-                    <div class="col-md-8 col-sm-6 col-xs-2">
+                    <div class="col-md-10 col-sm-6 col-xs-2">
                         <div class="main-menu">
                             <ul class="visible-lg visible-md">
-                                <li><a href="index.html">Trang Chủ</a></li>
-                                <li class="active"><a href="services.html">Tìm Kiếm Sách</a></li>
-                                <li><a href="events.html">Đăng Ký Tập Huấn</a></li>
-                                <li><a href="about.html">Liên hệ</a></li>
-                                <li><a href="contact.html">Đăng nhập</a></li>
+                                <li><a href="~/Public/GetListBorrowedRoom"> Trang Chủ </a></li>
+                                <li><a href="services.html"> Tìm Kiếm Sách </a></li>
+                                <li><a href="events.html"> Lớp Tập Huấn </a></li>
+                                <li><a href="about.html"> Góp Ý </a></li>
+                                <li><a href="~/Public/Instructions"> Hướng Dẫn </a></li>
                             </ul>
                             <a href="#" class="toggle-menu visible-sm visible-xs">
                                 <i class="fa fa-bars"></i>
@@ -132,7 +135,7 @@
                 </div> <!-- /.col-md-4 -->
                 <div class="col-md-4 col-sm-4">
                     <div class="copyright">
-                        <span>Copyright &copy; 2084 <a href="#">Company Name</a> <!-- Credit: www.templatemo.com --></span>
+                        <span>Copyright &copy; Nhóm 06 </span>
                     </div>
                 </div> <!-- /.col-md-4 -->
                 <div class="col-md-4 col-sm-4">
@@ -147,10 +150,9 @@
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </div> <!-- /.site-footer -->
-
-    <script src="@Url.Content("~/Content/js/bootstrap.js")"></script>
-    <script src="@Url.Content("~/Content/js/plugins.js")"></script>
-    <script src="@Url.Content("~/Content/js/main.js")"></script>
+    @*<script src="@Url.Content("~/Content/js/bootstrap.js")"></script> -->
+    <script src="@Url.Content("~/Content/js/plugins.js")"></script> 
+    <script src="@Url.Content("~/Content/js/main.js")"></script>*@ 
    
 </body>
 </html>

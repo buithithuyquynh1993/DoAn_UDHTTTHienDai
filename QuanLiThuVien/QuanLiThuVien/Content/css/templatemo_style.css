@@ -136,11 +136,13 @@ a {
     -webkit-transition: all 200ms ease-in-out;
     -moz-transition: all 200ms ease-in-out;
     transition: all 200ms ease-in-out;
+    font-size: 15px;
 }
 
 a:hover {
     color: #e54747;
     text-decoration: none;
+    font-size: 20px;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -221,13 +223,15 @@ hr {
 }
 
 .logo {
-    margin: 25px;
+    margin: 18px;
     overflow: hidden;
 }
 
 .main-menu {
-    text-align: right;
-    float: right;
+    text-align: center;
+    float: left;
+
+    width:100%;
 }
 
 .main-menu ul li {
@@ -236,18 +240,20 @@ hr {
     padding-left: 25px;
     padding-right: 25px;
     border-left: 1px solid #eee;
+    min-width:185px
 }
 
 .main-menu ul li a {
 	display: block;
     text-transform: uppercase;
-    font-size: 14px;
-    color: #888;
+    font-size: 18px;
+    color: red;
     line-height: 100px;
 }
 
 .main-menu ul li a:hover {
     color: #9ed034;
+    font-size: 19px;
 }
 
 .main-menu ul li.active {
@@ -260,7 +266,7 @@ hr {
 
 a.toggle-menu {
     background: #eee;
-    color: #444;
+    color:red;
     width: 40px;
     height: 40px;
     line-height: 40px;

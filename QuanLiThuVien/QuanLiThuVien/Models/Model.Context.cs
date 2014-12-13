@@ -39,6 +39,7 @@ namespace QuanLiThuVien.Models
         public virtual DbSet<TACGIA> TACGIAs { get; set; }
         public virtual DbSet<THONGTINMUONTRA> THONGTINMUONTRAs { get; set; }
         public virtual DbSet<THUGOPY> THUGOPies { get; set; }
+        public virtual DbSet<USER> USERs { get; set; }
         public virtual DbSet<VITRI> VITRIs { get; set; }
         public virtual DbSet<VIEW_BORROWERS> VIEW_BORROWERS { get; set; }
     }

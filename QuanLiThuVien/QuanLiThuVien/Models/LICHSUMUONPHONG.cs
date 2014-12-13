@@ -14,10 +14,12 @@ namespace QuanLiThuVien.Models
     
     public partial class LICHSUMUONPHONG
     {
-        public int IDDocGia { get; set; }
-        public int IDPhong { get; set; }
+        public Nullable<int> IDDocGia { get; set; }
+        public Nullable<int> IDPhong { get; set; }
         public System.DateTime ThoiGianMuon { get; set; }
-        public Nullable<System.DateTime> ThoiGianTra { get; set; }
+        public System.DateTime ThoiGianTra { get; set; }
+        public int ID { get; set; }
+        public string delete_flag { get; set; }
     
         public virtual DOCGIA DOCGIA { get; set; }
         public virtual PHONG PHONG { get; set; }
