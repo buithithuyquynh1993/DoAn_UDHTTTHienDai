@@ -6,22 +6,34 @@
     ViewBag.Title = "GetListBorrowedRoom";
     Layout = "~/Views/_Layout.cshtml";
 }
-<div class="panel panel-success" align="center">
-    <div class="panel-heading">
-        <font size="6" color="blue" face="arial"><b>   Get List Borrowed Room</b> </font>
-    </div>
-</div>
+<script>
+    $(document).ready(function () {
+
+        $("#date").datetimepicker(
+        {
+            timepicker: false,
+            format: 'm/d/Y'
+        });
+
+    });
+</script>
+
 <div class="col-md-4">
     <ul class="list-group">
         <li class="list-group-item"><a href="~/Public/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
-        <li class=" list-group-item"><a href="~/Employee/BorrowedBook"> Nhân viên </a> </li>
-        <li class=" list-group-item"><a href="~/Reader/BorrowedRoom"> Độc giả </a> </li>
+        <li class=" list-group-item"><a href="~/Employee/GetListBorrowedRoom"> Nhân viên </a> </li>
+        <li class=" list-group-item"><a href="~/Reader/GetListBorrowedRoom"> Độc giả </a> </li>
     </ul>
 </div>
 <div class="col-md-8">
+	<div class="panel panel-success" align="center">
+		<div class="panel-heading">
+			<font size="6" color="blue" face="arial"><b>   Danh Sách Đặt Phòng </b> </font>
+		</div>
+	</div>
     <form method="get" action="/Public/GetListBorrowedRoom" class="form-group">
-        <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword" />
-        <input type='date' class="form-control" id="date" name="date" />
+        <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword"  value="@ViewBag.keyword"/>
+        <input type="text" class="form-control" id="date" name="date" value="@ViewBag.date" placeholder="tháng/ngày/năm" />
 
         <input type="submit" class="btn btn-success" id="Search" value="Tìm" />
     </form>
@@ -47,7 +59,7 @@
             <tr>
                 <td>  </td>
                 <td> @hoten </td>
-                <td> @tgmuon </td>
+                <td> @tgmuon</td>
                 <td> @tgtra </td>
                 <td> @phong </td>
             </tr>
@@ -58,8 +70,11 @@
             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
             of @Model.PageCount
 
-            @Html.PagedListPager(Model, page => Url.Action("GetListBorrowedRoom", new { page }))
+            @Html.PagedListPager(Model, page => Url.Action("GetListBorrowedRoom", new { page, key = ViewBag.keyword, keydate = ViewBag.date }))
         </ul>
     </div>
 </div>
+
+
+
 

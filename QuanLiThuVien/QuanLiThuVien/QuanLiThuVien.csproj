@@ -95,10 +95,16 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="OnBarcode.Barcode.BarcodeScanner, Version=4.2.0.0, Culture=neutral, PublicKeyToken=7fbb339ece197812, processorArchitecture=MSIL">
+    <Reference Include="NuGet.Core, Version=1.6.30117.9648, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\OnBarcode.Barcode.BarcodeScanner.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="OnBarcode.Barcode.BarcodeScanner">
+      <HintPath>..\..\AppWebcam\bin\Debug\OnBarcode.Barcode.BarcodeScanner.dll</HintPath>
     </Reference>
     <Reference Include="OnBarcode.Barcode.WinForms, Version=6.0.0.41022, Culture=neutral, PublicKeyToken=4da8d7f865f70e30, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -254,7 +260,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BarCodeController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\ReaderController.cs" />
     <Compile Include="Controllers\SachController.cs" />
@@ -291,6 +299,11 @@
       <DependentUpon>Model.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Designer.cs">
       <DependentUpon>Model.edmx</DependentUpon>
@@ -339,6 +352,9 @@
     <Compile Include="Models\THUGOPY.cs">
       <DependentUpon>Model.tt</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\USER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VIEW_BORROWERS.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -391,6 +407,7 @@
     <Content Include="Content\images\templatemo_slide_2.jpg" />
     <Content Include="Content\images\templatemo_slide_3.jpg" />
     <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\min\jquery.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\min\main.min.js" />
     <Content Include="Content\js\min\plugins.min.js" />
@@ -432,8 +449,7 @@
     <Folder Include="Content\Test\vendor\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
-    <Content Include="Views\Sach\Index.cshtml" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\flexslider-icon.eot" />
@@ -561,10 +577,45 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\BarCode\Index.cshtml" />
+    <Content Include="Views\BarCode\SetBarCode.cshtml" />
+    <Content Include="Views\Book\getListBorrowers.cshtml" />
+    <Content Include="Views\Book\getListBorrowers.cshtml~HEAD" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Employee\BorrowedBook.cshtml" />
+    <Content Include="Views\Employee\BorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Employee\Mail.cshtml" />
+    <Content Include="Views\Employee\TraSach.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\XemChiTietDocGia.cshtml" />
+    <Content Include="Views\Home\XemChiTietSach.cshtml" />
+    <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Public\Instructions.cshtml" />
+    <Content Include="Views\Reader\add.cshtml" />
+    <Content Include="Views\Reader\BorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\layDsMuonTra.cshtml" />
+    <Content Include="Views\Reader\UpdateBrrowedRoom.cshtml" />
+    <Content Include="Views\Sach\Index.cshtml" />
+    <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="MyApplication.app, Version=1.0.0.0">
+      <Name>AppWebcam.vshost.exe.manifest</Name>
+      <HintPath>..\..\AppWebcam\bin\Debug\AppWebcam.vshost.exe.manifest</HintPath>
+    </NativeReference>
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -582,7 +633,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>51446</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:14430/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

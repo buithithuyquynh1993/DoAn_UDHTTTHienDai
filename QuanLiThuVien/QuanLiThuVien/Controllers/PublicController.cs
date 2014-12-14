@@ -14,27 +14,38 @@ namespace QuanLiThuVien.Controllers
     public class PublicController : Controller
     {
         QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-        public ActionResult GetListBorrowedRoom(int? page)
+        public ActionResult GetListBorrowedRoom(int? page, string key, string keydate)
         {
             DateTime now = DateTime.Today;
             int pageSize = 2;
             int pageNumber = (page ?? 1);
-            var keyword = @Request["keyword"];
-            string temp = @Request["date"];
+            string keyword;
+            string temp;
+            if (page == null)
+            {
+                keyword = @Request["keyword"];
+                temp = @Request["date"];
+            }
+            else
+            {
+                keyword = key;
+                temp = keydate;
+            }
+            ViewBag.keyword = keyword;
+            ViewBag.date = temp;
             if ((keyword == null && temp == null ) || (keyword == "" && temp == ""))
             {
-                page = 1;
+                // page = 1;
                 var query = (from ls in data.LICHSUMUONPHONGs
                              join phong in data.PHONGs on ls.IDPhong equals phong.ID
                              join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                             where DateTime.Compare(ls.ThoiGianMuon, now).Equals(1)
                              select new
                              {
                                  HoTen = docgia.Hoten,
                                  tgmuon = ls.ThoiGianMuon,
                                  tgtra = ls.ThoiGianTra,
                                  phong = phong.ID
-                             }).OrderBy(a => a.tgmuon);
+                             }).OrderByDescending(a => a.tgmuon);
                 return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
             }
             else
@@ -57,7 +68,7 @@ namespace QuanLiThuVien.Controllers
                                      tgmuon = ls.ThoiGianMuon,
                                      tgtra = ls.ThoiGianTra,
                                      phong = phong.ID
-                                 }).OrderBy(a => a.tgmuon);
+                                 }).OrderByDescending(a => a.tgmuon);
                     return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
                 }
                 if (keyword != "" && keyword != null)
@@ -66,14 +77,13 @@ namespace QuanLiThuVien.Controllers
                                  join phong in data.PHONGs on ls.IDPhong equals phong.ID
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
                                  where docgia.Hoten.Contains(@keyword)
-                                 && DateTime.Compare(ls.ThoiGianMuon, now).Equals(1)
                                  select new
                                  {
                                      HoTen = docgia.Hoten,
                                      tgmuon = ls.ThoiGianMuon,
                                      tgtra = ls.ThoiGianTra,
                                      phong = phong.ID
-                                 }).OrderBy(a => a.tgmuon);
+                                 }).OrderByDescending(a => a.tgmuon);
                     return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
                 }
                 if (temp != "" && temp != null)
@@ -88,13 +98,16 @@ namespace QuanLiThuVien.Controllers
                                      tgmuon = ls.ThoiGianMuon,
                                      tgtra = ls.ThoiGianTra,
                                      phong = phong.ID
-                                 }).OrderBy(a => a.tgmuon);
+                                 }).OrderByDescending(a => a.tgmuon);
                     return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
                 }
 
             }
             return View();
         }
-
+        public ActionResult Instructions()
+        {
+            return View();
+        }
     }
 }

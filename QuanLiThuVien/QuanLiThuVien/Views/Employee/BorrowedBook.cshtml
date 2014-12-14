@@ -12,23 +12,35 @@
     }
     else
     {
-        <script type="text/javascript">
-            alert('Thêm không thành công!');
-        </script>
+        if(TempData["insert"] == "2")
+        {
+            <script type="text/javascript">
+            alert('Thời gian mượn của bạn không đúng, Vui lòng xem lại');
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            alert('Vui Lòng điền đầy đủ thông tin!');
+            </script>
+        }
     }
 }
-<div class="panel panel-success" align="center">
-    <div class="panel-heading">
-        <font size="6" color="blue" face="arial"><b>   Mượn sách </b> </font>
-    </div>
-</div>
+
 <div class="col-md-4">
-    <li class="list-group-item"><a href="~/Employee/BorrowedBook"> Mượn sách </a> </li>
-    <li class="list-group-item"><a href="~/Employee/BorrowedRoom"> Mượn phòng </a> </li>
-    <li class=" list-group-item"><a href="~/Public/GetListBorrowedRoom"> Trang chủ </a> </li>
-    <li class=" list-group-item"><a href="~/Employee/Mail"> Soạn mail </a> </li>
+    <ul class="list-group">
+        <li class=" list-group-item"><a href="~/Employee/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
+        <li class="list-group-item"><a href="~/Employee/BorrowedBook"> Mượn sách </a> </li>
+        <li class="list-group-item"><a href="~/Employee/BorrowedRoom"> Đặt phòng </a> </li>
+        <li class=" list-group-item"><a href="~/Employee/Mail"> Soạn mail </a> </li>
+    </ul>
 </div>
 <div class="col-md-8">
+    <div class="panel panel-success" align="center">
+        <div class="panel-heading">
+            <font size="6" color="blue" face="arial"><b>   Mượn sách </b> </font>
+        </div>
+    </div>
     <form action="~/Employee/SaveBorrowedBook" method="get" class="form-horizontal" role="form">
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Mã nhân viên: </label>
@@ -51,27 +63,36 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian mượn: </label>
             <div class="col-sm-10">
-                <input type='date' class="form-control" id='ID_ThoiGianMuon' name="ThoiGianMuon" />
+                <input type='text' class="form-control" id='ID_ThoiGianMuon' name="ThoiGianMuon" placeholder="tháng/ngày/năm" />
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian trả: </label>
             <div class="col-sm-10">
-                <input type='date' class="form-control" id='ID_ThoiGianTra' name="ThoiGianTra" />
+                <input type='text' class="form-control" id='ID_ThoiGianTra' name="ThoiGianTra" placeholder="tháng/ngày/năm" />
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <button type="submit" class="btn btn-default">Lưu </button>
             </div>
         </div>
     </form>
 </div>
-<script type="text/javascript">
-    $(function () {
-        ('#ID_ThoiGianMuon').datetimepicker();
-        ('#ID_ThoiGianTra').datetimepicker();
-    });
+<script>
+    $(document).ready(function () {
 
+        $("#ID_ThoiGianMuon").datetimepicker(
+        {
+            timepicker: false,
+            format: 'm/d/Y'
+        });
+        $("#ID_ThoiGianTra").datetimepicker(
+       {
+           timepicker: false,
+           format: 'm/d/Y'
+       });
+
+    });
 </script>

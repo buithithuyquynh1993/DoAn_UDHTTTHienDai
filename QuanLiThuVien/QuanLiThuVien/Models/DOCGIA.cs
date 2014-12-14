@@ -18,6 +18,7 @@ namespace QuanLiThuVien.Models
         {
             this.LICHSUMUONPHONGs = new HashSet<LICHSUMUONPHONG>();
             this.THONGTINMUONTRAs = new HashSet<THONGTINMUONTRA>();
+            this.USERs = new HashSet<USER>();
         }
     
         public int ID { get; set; }
@@ -29,10 +30,10 @@ namespace QuanLiThuVien.Models
         public string Truong { get; set; }
         public string Khoa { get; set; }
         public string Avatar { get; set; }
-        public string MatKhau { get; set; }
         public string LoaiDocGia { get; set; }
     
         public virtual ICollection<LICHSUMUONPHONG> LICHSUMUONPHONGs { get; set; }
         public virtual ICollection<THONGTINMUONTRA> THONGTINMUONTRAs { get; set; }
+        public virtual ICollection<USER> USERs { get; set; }
     }
 }
