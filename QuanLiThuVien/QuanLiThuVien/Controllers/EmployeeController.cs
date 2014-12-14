@@ -82,14 +82,14 @@ namespace QuanLiThuVien.Controllers
                 QuanLyThuVienEntities data = new QuanLyThuVienEntities();
                 THONGTINMUONTRA result = (from tt in data.THONGTINMUONTRAs where tt.ID == ID select tt).First();
                 result.NgayTra = DateTime.Now;
-                if (phat != null)
-                {
+                //if (phat != null)
+                //{
                     BANPHAT bphat = new BANPHAT();
                     bphat.IDThongTinMuonTra = ID;
                     bphat.PhiPhat = phat;
                     bphat.LiDo = lido;
                     data.BANPHATs.Add(bphat);
-                }
+                //}
                 data.SaveChanges();
                 return true;
             }
@@ -110,11 +110,28 @@ namespace QuanLiThuVien.Controllers
             var query = from p in data.THUGOPies where p.DaXem == false select p;
             return View(query);
         }
+
+        [HttpPost]
         public bool xacnhanDaXemGopY(FormCollection f)
         {
-            var checkList = f["checkGopY"];
-            int tem = checkList.Count();
-            return false;
+            try
+            {
+                var temp = f["checkGopY"].Replace(",false", "");
+                string[] arrtem = temp.Split(',');
+                QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                foreach (var i in arrtem)
+                {
+                    int iId = int.Parse(i);
+                    THUGOPY query = (from p in data.THUGOPies where p.ID == iId select p).First();
+                    query.DaXem = true;
+                    data.SaveChanges();
+
+                }
+                return true;
+            }
+            catch (Exception)
+            { return false; }
+            
         }
         #endregion
 

@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.NoiDung)
             </td>
             <td style="padding-left: 5%">
-                @Html.CheckBox("checkGopY", new { @class="checkall"})@*, value = @item.ID*@
+                @Html.CheckBox("checkGopY", new { @class="checkall", value = @item.ID})
             </td>
         </tr>
         };
@@ -46,16 +46,16 @@
         <tr><td colspan="4">Không có dữ liệu</td></tr>
     }
     </table>
-}
      <div class="row ticket-item" style="margin-top: 20px">
         <div class="col-md-2 col-md-push-4">
             @*@Html.ActionLink("Đã xem", "xacnhanDaXemGopY", new 
-            *@<a class="ticket-btn" href="#" id="dadoc">Đã đọc</a>
+            *@<a class="ticket-btn" id="dadoc">Đã đọc</a>
         </div>
         <div class="col-md-2 col-md-push-5">
 			<a class="ticket-btn" href="#">Thoát</a>
         </div>
     </div>
+}
 </div>
 @section script{
     <script>
