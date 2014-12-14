@@ -181,7 +181,13 @@ namespace QuanLiThuVien.Controllers
                 ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
                 ls.ThoiGianMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
                 ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
-                if (DateTime.Compare(ls.ThoiGianMuon, ls.ThoiGianTra).Equals(1) || DateTime.Compare(DateTime.Today,ls.ThoiGianMuon).Equals(1))
+                var test = (from lsTest in data.LICHSUMUONPHONGs
+                            where ls.ThoiGianMuon > lsTest.ThoiGianMuon
+                                  && lsTest.ThoiGianTra > ls.ThoiGianMuon
+                            select lsTest);
+
+                //if (DateTime.Compare(ls.ThoiGianMuon, ls.ThoiGianTra).Equals(1) || DateTime.Compare(DateTime.Today, ls.ThoiGianMuon).Equals(1))
+                if (ls.ThoiGianMuon > ls.ThoiGianTra || DateTime.Today > ls.ThoiGianMuon)
                 {
                     TempData["insert"] = "2";
                     return RedirectToAction("BorrowedRoom");

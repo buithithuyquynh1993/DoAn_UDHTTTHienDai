@@ -124,7 +124,8 @@ namespace QuanLiThuVien.Controllers
                 muontra.IDSach = IDSach;
                 muontra.NgayMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
                 muontra.NgayTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
-                if(DateTime.Compare(muontra.NgayMuon, muontra.NgayTra).Equals(1) || DateTime.Compare(DateTime.Today,muontra.NgayMuon).Equals(1))
+                //if(DateTime.Compare(muontra.NgayMuon, muontra.NgayTra).Equals(1) || DateTime.Compare(DateTime.Today,muontra.NgayMuon).Equals(1))
+                if (muontra.NgayMuon > muontra.NgayTra || DateTime.Today > muontra.NgayMuon)
                 {
                     TempData["insert"] = "2";
                     return RedirectToAction("BorrowedBook");
@@ -152,6 +153,10 @@ namespace QuanLiThuVien.Controllers
             TempData["subject"] = "";
             return View();
         }
+        public bool TestBrrowedRoom()
+        {
+            return true;
+        }
         public ActionResult SaveBorrowedRoom()
         {
             try
@@ -162,9 +167,15 @@ namespace QuanLiThuVien.Controllers
                 ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
                 ls.ThoiGianMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
                 ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
-                if (DateTime.Compare(ls.ThoiGianMuon, ls.ThoiGianTra).Equals(1) || DateTime.Compare(DateTime.Today, ls.ThoiGianMuon).Equals(1))
+                var test = (from lsTest in data.LICHSUMUONPHONGs
+                            where ls.ThoiGianMuon > lsTest.ThoiGianMuon
+                                  && lsTest.ThoiGianTra > ls.ThoiGianMuon
+                            select lsTest);
+               
+                //if (DateTime.Compare(ls.ThoiGianMuon, ls.ThoiGianTra).Equals(1) || DateTime.Compare(DateTime.Today, ls.ThoiGianMuon).Equals(1))
+                if (ls.ThoiGianMuon > ls.ThoiGianTra || DateTime.Today > ls.ThoiGianMuon)
                 {
-                    TempData["insert"] = "2";
+                    TempData["insert"] = "2";  
                     return RedirectToAction("BorrowedRoom");
                 }
                 data.LICHSUMUONPHONGs.Add(ls);
