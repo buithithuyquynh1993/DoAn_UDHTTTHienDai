@@ -1,0 +1,91 @@
+﻿@model IEnumerable<QuanLiThuVien.Models.proc_layDSMuonTra_Result>
+
+@{
+    ViewBag.Title = "layDsMuonTra";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_normalize.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/table_style.css")">
+
+<h1 class="text-center">Danh sách mượn trả</h1>
+
+@using (Html.BeginForm("layDsMuonTra", "Reader", FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row" style="margin-bottom: 30px;">
+    <div class="col-md-2 col-md-push-3">
+        @Html.RadioButton("radTuyChon", "Taca")
+         &nbsp;Xem tất cả
+    </div>
+    <div class="col-md-2 col-md-push-3">
+        @Html.RadioButton("radTuyChon", "SachChuaTra") &nbsp; Sách chưa trả 
+    </div>
+    <div class="col-md-2 col-md-push-3">
+    @Html.RadioButton("radTuyChon", "SachQuaHan") &nbsp; Sách quá hạn
+    </div>
+    <div class="col-md-1 col-md-push-3 ticket-item">
+       @*@Html.ActionLink("Xem", "layDsMuonTra", "docgia", new {@class="col-md-push-1 ticket-btn"} )*@
+         @*if htmlAttributes is class => must use <@class=""> *@
+    </div>
+</div>
+
+}
+
+<table class="responstable">
+    <tr>
+    <th>STT</th>
+    @*<th>Mã sách</th>*@
+    <th>Tên sách</th>
+    <th>Ngày mượn</th>
+    <th>Hạn trả</th>
+    <th>Gia hạn</th>
+    <th>Tùy chọn</th>
+    </tr>
+   
+@if (Model == null)
+{ 
+    <tr>
+        <td colspan="6"><h2> Không có dữ liệu </h2></td>
+    </tr>
+}
+else
+{
+    int i = 1;
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayName((i++).ToString())</td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IDSach)
+            </td>*@
+            <td>@Html.DisplayFor(modelItem => item.TenSach)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayMuon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HanTra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaHan)
+            </td>
+            <td>
+                @Html.ActionLink("Xem chi tiết", "")
+            </td>
+        </tr>
+    }
+}
+</table>
+
+
+    @section script{
+        <script>
+            $(document).ready(function () {
+                $('input[name="radTuyChon"]').change(function () {
+                    $('form').submit();
+                });
+            });
+        </script>
+        }
+    
