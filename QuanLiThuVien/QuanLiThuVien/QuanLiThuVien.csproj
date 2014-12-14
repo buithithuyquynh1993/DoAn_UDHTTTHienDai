@@ -419,10 +419,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
-    <Content Include="Web.Config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
+    <Content Include="Views\Reader\add.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
@@ -435,22 +432,8 @@
     <Folder Include="Content\Test\vendor\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\_Layout.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\BarCode\Index.cshtml" />
-    <Content Include="Views\BarCode\SetBarCode.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Sach\layDSNguoiMuon.cshtml" />
     <Content Include="Views\Sach\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reader\add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\flexslider-icon.eot" />
@@ -558,7 +541,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\BarCode\Index.cshtml" />
@@ -566,7 +548,6 @@
     <Content Include="Views\Employee\BorrowedBook.cshtml" />
     <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
     <Content Include="Views\Employee\TraSach.cshtml" />
-    <Content Include="Views\Reader\add.cshtml" />
     <Content Include="Views\Reader\LayDsMuonTra.cshtml" />
     <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
     <Content Include="Views\Reader\GopY.cshtml" />
