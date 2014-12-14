@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -38,8 +38,6 @@ namespace QuanLiThuVien.Controllers
         {
             return View();
         }
-
-        #region Lấy thông tin mượn trả
 
         public ActionResult layDsMuonTra(FormCollection f)
         {
@@ -102,16 +100,26 @@ namespace QuanLiThuVien.Controllers
         }
         public ActionResult SaveBorrowedRoom()
         {
-            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-            LICHSUMUONPHONG ls = new LICHSUMUONPHONG();
-            ls.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
-            ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
-            ls.ThoiGianMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
-            ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
-            data.LICHSUMUONPHONGs.Add(ls);
-            data.SaveChanges();
-            System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Thêm thành công!')</SCRIPT>");
-            return RedirectToAction("BorrowedRoom");
+            
+            try
+            {
+                QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                LICHSUMUONPHONG ls = new LICHSUMUONPHONG();
+                ls.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
+                ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
+                ls.ThoiGianMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
+                ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
+                data.LICHSUMUONPHONGs.Add(ls);
+                data.SaveChanges();
+                System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Thêm thành công!')</SCRIPT>");
+                TempData["insert"] = "1";
+                return RedirectToAction("BorrowedRoom");
+            }
+            catch(Exception)
+            {
+                TempData["insert"] = "0";
+                return RedirectToAction("BorrowedRoom");
+            }
         }
     }
 }
