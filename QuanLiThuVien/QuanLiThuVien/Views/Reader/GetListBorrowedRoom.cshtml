@@ -1,0 +1,101 @@
+﻿@*model QuanLiThuVien.Models.QuanLyThuVienEntities*@
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Object>
+@{
+    ViewBag.Title = "GetListBorrowedRoom";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@if (@TempData["update"] != null)
+{
+    if (TempData["update"] == "1")
+    {
+        <script type="text/javascript">
+            alert('Cập nhật thành công!');
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            alert('Cập nhật không thành công!');
+        </script>
+    }
+}
+<script>
+    $(document).ready(function () {
+
+        $("#date").datetimepicker(
+        {
+            timepicker: false,
+            format: 'm/d/Y'
+        });
+
+    });
+</script>
+
+<div class="col-md-4">
+    <ul class="list-group">
+        <li class=" list-group-item"><a href="~/Reader/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
+        <li class=" list-group-item"><a href="~/Reader/BorrowedRoom"> Đặt phòng </a> </li>
+    </ul>
+</div>
+<div class="col-md-8">
+	<div class="panel panel-success" align="center">
+		<div class="panel-heading">
+			<font size="6" color="blue" face="arial"><b> Danh Sách Đặt Phòng </b> </font>
+		</div>
+	</div>
+    <form method="get" action="/Reader/GetListBorrowedRoom" class="form-group">
+        <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword" value="@ViewBag.keyword" />
+        <input type='text' class="form-control" id="date" name="date" value="@ViewBag.date" placeholder="tháng/ngày/năm" />
+
+        <input type="submit" class="btn btn-success" id="Search" value="Tìm" />
+    </form>
+    @if (Model == null || Model.Count() == 0)
+    {
+        <p> không có kết quả nào được tìm thấy </p>
+        return;
+    }
+    <table class="table table-bordered">
+        <tr>
+            <th> STT </th>
+            <th> Họ Tên </th>
+            <th> Thơi  Gian Mượn </th>
+            <th> Thời Gian Trả </th>
+            <th> Phòng </th>
+            <th> </th>
+        </tr>
+        @foreach (object item in Model)
+        {
+            var ID = item.GetType().GetProperty("id").GetValue(item, null);
+            var hoten = item.GetType().GetProperty("HoTen").GetValue(item, null);
+            var tgmuon = item.GetType().GetProperty("tgmuon").GetValue(item, null);
+            var tgtra = item.GetType().GetProperty("tgtra").GetValue(item, null);
+            var phong = item.GetType().GetProperty("phong").GetValue(item, null);
+            <tr>
+                <td>  </td>
+                <td> @hoten </td>
+                <td> @tgmuon </td>
+                <td> @tgtra </td>
+                <td> @phong </td>
+                <td>
+                @if(DateTime.Compare(DateTime.Parse(tgmuon.ToString()), DateTime.Today).Equals(1))
+                {
+                    @Html.ActionLink("Cập nhật /", "UpdateBrrowedRoom", new { id = ID}) 
+                    @Html.ActionLink(" Xóa", "DeleteBrrowedRoom", new { id = ID }, new { onclick = "return confirm('Bạn chắc chắn muốn xóa?')" })
+                }
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="col-md-12" align="right">
+        <ul class="pagination">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("GetListBorrowedRoom", new { page, key = ViewBag.keyword, keydate = ViewBag.date }))
+        </ul>
+    </div>
+</div>
+
+
+

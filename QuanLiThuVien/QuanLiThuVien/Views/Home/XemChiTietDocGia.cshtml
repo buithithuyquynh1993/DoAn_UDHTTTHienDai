@@ -1,0 +1,91 @@
+﻿@model IEnumerable<QuanLiThuVien.Models.DOCGIA>
+
+@{
+    Layout = null;
+
+}
+
+<h2>Xem Chi Tiết Đôc Giả</h2>
+@section title
+{
+    Chi tiết độc giả
+}
+
+
+<table style="border-collapse:collapse" cellpadding="7px">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MHV_MSSV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hoten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CMND)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Truong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Khoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MHV_MSSV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hoten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CMND)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Truong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Khoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avatar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick = "return confirm ('Chắc chắn xoá?')" })
+            </td>
+        </tr>
+
+    }
+
+
+</table>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
