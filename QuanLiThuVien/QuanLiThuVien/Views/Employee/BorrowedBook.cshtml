@@ -66,13 +66,13 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian mượn: </label>
             <div class="col-sm-10">
-                <input type='text' class="form-control" id='ID_ThoiGianMuon' name="ThoiGianMuon" placeholder="tháng/ngày/năm" />
+                <input type='text' class="form-control" id='ID_ThoiGianMuon' name="ThoiGianMuon" placeholder="ngày/tháng/năm" />
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian trả: </label>
             <div class="col-sm-10">
-                <input type='text' class="form-control" id='ID_ThoiGianTra' name="ThoiGianTra" placeholder="tháng/ngày/năm" />
+                <input type='text' class="form-control" id='ID_ThoiGianTra' name="ThoiGianTra" placeholder="ngày/tháng/năm" />
             </div>
         </div>
 
@@ -89,19 +89,23 @@
         $("#ID_ThoiGianMuon").datetimepicker(
         {
             timepicker: false,
-            format: 'm/d/Y'
+            format: 'd/m/Y'
         });
         $("#ID_ThoiGianTra").datetimepicker(
        {
            timepicker: false,
-           format: 'm/d/Y'
+           format: 'd/m/Y'
        });
         $("button").click(function () {
-            if ($("#ID_ThoiGianMuon").val() == "" || $("#ID_ThoiGianTra").val() == "" || $("#ID_DocGia").val() == "" || $("#ID_Sach").val() == "" || $("#ID_NhanVien").val() == "") {
-                {
-                    alert("Vui lòng điền đầy đủ thông tin")
-                    return false;
-                }
+            if ($("#ID_ThoiGianMuon").val() == "" || $("#ID_ThoiGianTra").val() == "" || $("#ID_DocGia").val() == "" || $("#ID_Sach").val() == "" || $("#ID_NhanVien").val() == "") 
+            {
+                alert("Vui lòng điền đầy đủ thông tin")
+                return false;
+            }
+            if ($("#ID_ThoiGianMuon").val() > $("#ID_ThoiGianTra").val())
+            {
+                alert("Thời gian mươn < Thời gian trả")
+                return false;
             }
         });
 

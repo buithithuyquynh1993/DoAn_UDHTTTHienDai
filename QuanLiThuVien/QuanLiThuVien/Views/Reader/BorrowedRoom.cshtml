@@ -15,7 +15,7 @@
     }
     else
     {
-         if(TempData["insert"] == "2")
+        if (TempData["insert"] == "2")
         {
             <script type="text/javascript">
                 alert('Ngày mượn không hợp lệ!');
@@ -60,13 +60,17 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian mượn: </label>
             <div class="col-sm-10">
-                <input type='text' class="form-control" id='ID_ThoiGianMuon' name="ThoiGianMuon" placeholder="tháng/ngày/năm  Giờ:phút" />
+                <input type='text' class="form-control" id='ID_NgayMuon' name="NgayMuon" placeholder="ngày/tháng/năm" />
             </div>
         </div>
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian trả: </label>
-            <div class="col-sm-10">
-                <input type='text' class="form-control" id='ID_ThoiGianTra' name="ThoiGianTra" placeholder="tháng/ngày/năm  Giờ:phút" />
+            <label for="inputEmail3" class="col-sm-2 control-label"> Từ: </label>
+            <div class="col-sm-2">
+                <input type='text' class="form-control" id='ID_GioMuon' name="GioMuon" placeholder="Giờ:phút" />
+            </div>
+            <label for="inputEmail3" class="col-sm-1 control-label"> Đến: </label>
+            <div class="col-sm-2">
+                <input type='text' class="form-control" id='ID_GioTra' name="GioTra" placeholder="Giờ:phút" />
             </div>
         </div>
 
@@ -77,24 +81,34 @@
         </div>
     </form>
 </div>
-
 <script>
     $(document).ready(function () {
 
-        $("#ID_ThoiGianMuon").datetimepicker(
+        $("#ID_NgayMuon").datetimepicker(
         {
-            format: 'm/d/Y H:i'
+            timepicker: false,
+            format: 'd/m/y'
         });
-        $("#ID_ThoiGianTra").datetimepicker(
+        $("#ID_GioMuon").datetimepicker(
         {
-            format: 'm/d/Y H:i'
+            datepicker: false,
+            format: 'H:i'
         });
+        $("#ID_GioTra").datetimepicker(
+       {
+           datepicker: false,
+           format: 'H:i'
+       });
         $("button").click(function () {
-            if ($("#ID_ThoiGianMuon").val() == "" || $("#ID_ThoiGianTra").val() == "" || $("#ID_DocGia").val() == "") {
-                {
-                    alert("Vui lòng điền đầy đủ thông tin")
-                    return false;
-                }
+            if ($("#ID_NgayMuon").val() == "" || $("#ID_GioTra").val() == "" || $("#ID_GioMuon").val() == "" || $("#ID_DocGia").val() == "") 
+            {
+                alert("Vui lòng điền đầy đủ thông tin")
+                return false;
+            }
+               
+            if ($("#ID_GioTra").val() < $("#ID_GioMuon").val()) {
+                alert("Giờ mươn < Giờ Trả")
+                return false;
             }
         });
     });

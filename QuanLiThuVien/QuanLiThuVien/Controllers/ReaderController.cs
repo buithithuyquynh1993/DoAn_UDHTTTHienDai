@@ -19,54 +19,32 @@ namespace QuanLiThuVien.Controllers
         QuanLyThuVienEntities data = new QuanLyThuVienEntities();
         public ActionResult GetListBorrowedRoom(int? page, string key, string keydate)
         {
-            DateTime now = DateTime.Today;
-            int pageSize = 2;
-            int pageNumber = (page ?? 1);
-            string keyword;
-            string temp;
-            if (page == null)
+            try
             {
-                keyword = @Request["keyword"];
-                temp = @Request["date"];
-            }
-            else
-            {
-                keyword = key;
-                temp = keydate;
-            }
-            ViewBag.keyword = keyword;
-            ViewBag.date = temp;
-            if ((keyword == null && temp == null) || (keyword == "" && temp == ""))
-            {
-                page = 1;
-                var query = (from ls in data.LICHSUMUONPHONGs
-                             join phong in data.PHONGs on ls.IDPhong equals phong.ID
-                             join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                             select new
-                             {
-                                 id = ls.ID,
-                                 idDocGia = ls.IDDocGia,
-                                 HoTen = docgia.Hoten,
-                                 tgmuon = ls.ThoiGianMuon,
-                                 tgtra = ls.ThoiGianTra,
-                                 phong = phong.ID
-                             }).OrderByDescending (a => a.tgmuon);
-                return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
-            }
-            else
-            {
-                DateTime date = DateTime.Today;
-                if (temp != "" && temp != null)
+                DateTime now = DateTime.Today;
+                int pageSize = 5;
+                int pageNumber = (page ?? 1);
+                string keyword;
+                string temp;
+                if (page == null)
                 {
-                    date = DateTime.Parse(temp);
+                    keyword = @Request["keyword"];
+                    temp = @Request["date"];
                 }
-                if ((keyword != "" && temp != "") && (keyword != null && temp != null))
+                else
                 {
+                    keyword = key;
+                    temp = keydate;
+                }
+                ViewBag.keyword = keyword;
+                ViewBag.date = temp;
+                if ((keyword == null && temp == null) || (keyword == "" && temp == ""))
+                {
+                    page = 1;
                     var query = (from ls in data.LICHSUMUONPHONGs
                                  join phong in data.PHONGs on ls.IDPhong equals phong.ID
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                                 where docgia.Hoten.Contains(@keyword)
-                                       && DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
+                                 where ls.ThoiGianMuon > now
                                  select new
                                  {
                                      id = ls.ID,
@@ -78,43 +56,75 @@ namespace QuanLiThuVien.Controllers
                                  }).OrderByDescending(a => a.tgmuon);
                     return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
                 }
-                if (keyword != "" && keyword != null)
+                else
                 {
-                    var query = (from ls in data.LICHSUMUONPHONGs
-                                 join phong in data.PHONGs on ls.IDPhong equals phong.ID
-                                 join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                                 where docgia.Hoten.Contains(@keyword)
-                                 select new
-                                 {
-                                     id = ls.ID,
-                                     idDocGia = ls.IDDocGia,
-                                     HoTen = docgia.Hoten,
-                                     tgmuon = ls.ThoiGianMuon,
-                                     tgtra = ls.ThoiGianTra,
-                                     phong = phong.ID
-                                 }).OrderByDescending(a => a.tgmuon);
-                    return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
-                }
-                if (temp != "" && temp != null)
-                {
-                    var query = (from ls in data.LICHSUMUONPHONGs
-                                 join phong in data.PHONGs on ls.IDPhong equals phong.ID
-                                 join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                                 where DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
-                                 select new
-                                 {
-                                     id = ls.ID,
-                                     idDocGia = ls.IDDocGia,
-                                     HoTen = docgia.Hoten,
-                                     tgmuon = ls.ThoiGianMuon,
-                                     tgtra = ls.ThoiGianTra,
-                                     phong = phong.ID
-                                 }).OrderByDescending(a => a.tgmuon);
-                    return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
-                }
+                    DateTime date = DateTime.Today;
+                    if (temp != "" && temp != null)
+                    {
+                        string[] CatChuoi = temp.Split('/');
+                        string ngaymuon = CatChuoi[1] + "/" + CatChuoi[0] + "/" + CatChuoi[2];
+                        date = DateTime.Parse(ngaymuon);
+                    }
+                    if ((keyword != "" && temp != "") && (keyword != null && temp != null))
+                    {
+                        var query = (from ls in data.LICHSUMUONPHONGs
+                                     join phong in data.PHONGs on ls.IDPhong equals phong.ID
+                                     join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
+                                     where docgia.Hoten.Contains(@keyword)
+                                           && DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
+                                     select new
+                                     {
+                                         id = ls.ID,
+                                         idDocGia = ls.IDDocGia,
+                                         HoTen = docgia.Hoten,
+                                         tgmuon = ls.ThoiGianMuon,
+                                         tgtra = ls.ThoiGianTra,
+                                         phong = phong.ID
+                                     }).OrderBy(a => a.tgmuon);
+                        return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
+                    }
+                    if (keyword != "" && keyword != null)
+                    {
+                        var query = (from ls in data.LICHSUMUONPHONGs
+                                     join phong in data.PHONGs on ls.IDPhong equals phong.ID
+                                     join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
+                                     where docgia.Hoten.Contains(@keyword)
+                                     select new
+                                     {
+                                         id = ls.ID,
+                                         idDocGia = ls.IDDocGia,
+                                         HoTen = docgia.Hoten,
+                                         tgmuon = ls.ThoiGianMuon,
+                                         tgtra = ls.ThoiGianTra,
+                                         phong = phong.ID
+                                     }).OrderByDescending(a => a.tgmuon);
+                        return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
+                    }
+                    if (temp != "" && temp != null)
+                    {
+                        var query = (from ls in data.LICHSUMUONPHONGs
+                                     join phong in data.PHONGs on ls.IDPhong equals phong.ID
+                                     join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
+                                     where DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
+                                     select new
+                                     {
+                                         id = ls.ID,
+                                         idDocGia = ls.IDDocGia,
+                                         HoTen = docgia.Hoten,
+                                         tgmuon = ls.ThoiGianMuon,
+                                         tgtra = ls.ThoiGianTra,
+                                         phong = phong.ID
+                                     }).OrderBy(a => a.tgmuon);
+                        return View("GetListBorrowedRoom", query.ToPagedList(pageNumber, pageSize));
+                    }
 
+                }
+                return View();
             }
-            return View();
+            catch(Exception)
+            {
+                return View();
+            }
         }
         public ActionResult save(FormCollection f)
         {
@@ -179,12 +189,14 @@ namespace QuanLiThuVien.Controllers
                 LICHSUMUONPHONG ls = new LICHSUMUONPHONG();
                 ls.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
                 ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
-                ls.ThoiGianMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
-                ls.ThoiGianTra = DateTime.Parse(@Request["ThoiGianTra"].ToString());
-                var test = (from lsTest in data.LICHSUMUONPHONGs
-                            where ls.ThoiGianMuon > lsTest.ThoiGianMuon
-                                  && lsTest.ThoiGianTra > ls.ThoiGianMuon
-                            select lsTest);
+
+                string []CatChuoi = @Request["NgayMuon"].Split('/');
+                string ngaymuon = CatChuoi[1] + "/" + CatChuoi[0] + "/" + CatChuoi[2];
+                var ThoiGianMuon = ngaymuon+ " " + @Request["GioMuon"].ToString();
+                var ThoiGianTra = ngaymuon + " " + @Request["GioTra"].ToString();
+
+                ls.ThoiGianMuon = DateTime.Parse(ThoiGianMuon.ToString());
+                ls.ThoiGianTra = DateTime.Parse(ThoiGianTra.ToString());
 
                 //if (DateTime.Compare(ls.ThoiGianMuon, ls.ThoiGianTra).Equals(1) || DateTime.Compare(DateTime.Today, ls.ThoiGianMuon).Equals(1))
                 if (ls.ThoiGianMuon > ls.ThoiGianTra || DateTime.Today > ls.ThoiGianMuon)
@@ -192,6 +204,11 @@ namespace QuanLiThuVien.Controllers
                     TempData["insert"] = "2";
                     return RedirectToAction("BorrowedRoom");
                 }
+              var test = (from lsTest in data.LICHSUMUONPHONGs
+                            where ls.ThoiGianMuon > lsTest.ThoiGianMuon
+                                  && lsTest.ThoiGianTra > ls.ThoiGianMuon
+                            select lsTest);
+
                 data.LICHSUMUONPHONGs.Add(ls);
                 data.SaveChanges();
                 TempData["insert"] = "1";

@@ -1,9 +1,11 @@
-﻿@model QuanLiThuVien.Models.QuanLyThuVienEntities
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<QuanLiThuVien.Models.NGUOIDANGKY>
 @{
     ViewBag.Title = "Mail";
     Layout = "~/Views/_Layout.cshtml";
 }
-
+<script src="@Url.Content("~/Content/js/jquery.js")"> </script>
 @if (TempData["notice"] != null)
 {
     if(TempData["notice"] == "1")
@@ -17,8 +19,7 @@
         <script type="text/javascript">
             alert('Mật khẩu or mail của bạn không đúng, Vui lòng kiểm tra lại!.');
         </script>
-    }
-    
+    }  
 }
 <div class="col-md-4">
     <ul class="list-group">
@@ -28,30 +29,55 @@
         <li class=" list-group-item"><a href="~/Employee/Mail"> Soạn mail </a> </li>
     </ul>
 </div>
-<div class="col-md-8">
+<div class="col-md-8">       
     <div class="panel panel-success" align="center">
         <div class="panel-heading">
             <font size="6" color="blue" face="arial"><b>   Soạn mail </b> </font>
         </div>
     </div>
-    @using (Html.BeginForm("SendMail", "Employee", FormMethod.Post))
+    <table class="table table-bordered" id="list">
+        @if (TempData["list"] != "0")
+        {
+            <tr>
+                <th> Họ Tên </th>
+                <th> Email </th>
+                <th><input type="checkbox" id="checkAll" value=""></th>
+            </tr>
+            foreach (var nguoiDK in Model)
+            {
+                <tr>
+                    <td> @nguoiDK.Hoten </td>
+                    <td> @nguoiDK.Email </td>
+                    <td> <input type="checkbox" value="@nguoiDK.Email" name="CheckMail"></td>
+                </tr>
+            }
+        }
+    </table>
+    <div class="col-md-12" align="right">
+        <ul class="pagination">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Mail", new { page }))
+        </ul>
+    </div>
+    @using (Html.BeginForm("Mail", "Employee", FormMethod.Post))
     {
     <div class="form-group">
-          <input type="email" class="form-control" name ="yourmail" placeholder="Email của bạn">
+          <input type="email" class="form-control" name ="yourmail" id="ID_yourmail" placeholder="Email của bạn: yourmail@gmail.com">
     </div>
     <div class="form-group">
-          <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+          <input type="password" class="form-control" name="password" id="ID_password" placeholder="Mật khẩu">
     </div>
     <div class="form-group">
-            <input type="email" class="form-control" name="to" id="to" placeholder="Tới Email" value='@TempData["to"]'>
+            <input type="text" class="form-control" name="to" id="ID_to" placeholder="Gửi tới: tomail@gmail.com" value='@TempData["to"]'>
      </div>
      <div class="form-group">   
-            <input type="text" class="form-control" id="subject" name="subject" placeholder="Chủ đề" value='@TempData["subject"]'>
+            <input type="text" class="form-control" id="ID_subject" name="subject" placeholder="Chủ đề" value='@TempData["subject"]'>
      </div>
     <div class="form-group">
        <p><font size="3"> Nội dung </font></p>
-
-        <textarea cols="10" name="content" rows="2" style="margin: 0px 0px 20px; width: 753px; height: 102px;" placeholder="Nội dung">
+        <textarea cols="10" name="content" rows="2" style="margin: 0px 0px 20px; width: 753px; height: 102px;" id="ID_content" placeholder="Nội dung">
         @if (TempData["content"] != null || TempData["content"] != "")
         { 
              @TempData["content"];
@@ -61,3 +87,29 @@
     <button type="submit" class="btn btn-default">Gửi</button>
    }
 </div>
+<script>
+
+    $(document).ready(function () {
+        $("#checkAll").click(function () {
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+        $('input:checkbox').click(function () {
+            var ListEmail = "";
+            $('input:checkbox:checked').each(function () {
+                if($(this).val() != "")
+                ListEmail = ListEmail + $(this).val()+ ";";
+            });
+            $("#ID_to").val(ListEmail);
+        });
+
+        $("button").click(function()
+        {
+            if ($("#ID_yourmail").val() == "" || $("#ID_password").val() == "" || $("#ID_to").val() == "" || $("#ID_subject").val() == "" || $("#ID_content").val() == "")
+            {
+                alert("Vui lòng điền đầy đủ thông tin!")
+                return false;
+            }
+        });
+    });
+    
+</script>

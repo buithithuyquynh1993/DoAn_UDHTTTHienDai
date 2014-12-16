@@ -15,7 +15,7 @@
         $("#date").datetimepicker(
         {
             timepicker: false,
-            format: 'm/d/Y'
+            format: 'd/m/Y'
         });
 
     });
@@ -36,7 +36,7 @@
 	</div>
     <form method="get" action="/Employee/GetListBorrowedRoom" class="form-group">
         <input type="text" class="form-control" id="keyword" placeholder="Nhập tên" name="keyword" value="@ViewBag.keyword" />
-        <input type='text' class="form-control" id="date" name="date" placeholder="tháng/ngày/năm" value="@ViewBag.date" />
+        <input type='text' class="form-control" id="date" name="date" placeholder="ngày/tháng/năm" value="@ViewBag.date" />
 
         <input type="submit" class="btn btn-success" id="Search" value="Tìm" />
     </form>
