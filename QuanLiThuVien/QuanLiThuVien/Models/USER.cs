@@ -12,18 +12,15 @@ namespace QuanLiThuVien.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LOPTAPHUAN
+    public partial class USER
     {
-        public LOPTAPHUAN()
-        {
-            this.NGUOIDANGKies = new HashSet<NGUOIDANGKY>();
-        }
-    
         public int ID { get; set; }
-        public Nullable<System.DateTime> Ngay { get; set; }
-        public string Phong { get; set; }
-        public Nullable<System.TimeSpan> ThoiGian { get; set; }
+        public int USERNAME { get; set; }
+        public string PASSWORD { get; set; }
+        public string PASSWORD_SALT { get; set; }
+        public string ROLE { get; set; }
     
-        public virtual ICollection<NGUOIDANGKY> NGUOIDANGKies { get; set; }
+        public virtual DOCGIA DOCGIA { get; set; }
+        public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

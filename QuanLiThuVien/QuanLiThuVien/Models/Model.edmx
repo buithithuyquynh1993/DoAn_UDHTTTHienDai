@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
@@ -34,19 +34,18 @@
           <Property Name="Truong" Type="nvarchar" MaxLength="50" />
           <Property Name="Khoa" Type="nvarchar" MaxLength="50" />
           <Property Name="Avatar" Type="nvarchar" MaxLength="200" />
-          <Property Name="MatKhau" Type="varchar" MaxLength="100" />
           <Property Name="LoaiDocGia" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LICHSUMUONPHONG">
           <Key>
-            <PropertyRef Name="IDDocGia" />
-            <PropertyRef Name="IDPhong" />
-            <PropertyRef Name="ThoiGianMuon" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="IDDocGia" Type="int" Nullable="false" />
-          <Property Name="IDPhong" Type="int" Nullable="false" />
-          <Property Name="ThoiGianMuon" Type="datetime" Nullable="false" />
+          <Property Name="IDDocGia" Type="int" />
+          <Property Name="IDPhong" Type="int" />
+          <Property Name="ThoiGianMuon" Type="datetime" />
           <Property Name="ThoiGianTra" Type="datetime" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="delete_flag" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="LOPTAPHUAN">
           <Key>
@@ -157,6 +156,16 @@
           <Property Name="NgayGopY" Type="date" />
           <Property Name="DaXem" Type="bit" />
         </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="int" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD_SALT" Type="nvarchar" MaxLength="50" />
+          <Property Name="ROLE" Type="nvarchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="VITRI">
           <Key>
             <PropertyRef Name="ID" />
@@ -195,7 +204,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_DOCGIA">
-          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
@@ -207,7 +216,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_PHONG">
-          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHONG">
@@ -350,6 +359,30 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_DOCGIA">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="proc_layDSMuonTra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="maDocGia" Type="varchar" Mode="In" />
           <Parameter Name="dieukien" Type="int" Mode="In" />
@@ -373,19 +406,20 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <EntitySet Name="TACGIA_SACH" EntityType="Self.TACGIA_SACH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THONGTINMUONTRA" EntityType="Self.THONGTINMUONTRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUGOPY" EntityType="Self.THUGOPY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VITRI" EntityType="Self.VITRI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-[VIEW_BORROWERS].[ID] AS [ID], 
-[VIEW_BORROWERS].[MHV_MSSV] AS [MHV_MSSV], 
-[VIEW_BORROWERS].[Hoten] AS [Hoten], 
-[VIEW_BORROWERS].[DiaChi] AS [DiaChi], 
-[VIEW_BORROWERS].[CMND] AS [CMND], 
-[VIEW_BORROWERS].[Email] AS [Email], 
-[VIEW_BORROWERS].[Truong] AS [Truong], 
-[VIEW_BORROWERS].[Khoa] AS [Khoa], 
-[VIEW_BORROWERS].[Avatar] AS [Avatar]
-FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
+    [VIEW_BORROWERS].[ID] AS [ID], 
+    [VIEW_BORROWERS].[MHV_MSSV] AS [MHV_MSSV], 
+    [VIEW_BORROWERS].[Hoten] AS [Hoten], 
+    [VIEW_BORROWERS].[DiaChi] AS [DiaChi], 
+    [VIEW_BORROWERS].[CMND] AS [CMND], 
+    [VIEW_BORROWERS].[Email] AS [Email], 
+    [VIEW_BORROWERS].[Truong] AS [Truong], 
+    [VIEW_BORROWERS].[Khoa] AS [Khoa], 
+    [VIEW_BORROWERS].[Avatar] AS [Avatar]
+    FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
@@ -443,8 +477,17 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <End Role="SACH" EntitySet="SACH" />
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRA" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_DOCGIA" Association="Self.FK_USER_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_NHANVIEN" Association="Self.FK_USER_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -479,21 +522,21 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <Property Name="Truong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Khoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LoaiDocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LICHSUMUONPHONGs" Relationship="Self.FK_LICHSUMUONPHONG_DOCGIA" FromRole="DOCGIA" ToRole="LICHSUMUONPHONG" />
           <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_DOCGIA" FromRole="DOCGIA" ToRole="THONGTINMUONTRA" />
+          <NavigationProperty Name="USERs" Relationship="Self.FK_USER_DOCGIA" FromRole="DOCGIA" ToRole="USER" />
         </EntityType>
         <EntityType Name="LICHSUMUONPHONG">
           <Key>
-            <PropertyRef Name="IDDocGia" />
-            <PropertyRef Name="IDPhong" />
-            <PropertyRef Name="ThoiGianMuon" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="IDDocGia" Type="Int32" Nullable="false" />
-          <Property Name="IDPhong" Type="Int32" Nullable="false" />
-          <Property Name="ThoiGianMuon" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IDDocGia" Type="Int32" />
+          <Property Name="IDPhong" Type="Int32" />
+          <Property Name="ThoiGianMuon" Type="DateTime" Precision="3" />
           <Property Name="ThoiGianTra" Type="DateTime" Precision="3" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="delete_flag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="DOCGIA" Relationship="Self.FK_LICHSUMUONPHONG_DOCGIA" FromRole="LICHSUMUONPHONG" ToRole="DOCGIA" />
           <NavigationProperty Name="PHONG" Relationship="Self.FK_LICHSUMUONPHONG_PHONG" FromRole="LICHSUMUONPHONG" ToRole="PHONG" />
         </EntityType>
@@ -531,6 +574,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="THONGTINMUONTRAs" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
           <NavigationProperty Name="THONGTINMUONTRAs1" Relationship="Self.FK_THONGTINMUONTRA_NHANVIEN1" FromRole="NHANVIEN" ToRole="THONGTINMUONTRA" />
+          <NavigationProperty Name="USERs" Relationship="Self.FK_USER_NHANVIEN" FromRole="NHANVIEN" ToRole="USER" />
         </EntityType>
         <EntityType Name="NHAXUATBAN">
           <Key>
@@ -617,6 +661,18 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <Property Name="NgayGopY" Type="DateTime" Precision="0" />
           <Property Name="DaXem" Type="Boolean" />
         </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="Int32" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD_SALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ROLE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK_USER_DOCGIA" FromRole="USER" ToRole="DOCGIA" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_USER_NHANVIEN" FromRole="USER" ToRole="NHANVIEN" />
+        </EntityType>
         <EntityType Name="VITRI">
           <Key>
             <PropertyRef Name="ID" />
@@ -666,7 +722,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LICHSUMUONPHONG_DOCGIA">
-          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOCGIA">
@@ -689,8 +745,20 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_DOCGIA">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LICHSUMUONPHONG_PHONG">
-          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
           <End Role="LICHSUMUONPHONG" Type="Self.LICHSUMUONPHONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHONG">
@@ -734,6 +802,18 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             </Principal>
             <Dependent Role="THONGTINMUONTRA">
               <PropertyRef Name="IDNhanVienTra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USERNAME" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -804,6 +884,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <EntitySet Name="TACGIAs" EntityType="Self.TACGIA" />
           <EntitySet Name="THONGTINMUONTRAs" EntityType="Self.THONGTINMUONTRA" />
           <EntitySet Name="THUGOPies" EntityType="Self.THUGOPY" />
+          <EntitySet Name="USERs" EntityType="Self.USER" />
           <EntitySet Name="VITRIs" EntityType="Self.VITRI" />
           <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" />
           <AssociationSet Name="FK_BANPHAT_THONGTINMUONTRA" Association="Self.FK_BANPHAT_THONGTINMUONTRA">
@@ -822,6 +903,10 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <End Role="DOCGIA" EntitySet="DOCGIAs" />
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_DOCGIA" Association="Self.FK_USER_DOCGIA">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="USER" EntitySet="USERs" />
+          </AssociationSet>
           <AssociationSet Name="FK_LICHSUMUONPHONG_PHONG" Association="Self.FK_LICHSUMUONPHONG_PHONG">
             <End Role="PHONG" EntitySet="PHONGs" />
             <End Role="LICHSUMUONPHONG" EntitySet="LICHSUMUONPHONGs" />
@@ -837,6 +922,10 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <AssociationSet Name="FK_THONGTINMUONTRA_NHANVIEN1" Association="Self.FK_THONGTINMUONTRA_NHANVIEN1">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="THONGTINMUONTRA" EntitySet="THONGTINMUONTRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_NHANVIEN" Association="Self.FK_USER_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="USER" EntitySet="USERs" />
           </AssociationSet>
           <AssociationSet Name="FK_SACH_NHAXUATBAN" Association="Self.FK_SACH_NHAXUATBAN">
             <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
@@ -863,7 +952,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
             <Parameter Name="dieukien" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_layTTMuonSach" ReturnType="Collection(QuanLyThuVienModel.proc_layTTMuonSach_Result)">
-          <Parameter Name="maSach" Mode="In" Type="String" />
+            <Parameter Name="maSach" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_layDSMuonTra_Result">
@@ -876,7 +965,18 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
           <Property Type="Int32" Name="IDDocGia" Nullable="true" />
           <Property Type="Int32" Name="IDSach" Nullable="true" />
+          <Property Type="Int32" Name="ID1" Nullable="false" />
           <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="NamXB" Nullable="true" />
+          <Property Type="Int32" Name="Tap" Nullable="true" />
+          <Property Type="Int32" Name="Cuon" Nullable="true" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="NoiDungTomTat" Nullable="true" />
+          <Property Type="String" Name="MucLuc" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="IDNhaXuatBan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhomSach" Nullable="true" />
+          <Property Type="Int32" Name="IDViTri" Nullable="true" />
+          <Property Type="Int32" Name="IDChuDe" Nullable="true" />
         </ComplexType>
         <ComplexType Name="proc_layTTMuonSach_Result">
           <Property Type="Int32" Name="TienPhat" Nullable="true" />
@@ -927,7 +1027,6 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
                 <ScalarProperty Name="Truong" ColumnName="Truong" />
                 <ScalarProperty Name="Khoa" ColumnName="Khoa" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="LoaiDocGia" ColumnName="LoaiDocGia" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -939,6 +1038,8 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
                 <ScalarProperty Name="IDPhong" ColumnName="IDPhong" />
                 <ScalarProperty Name="ThoiGianMuon" ColumnName="ThoiGianMuon" />
                 <ScalarProperty Name="ThoiGianTra" ColumnName="ThoiGianTra" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="delete_flag" ColumnName="delete_flag" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1046,10 +1147,21 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
           <EntitySetMapping Name="THUGOPies">
             <EntityTypeMapping TypeName="QuanLyThuVienModel.THUGOPY">
               <MappingFragment StoreEntitySet="THUGOPY">
-                <ScalarProperty Name="DaXem" ColumnName="DaXem" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="NgayGopY" ColumnName="NgayGopY" />
+                <ScalarProperty Name="DaXem" ColumnName="DaXem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="QuanLyThuVienModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1098,7 +1210,18 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
                 <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
                 <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
                 <ScalarProperty Name="IDSach" ColumnName="IDSach" />
+                <ScalarProperty Name="ID1" ColumnName="ID1" />
                 <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+                <ScalarProperty Name="NamXB" ColumnName="NamXB" />
+                <ScalarProperty Name="Tap" ColumnName="Tap" />
+                <ScalarProperty Name="Cuon" ColumnName="Cuon" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NoiDungTomTat" ColumnName="NoiDungTomTat" />
+                <ScalarProperty Name="MucLuc" ColumnName="MucLuc" />
+                <ScalarProperty Name="IDNhaXuatBan" ColumnName="IDNhaXuatBan" />
+                <ScalarProperty Name="IDNhomSach" ColumnName="IDNhomSach" />
+                <ScalarProperty Name="IDViTri" ColumnName="IDViTri" />
+                <ScalarProperty Name="IDChuDe" ColumnName="IDChuDe" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1135,7 +1258,7 @@ FROM [dbo].[VIEW_BORROWERS] AS [VIEW_BORROWERS]</DefiningQuery>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
