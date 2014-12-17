@@ -18,6 +18,7 @@ namespace QuanLiThuVien.Models
         public int USERNAME { get; set; }
         public string PASSWORD { get; set; }
         public string PASSWORD_SALT { get; set; }
+        public string ROLE { get; set; }
     
         public virtual DOCGIA DOCGIA { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }

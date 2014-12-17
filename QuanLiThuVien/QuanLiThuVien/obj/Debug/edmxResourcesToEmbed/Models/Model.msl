@@ -154,6 +154,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
           <ScalarProperty Name="NgayGopY" ColumnName="NgayGopY" />
+          <ScalarProperty Name="DaXem" ColumnName="DaXem" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -164,6 +165,7 @@
           <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -200,5 +202,49 @@
         <ScalarProperty Name="ID" ColumnName="IDTacGia" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="proc_layDSMuonTra" FunctionName="QuanLyThuVienModel.Store.proc_layDSMuonTra">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyThuVienModel.proc_layDSMuonTra_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+          <ScalarProperty Name="NgayTra" ColumnName="NgayTra" />
+          <ScalarProperty Name="HanTra" ColumnName="HanTra" />
+          <ScalarProperty Name="GiaHan" ColumnName="GiaHan" />
+          <ScalarProperty Name="IDNhanVienNhan" ColumnName="IDNhanVienNhan" />
+          <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
+          <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
+          <ScalarProperty Name="IDSach" ColumnName="IDSach" />
+          <ScalarProperty Name="ID1" ColumnName="ID1" />
+          <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+          <ScalarProperty Name="NamXB" ColumnName="NamXB" />
+          <ScalarProperty Name="Tap" ColumnName="Tap" />
+          <ScalarProperty Name="Cuon" ColumnName="Cuon" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="NoiDungTomTat" ColumnName="NoiDungTomTat" />
+          <ScalarProperty Name="MucLuc" ColumnName="MucLuc" />
+          <ScalarProperty Name="IDNhaXuatBan" ColumnName="IDNhaXuatBan" />
+          <ScalarProperty Name="IDNhomSach" ColumnName="IDNhomSach" />
+          <ScalarProperty Name="IDViTri" ColumnName="IDViTri" />
+          <ScalarProperty Name="IDChuDe" ColumnName="IDChuDe" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_layTTMuonSach" FunctionName="QuanLyThuVienModel.Store.proc_layTTMuonSach">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyThuVienModel.proc_layTTMuonSach_Result">
+          <ScalarProperty Name="TienPhat" ColumnName="TienPhat" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+          <ScalarProperty Name="NgayTra" ColumnName="NgayTra" />
+          <ScalarProperty Name="HanTra" ColumnName="HanTra" />
+          <ScalarProperty Name="GiaHan" ColumnName="GiaHan" />
+          <ScalarProperty Name="IDNhanVienNhan" ColumnName="IDNhanVienNhan" />
+          <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
+          <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
+          <ScalarProperty Name="IDSach" ColumnName="IDSach" />
+          <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

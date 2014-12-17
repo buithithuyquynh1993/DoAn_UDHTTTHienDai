@@ -20,8 +20,8 @@ namespace QuanLiThuVien.Models
         }
     
         public int ID { get; set; }
-        public System.DateTime NgayMuon { get; set; }
-        public System.DateTime NgayTra { get; set; }
+        public Nullable<System.DateTime> NgayMuon { get; set; }
+        public Nullable<System.DateTime> NgayTra { get; set; }
         public Nullable<System.DateTime> HanTra { get; set; }
         public Nullable<bool> GiaHan { get; set; }
         public Nullable<int> IDNhanVienNhan { get; set; }

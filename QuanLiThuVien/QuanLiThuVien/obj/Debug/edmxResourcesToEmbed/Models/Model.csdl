@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="BANPHAT">
     <Key>
       <PropertyRef Name="ID" />
@@ -168,6 +168,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NgayGopY" Type="DateTime" Precision="0" />
+    <Property Name="DaXem" Type="Boolean" />
   </EntityType>
   <EntityType Name="USER">
     <Key>
@@ -177,6 +178,7 @@
     <Property Name="USERNAME" Type="Int32" Nullable="false" />
     <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PASSWORD_SALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ROLE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DOCGIA" Relationship="Self.FK_USER_DOCGIA" FromRole="USER" ToRole="DOCGIA" />
     <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_USER_NHANVIEN" FromRole="USER" ToRole="NHANVIEN" />
   </EntityType>
@@ -454,5 +456,48 @@
       <End Role="SACH" EntitySet="SACHes" />
       <End Role="TACGIA" EntitySet="TACGIAs" />
     </AssociationSet>
+    <FunctionImport Name="proc_layDSMuonTra" ReturnType="Collection(QuanLyThuVienModel.proc_layDSMuonTra_Result)">
+      <Parameter Name="maDocGia" Mode="In" Type="String" />
+      <Parameter Name="dieukien" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_layTTMuonSach" ReturnType="Collection(QuanLyThuVienModel.proc_layTTMuonSach_Result)">
+      <Parameter Name="maSach" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="proc_layDSMuonTra_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="DateTime" Name="NgayMuon" Nullable="true" />
+    <Property Type="DateTime" Name="NgayTra" Nullable="true" />
+    <Property Type="DateTime" Name="HanTra" Nullable="true" />
+    <Property Type="Boolean" Name="GiaHan" Nullable="true" />
+    <Property Type="Int32" Name="IDNhanVienNhan" Nullable="true" />
+    <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
+    <Property Type="Int32" Name="IDDocGia" Nullable="true" />
+    <Property Type="Int32" Name="IDSach" Nullable="true" />
+    <Property Type="Int32" Name="ID1" Nullable="false" />
+    <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="NamXB" Nullable="true" />
+    <Property Type="Int32" Name="Tap" Nullable="true" />
+    <Property Type="Int32" Name="Cuon" Nullable="true" />
+    <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NoiDungTomTat" Nullable="true" />
+    <Property Type="String" Name="MucLuc" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="IDNhaXuatBan" Nullable="true" />
+    <Property Type="Int32" Name="IDNhomSach" Nullable="true" />
+    <Property Type="Int32" Name="IDViTri" Nullable="true" />
+    <Property Type="Int32" Name="IDChuDe" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_layTTMuonSach_Result">
+    <Property Type="Int32" Name="TienPhat" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="DateTime" Name="NgayMuon" Nullable="true" />
+    <Property Type="DateTime" Name="NgayTra" Nullable="true" />
+    <Property Type="DateTime" Name="HanTra" Nullable="true" />
+    <Property Type="Boolean" Name="GiaHan" Nullable="true" />
+    <Property Type="Int32" Name="IDNhanVienNhan" Nullable="true" />
+    <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
+    <Property Type="Int32" Name="IDDocGia" Nullable="true" />
+    <Property Type="Int32" Name="IDSach" Nullable="true" />
+    <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
+  </ComplexType>
 </Schema>

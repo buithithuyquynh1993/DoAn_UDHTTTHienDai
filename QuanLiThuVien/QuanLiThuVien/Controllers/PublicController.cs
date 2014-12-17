@@ -44,6 +44,7 @@ namespace QuanLiThuVien.Controllers
                                  where ls.ThoiGianMuon > now
                                  select new
                                  {
+                                     IDDocGia = docgia.ID,
                                      HoTen = docgia.Hoten,
                                      tgmuon = ls.ThoiGianMuon,
                                      tgtra = ls.ThoiGianTra,
@@ -69,6 +70,7 @@ namespace QuanLiThuVien.Controllers
                                      && DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
                                      select new
                                      {
+                                         IDDocGia = docgia.ID,
                                          HoTen = docgia.Hoten,
                                          tgmuon = ls.ThoiGianMuon,
                                          tgtra = ls.ThoiGianTra,
@@ -84,6 +86,7 @@ namespace QuanLiThuVien.Controllers
                                      where docgia.Hoten.Contains(@keyword)
                                      select new
                                      {
+                                         IDDocGia = docgia.ID,
                                          HoTen = docgia.Hoten,
                                          tgmuon = ls.ThoiGianMuon,
                                          tgtra = ls.ThoiGianTra,
@@ -99,6 +102,7 @@ namespace QuanLiThuVien.Controllers
                                      where DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
                                      select new
                                      {
+                                         IDDocGia = docgia.ID,
                                          HoTen = docgia.Hoten,
                                          tgmuon = ls.ThoiGianMuon,
                                          tgtra = ls.ThoiGianTra,
@@ -110,7 +114,7 @@ namespace QuanLiThuVien.Controllers
                 }
                 return View();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return View();
             }
@@ -119,5 +123,6 @@ namespace QuanLiThuVien.Controllers
         {
             return View();
         }
+
     }
 }

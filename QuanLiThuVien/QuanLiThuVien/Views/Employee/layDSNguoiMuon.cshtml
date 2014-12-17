@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<QuanLiThuVien.Models.VIEW_BORROWERS>
 
 @{
-    //ViewBag.Title = "getListBorrowers";
     Layout = "~/Views/_Layout.cshtml";
 }
 
@@ -11,53 +10,52 @@
 <div class="row">
     <div class="col-md-10 col-md-push-1">
         <table class="responstable">
-            <tr>
-                <th>STT</th>
-                <th>Ảnh đại diện</th>
-                <th>Mã đọc giả</th>
-                <th data-th="Driver details"><span>Họ tên</span></th>
-                <th>Địa chỉ</th>
-                <th>Số CMND</th>
-                <th>Email</th>
-                <th>Trường</th>
-                <th>Khoa</th>
-                @foreach (var item in Model)
-                {
-                <tr class="list_reader">
-                    <td class="list_reader">
-                        @Html.DisplayFor(modelItem => item.ID)
-                    </td>
-                    <td class="list_reader">
-                        <img class="img-circle img_avatar" src="@Html.DisplayTextFor(modelItem => item.Avatar)" />
-                    </td>
-                    <td class="list_reader">
-                        <div>@Html.DisplayFor(modelItem => item.Hoten)</div>
-                    </td>
-                    <td class="list_reader">
-                        @Html.DisplayFor(modelItem => item.MHV_MSSV)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CMND)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Truong)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Khoa)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </td>
-                </tr>
-                }
-            </table>
-        </div>
+          <tr>
+            <th>STT</th>
+            <th>Ảnh đại diện</th>
+            <th>Mã đọc giả</th>
+            <th data-th="Driver details"><span>Họ tên</span></th>
+            <th>Địa chỉ</th>
+            <th>Số CMND</th>
+            <th>Email</th>
+            <th>Trường</th>
+            <th>Khoa</th>
+        @foreach (var item in Model) {
+            <tr class="list_reader">
+                <td class="list_reader">
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td class="list_reader">
+                    <img class="img-circle img_avatar" src="@Html.DisplayTextFor(modelItem => item.Avatar)"/>
+                </td>
+                <td class="list_reader">
+                    <div>@Html.DisplayFor(modelItem => item.Hoten)</div>    
+                </td>
+                <td class="list_reader">
+                    @Html.DisplayFor(modelItem => item.MHV_MSSV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMND)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Truong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Khoa)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>
+            </tr>
+        }
+        </table>
     </div>
+</div>

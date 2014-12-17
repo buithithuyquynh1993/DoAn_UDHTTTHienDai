@@ -61,7 +61,7 @@
     }
     <table class="table table-bordered">
         <tr>
-            <th> STT </th>
+            <th> Mã Độc Giả </th>
             <th> Họ Tên </th>
             <th> Thơi  Gian Mượn </th>
             <th> Thời Gian Trả </th>
@@ -71,12 +71,13 @@
         @foreach (object item in Model)
         {
             var ID = item.GetType().GetProperty("id").GetValue(item, null);
+            var IDDocGia = item.GetType().GetProperty("idDocGia").GetValue(item, null);
             var hoten = item.GetType().GetProperty("HoTen").GetValue(item, null);
             var tgmuon = item.GetType().GetProperty("tgmuon").GetValue(item, null);
             var tgtra = item.GetType().GetProperty("tgtra").GetValue(item, null);
             var phong = item.GetType().GetProperty("phong").GetValue(item, null);
             <tr>
-                <td>  </td>
+                <td> @IDDocGia  </td>
                 <td> @hoten </td>
                 <td> @tgmuon </td>
                 <td> @tgtra </td>

@@ -1,10 +1,11 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
 using QuanLiThuVien.Models;
+//using ProcessRootXML;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using PagedList.Mvc;
@@ -17,6 +18,84 @@ namespace QuanLiThuVien.Controllers
         //
         // GET: /DocGia/
         QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+        public ActionResult save(FormCollection f)
+        {
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            DOCGIA p = new DOCGIA();
+            p.Hoten = f["Hoten"];
+            p.MHV_MSSV = f["MHV_MSSV"];
+            p.Email = f["Email"];
+            p.CMND = f["CMND"];
+            p.DiaChi = f["DiaChi"];
+            p.Truong = f["Truong"];
+            p.Khoa = f["Khoa"];
+            data.DOCGIAs.Add(p);
+            data.SaveChanges();
+           // data.SaveChanges();
+            return RedirectToAction("add");
+        }
+
+        public ActionResult add()
+        {
+            return View();
+        }
+
+        #region Lấy thông tin mượn trả
+
+        public ActionResult layDsMuonTra(FormCollection f)
+        {
+            
+            //Lấy giá trị form
+            String value = Request.Form["radTuyChon"];
+            if (value == null) value = "tatca";
+
+            using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
+            {
+                switch (value)
+                {
+                    //Trường hợp xem sách chưa mượn
+                    case "SachChuaTra": //Có hạn trả >= ngày hệ thống
+                        var query1 = data.proc_layDSMuonTra("0944873", 1);
+                        return View(query1);    
+                    //Trường hợp mượn sách quá hạng
+                    case "SachQuaHan": //Có hạn trả < ngày hệ thống
+                        var query2 = data.proc_layDSMuonTra("0944873", 2);
+                        return View(query2);   
+                    //Mặc định là trường hợp chọn tất cả
+                    default:
+                        var query = data.proc_layDSMuonTra("0944873", 0);
+                        return View(query);  
+                }
+            }
+        }
+
+        #endregion
+
+        #region Góp ý
+        public ActionResult GopY()
+        {
+            return View();
+        }
+        public ActionResult luuGopY(FormCollection f)
+        {
+            try
+            {
+                String noidungGopY = Request["noidungGopY"];
+
+                QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                THUGOPY gopy = new THUGOPY();
+                gopy.NgayGopY = DateTime.Now;
+                gopy.NoiDung = noidungGopY;
+                data.THUGOPies.Add(gopy);
+                data.SaveChanges();
+
+                return View("GopY", gopy);
+            }
+            catch (Exception) {
+                return View("GopY", null);
+            }
+        }
+        #endregion
         public ActionResult GetListBorrowedRoom(int? page, string key, string keydate)
         {
             try
@@ -44,7 +123,6 @@ namespace QuanLiThuVien.Controllers
                     var query = (from ls in data.LICHSUMUONPHONGs
                                  join phong in data.PHONGs on ls.IDPhong equals phong.ID
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                                 where ls.ThoiGianMuon > now
                                  select new
                                  {
                                      id = ls.ID,
@@ -121,62 +199,10 @@ namespace QuanLiThuVien.Controllers
                 }
                 return View();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return View();
             }
-        }
-        public ActionResult save(FormCollection f)
-        {
-            DOCGIA p = new DOCGIA();
-            p.Hoten = f["Hoten"];
-            p.MHV_MSSV = f["MHV_MSSV"];
-            p.Email = f["Email"];
-            p.CMND = f["CMND"];
-            p.DiaChi = f["DiaChi"];
-            p.Truong = f["Truong"];
-            p.Khoa = f["Khoa"];
-            data.DOCGIAs.Add(p);
-            data.SaveChanges();
-            return RedirectToAction("add");
-        }
-
-        public ActionResult add()
-        {
-            return View();
-        }
-
-        private static List<THONGTINMUONTRA> StrQuery_LayDsMuonTra(XmlElement node)
-        {
-            try
-            {
-                List<THONGTINMUONTRA> KQ = new List<THONGTINMUONTRA>();
-                using (QuanLyThuVienEntities data = new QuanLyThuVienEntities())
-                {
-                    //Tạo câu truy vấn
-                    //Câu truy vấn tương tự:
-
-                    String sql = @"select VALUE thongtinmuon_tra from QuanLyThuVienEntities.THONGTINMUONTRAs as thongtinmuon_tra, QuanLyThuVienEntities.DOCGIAs as dg where thongtinmuon_tra.IDDocGia = dg.ID and dg.MHV_MSSV == '" + node.Attributes[0].Value + "'";
-                    for (int i = 1; i < node.Attributes.Count; i++)
-                    {
-                        //if (i + 1 < node.Attributes.Count)
-                        sql += " and ";
-                        String name = node.Attributes[i].Name;
-                        String value = node.Attributes[i].Value;
-                        sql += "thongtinmuon_tra." + name + value;
-                    }
-
-                    //Thực hiện truy vấn
-                    var temp = (data as IObjectContextAdapter).ObjectContext;
-                    ObjectQuery<THONGTINMUONTRA> query = temp.CreateQuery<THONGTINMUONTRA>(sql); //=> Phải thực hiện ép kiểu    
-                    foreach (THONGTINMUONTRA i in query)
-                        KQ.Add(i);
-
-                    return KQ;
-                }
-            }
-            catch (Exception)
-            { return null; }
         }
         public ActionResult BorrowedRoom()
         {
@@ -190,9 +216,9 @@ namespace QuanLiThuVien.Controllers
                 ls.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
                 ls.IDPhong = int.Parse(@Request["IDPhong"].ToString());
 
-                string []CatChuoi = @Request["NgayMuon"].Split('/');
+                string[] CatChuoi = @Request["NgayMuon"].Split('/');
                 string ngaymuon = CatChuoi[1] + "/" + CatChuoi[0] + "/" + CatChuoi[2];
-                var ThoiGianMuon = ngaymuon+ " " + @Request["GioMuon"].ToString();
+                var ThoiGianMuon = ngaymuon + " " + @Request["GioMuon"].ToString();
                 var ThoiGianTra = ngaymuon + " " + @Request["GioTra"].ToString();
 
                 ls.ThoiGianMuon = DateTime.Parse(ThoiGianMuon.ToString());
@@ -204,7 +230,7 @@ namespace QuanLiThuVien.Controllers
                     TempData["insert"] = "2";
                     return RedirectToAction("BorrowedRoom");
                 }
-              var test = (from lsTest in data.LICHSUMUONPHONGs
+                var test = (from lsTest in data.LICHSUMUONPHONGs
                             where ls.ThoiGianMuon > lsTest.ThoiGianMuon
                                   && lsTest.ThoiGianTra > ls.ThoiGianMuon
                             select lsTest);
@@ -214,13 +240,13 @@ namespace QuanLiThuVien.Controllers
                 TempData["insert"] = "1";
                 return RedirectToAction("BorrowedRoom");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 TempData["insert"] = "0";
                 return RedirectToAction("BorrowedRoom");
             }
         }
-        public ActionResult UpdateBrrowedRoom( int id)
+        public ActionResult UpdateBrrowedRoom(int id)
         {
             LICHSUMUONPHONG query = (from ls in data.LICHSUMUONPHONGs where ls.ID == id select ls).First();
             return View("UpdateBrrowedRoom", query);
@@ -237,12 +263,12 @@ namespace QuanLiThuVien.Controllers
                 TempData["update"] = "1";
                 return RedirectToAction("GetListBorrowedRoom");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 TempData["update"] = "0";
                 return RedirectToAction("GetListBorrowedRoom");
             }
-          
+
         }
 
         public ActionResult DeleteBrrowedRoom(int id)

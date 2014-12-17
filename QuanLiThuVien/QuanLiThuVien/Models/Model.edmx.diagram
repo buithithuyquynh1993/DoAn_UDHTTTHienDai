@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6648c26f79b6470db650d5cdf498ec4e" Name="Diagram1">
+      <Diagram DiagramId="23c131fc6ebf4f889501a81551aad16f" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyThuVienModel.BANPHAT" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.CHUDE" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.DOCGIA" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
@@ -19,7 +19,7 @@
         <EntityTypeShape EntityType="QuanLyThuVienModel.TACGIA" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.THONGTINMUONTRA" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.THUGOPY" Width="1.5" PointX="2.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyThuVienModel.USER" Width="1.5" PointX="11.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.USER" Width="1.5" PointX="11.25" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.VITRI" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyThuVienModel.VIEW_BORROWERS" Width="1.5" PointX="2.75" PointY="13.125" IsExpanded="true" />
         <AssociationConnector Association="QuanLyThuVienModel.FK_BANPHAT_THONGTINMUONTRA" ManuallyRouted="false" />

@@ -1,6 +1,6 @@
 ﻿@using PagedList
 @using PagedList.Mvc
-@model PagedList.IPagedList<QuanLiThuVien.Models.NGUOIDANGKY>
+@model IEnumerable<QuanLiThuVien.Models.NGUOIDANGKY>
 @{
     ViewBag.Title = "Mail";
     Layout = "~/Views/_Layout.cshtml";
@@ -35,32 +35,7 @@
             <font size="6" color="blue" face="arial"><b>   Soạn mail </b> </font>
         </div>
     </div>
-    <table class="table table-bordered" id="list">
-        @if (TempData["list"] != "0")
-        {
-            <tr>
-                <th> Họ Tên </th>
-                <th> Email </th>
-                <th><input type="checkbox" id="checkAll" value=""></th>
-            </tr>
-            foreach (var nguoiDK in Model)
-            {
-                <tr>
-                    <td> @nguoiDK.Hoten </td>
-                    <td> @nguoiDK.Email </td>
-                    <td> <input type="checkbox" value="@nguoiDK.Email" name="CheckMail"></td>
-                </tr>
-            }
-        }
-    </table>
-    <div class="col-md-12" align="right">
-        <ul class="pagination">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-            of @Model.PageCount
-
-            @Html.PagedListPager(Model, page => Url.Action("Mail", new { page }))
-        </ul>
-    </div>
+   
     @using (Html.BeginForm("Mail", "Employee", FormMethod.Post))
     {
     <div class="form-group">
@@ -84,9 +59,35 @@
         } 
         </textarea>
     </div>
-    <button type="submit" class="btn btn-default">Gửi</button>
+    <button type="submit" class="btn btn-default">Gửi</button><br><br>
    }
 </div>
+
+<div class="col-md-12">
+    <table class="table table-bordered" id="list">
+        @if (TempData["list"] != "0")
+        {
+            <tr>
+                <th> MSSV </th>
+                <th> Họ Tên </th>
+                <th> Trường </th>
+                <th> Email </th>
+                <th><input type="checkbox" id="checkAll" value=""></th>
+            </tr>
+            foreach (var nguoiDK in Model)
+            {
+                <tr>
+                    <td> @nguoiDK.MSSV_MaHocVien </td>
+                    <td> @nguoiDK.Hoten </td>
+                    <td> @nguoiDK.Truong </td>
+                    <td> @nguoiDK.Email </td>
+                    <td> <input type="checkbox" value="@nguoiDK.Email" name="CheckMail"></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
 <script>
 
     $(document).ready(function () {

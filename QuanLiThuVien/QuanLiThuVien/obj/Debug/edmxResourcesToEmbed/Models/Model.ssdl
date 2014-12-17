@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="BANPHAT">
     <Key>
       <PropertyRef Name="ID" />
@@ -149,6 +149,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NoiDung" Type="nvarchar" MaxLength="50" />
     <Property Name="NgayGopY" Type="date" />
+    <Property Name="DaXem" Type="bit" />
   </EntityType>
   <EntityType Name="USER">
     <Key>
@@ -158,6 +159,7 @@
     <Property Name="USERNAME" Type="int" Nullable="false" />
     <Property Name="PASSWORD" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="PASSWORD_SALT" Type="nvarchar" MaxLength="50" />
+    <Property Name="ROLE" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="VITRI">
     <Key>
@@ -376,6 +378,13 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="proc_layDSMuonTra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maDocGia" Type="varchar" Mode="In" />
+    <Parameter Name="dieukien" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_layTTMuonSach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maSach" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="QuanLyThuVienModelStoreContainer">
     <EntitySet Name="BANPHAT" EntityType="Self.BANPHAT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHUDE" EntityType="Self.CHUDE" Schema="dbo" store:Type="Tables" />

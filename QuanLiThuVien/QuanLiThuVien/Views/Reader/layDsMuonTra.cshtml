@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuanLiThuVien.Models.THONGTINMUONTRA>
+﻿@model IEnumerable<QuanLiThuVien.Models.proc_layDSMuonTra_Result>
 
 @{
     ViewBag.Title = "layDsMuonTra";
@@ -10,77 +10,82 @@
 
 <h1 class="text-center">Danh sách mượn trả</h1>
 
-@using (Html.BeginForm("layDsMuonTra", "docgia", FormMethod.Post))
-{
+@using (Html.BeginForm("layDsMuonTra", "Reader", FormMethod.Post))
+{ 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div class="row" style="margin-bottom: 30px;">
-        <div class="col-md-2 col-md-push-3">
-            @Html.RadioButton("radTuyChon", "Taca", true)
-            <label> &nbsp;Xem tất cả</label>
-        </div>
-        <div class="col-md-2 col-md-push-3">
-            @Html.RadioButton("radTuyChon", "SachChuaTra")<label> &nbsp; Sách chưa trả </label>
-        </div>
-        <div class="col-md-2 col-md-push-3">
-            @Html.RadioButton("radTuyChon", "SachQuaHan")<label> &nbsp; Sách quá hạn</label>
-        </div>
-        <div class="col-md-1 col-md-push-3 ticket-item">
-            @*@Html.ActionLink("Xem", "layDsMuonTra", "docgia", new {@class="col-md-push-1 ticket-btn"} )*@
-            @*if htmlAttributes is class => must use <@class=""> *@
-        </div>
+    <div class="col-md-2 col-md-push-3">
+        @Html.RadioButton("radTuyChon", "Taca")
+         &nbsp;Xem tất cả
     </div>
+    <div class="col-md-2 col-md-push-3">
+        @Html.RadioButton("radTuyChon", "SachChuaTra") &nbsp; Sách chưa trả 
+    </div>
+    <div class="col-md-2 col-md-push-3">
+    @Html.RadioButton("radTuyChon", "SachQuaHan") &nbsp; Sách quá hạn
+    </div>
+    <div class="col-md-1 col-md-push-3 ticket-item">
+       @*@Html.ActionLink("Xem", "layDsMuonTra", "docgia", new {@class="col-md-push-1 ticket-btn"} )*@
+         @*if htmlAttributes is class => must use <@class=""> *@
+    </div>
+</div>
 
 }
 
 <table class="responstable">
     <tr>
-        <th>STT</th>
-        <th>Mã sách</th>
-        <th>Tên sách</th>
-        <th>Ngày mượn</th>
-        <th>Hạn trả</th>
-        <th>Gia hạn</th>
-        <th>Tùy chọn</th>
+    <th>STT</th>
+    @*<th>Mã sách</th>*@
+    <th>Tên sách</th>
+    <th>Ngày mượn</th>
+    <th>Hạn trả</th>
+    <th>Gia hạn</th>
+    <th>Tùy chọn</th>
     </tr>
-
-    @if (Model == null)
+   
+@if (Model == null)
+{ 
+    <tr>
+        <td colspan="6"><h2> Không có dữ liệu </h2></td>
+    </tr>
+}
+else
+{
+    int i = 1;
+    foreach (var item in Model)
     {
         <tr>
-            <td><h2> Không có dữ liệu </h2></td>
+            <td>@Html.DisplayName((i++).ToString())</td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IDSach)
+            </td>*@
+            <td>@Html.DisplayFor(modelItem => item.TenSach)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayMuon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HanTra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaHan)
+            </td>
+            <td>
+                @Html.ActionLink("Xem chi tiết", "")
+            </td>
         </tr>
     }
-    else
-    {
-        foreach (var item in Model)
-        {
-            //for (int i = 0; i < Model.) {
-            <tr>
-                <td>@*STT*@</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IDSach)
-                </td>
-                <td>@*Tên sách*@</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayMuon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HanTra)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GiaHan)
-                </td>
-                <td>
-                    @Html.ActionLink("Xem chi tiết", "")
-                </td>
-            </tr>
-        }
-    }
+}
 </table>
-<script>
-    $(document).ready(function () {
-        $('input[name=radTuyChon]').change(function () {
-            $('form').submit();
-        });
-    });
-</script>
+
+
+    @section script{
+        <script>
+            $(document).ready(function () {
+                $('input[name="radTuyChon"]').change(function () {
+                    $('form').submit();
+                });
+            });
+        </script>
+        }
+    

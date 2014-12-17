@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyThuVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
@@ -154,6 +154,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayGopY" Type="date" />
+          <Property Name="DaXem" Type="bit" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -163,6 +164,7 @@
           <Property Name="USERNAME" Type="int" Nullable="false" />
           <Property Name="PASSWORD" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="PASSWORD_SALT" Type="nvarchar" MaxLength="50" />
+          <Property Name="ROLE" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="VITRI">
           <Key>
@@ -381,6 +383,13 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="proc_layDSMuonTra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maDocGia" Type="varchar" Mode="In" />
+          <Parameter Name="dieukien" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_layTTMuonSach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maSach" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="QuanLyThuVienModelStoreContainer">
           <EntitySet Name="BANPHAT" EntityType="Self.BANPHAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHUDE" EntityType="Self.CHUDE" Schema="dbo" store:Type="Tables" />
@@ -481,7 +490,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BANPHAT">
           <Key>
             <PropertyRef Name="ID" />
@@ -650,6 +659,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayGopY" Type="DateTime" Precision="0" />
+          <Property Name="DaXem" Type="Boolean" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -659,6 +669,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <Property Name="USERNAME" Type="Int32" Nullable="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PASSWORD_SALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ROLE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DOCGIA" Relationship="Self.FK_USER_DOCGIA" FromRole="USER" ToRole="DOCGIA" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_USER_NHANVIEN" FromRole="USER" ToRole="NHANVIEN" />
         </EntityType>
@@ -936,7 +947,50 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
             <End Role="SACH" EntitySet="SACHes" />
             <End Role="TACGIA" EntitySet="TACGIAs" />
           </AssociationSet>
+          <FunctionImport Name="proc_layDSMuonTra" ReturnType="Collection(QuanLyThuVienModel.proc_layDSMuonTra_Result)">
+            <Parameter Name="maDocGia" Mode="In" Type="String" />
+            <Parameter Name="dieukien" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_layTTMuonSach" ReturnType="Collection(QuanLyThuVienModel.proc_layTTMuonSach_Result)">
+            <Parameter Name="maSach" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="proc_layDSMuonTra_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="NgayMuon" Nullable="true" />
+          <Property Type="DateTime" Name="NgayTra" Nullable="true" />
+          <Property Type="DateTime" Name="HanTra" Nullable="true" />
+          <Property Type="Boolean" Name="GiaHan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienNhan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
+          <Property Type="Int32" Name="IDDocGia" Nullable="true" />
+          <Property Type="Int32" Name="IDSach" Nullable="true" />
+          <Property Type="Int32" Name="ID1" Nullable="false" />
+          <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="NamXB" Nullable="true" />
+          <Property Type="Int32" Name="Tap" Nullable="true" />
+          <Property Type="Int32" Name="Cuon" Nullable="true" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="NoiDungTomTat" Nullable="true" />
+          <Property Type="String" Name="MucLuc" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="IDNhaXuatBan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhomSach" Nullable="true" />
+          <Property Type="Int32" Name="IDViTri" Nullable="true" />
+          <Property Type="Int32" Name="IDChuDe" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_layTTMuonSach_Result">
+          <Property Type="Int32" Name="TienPhat" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="NgayMuon" Nullable="true" />
+          <Property Type="DateTime" Name="NgayTra" Nullable="true" />
+          <Property Type="DateTime" Name="HanTra" Nullable="true" />
+          <Property Type="Boolean" Name="GiaHan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienNhan" Nullable="true" />
+          <Property Type="Int32" Name="IDNhanVienTra" Nullable="true" />
+          <Property Type="Int32" Name="IDDocGia" Nullable="true" />
+          <Property Type="Int32" Name="IDSach" Nullable="true" />
+          <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1096,6 +1150,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="NgayGopY" ColumnName="NgayGopY" />
+                <ScalarProperty Name="DaXem" ColumnName="DaXem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1106,6 +1161,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1142,6 +1198,50 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
               <ScalarProperty Name="ID" ColumnName="IDTacGia" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="proc_layDSMuonTra" FunctionName="QuanLyThuVienModel.Store.proc_layDSMuonTra">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyThuVienModel.proc_layDSMuonTra_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+                <ScalarProperty Name="NgayTra" ColumnName="NgayTra" />
+                <ScalarProperty Name="HanTra" ColumnName="HanTra" />
+                <ScalarProperty Name="GiaHan" ColumnName="GiaHan" />
+                <ScalarProperty Name="IDNhanVienNhan" ColumnName="IDNhanVienNhan" />
+                <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
+                <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
+                <ScalarProperty Name="IDSach" ColumnName="IDSach" />
+                <ScalarProperty Name="ID1" ColumnName="ID1" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+                <ScalarProperty Name="NamXB" ColumnName="NamXB" />
+                <ScalarProperty Name="Tap" ColumnName="Tap" />
+                <ScalarProperty Name="Cuon" ColumnName="Cuon" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NoiDungTomTat" ColumnName="NoiDungTomTat" />
+                <ScalarProperty Name="MucLuc" ColumnName="MucLuc" />
+                <ScalarProperty Name="IDNhaXuatBan" ColumnName="IDNhaXuatBan" />
+                <ScalarProperty Name="IDNhomSach" ColumnName="IDNhomSach" />
+                <ScalarProperty Name="IDViTri" ColumnName="IDViTri" />
+                <ScalarProperty Name="IDChuDe" ColumnName="IDChuDe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_layTTMuonSach" FunctionName="QuanLyThuVienModel.Store.proc_layTTMuonSach">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyThuVienModel.proc_layTTMuonSach_Result">
+                <ScalarProperty Name="TienPhat" ColumnName="TienPhat" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+                <ScalarProperty Name="NgayTra" ColumnName="NgayTra" />
+                <ScalarProperty Name="HanTra" ColumnName="HanTra" />
+                <ScalarProperty Name="GiaHan" ColumnName="GiaHan" />
+                <ScalarProperty Name="IDNhanVienNhan" ColumnName="IDNhanVienNhan" />
+                <ScalarProperty Name="IDNhanVienTra" ColumnName="IDNhanVienTra" />
+                <ScalarProperty Name="IDDocGia" ColumnName="IDDocGia" />
+                <ScalarProperty Name="IDSach" ColumnName="IDSach" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

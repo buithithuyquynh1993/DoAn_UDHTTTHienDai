@@ -12,6 +12,8 @@ namespace QuanLiThuVien.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class QuanLyThuVienEntities : DbContext
     {
@@ -42,5 +44,27 @@ namespace QuanLiThuVien.Models
         public virtual DbSet<USER> USERs { get; set; }
         public virtual DbSet<VITRI> VITRIs { get; set; }
         public virtual DbSet<VIEW_BORROWERS> VIEW_BORROWERS { get; set; }
+    
+        public virtual ObjectResult<proc_layDSMuonTra_Result> proc_layDSMuonTra(string maDocGia, Nullable<int> dieukien)
+        {
+            var maDocGiaParameter = maDocGia != null ?
+                new ObjectParameter("maDocGia", maDocGia) :
+                new ObjectParameter("maDocGia", typeof(string));
+    
+            var dieukienParameter = dieukien.HasValue ?
+                new ObjectParameter("dieukien", dieukien) :
+                new ObjectParameter("dieukien", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_layDSMuonTra_Result>("proc_layDSMuonTra", maDocGiaParameter, dieukienParameter);
+        }
+    
+        public virtual ObjectResult<proc_layTTMuonSach_Result> proc_layTTMuonSach(string maSach)
+        {
+            var maSachParameter = maSach != null ?
+                new ObjectParameter("maSach", maSach) :
+                new ObjectParameter("maSach", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_layTTMuonSach_Result>("proc_layTTMuonSach", maSachParameter);
+        }
     }
 }

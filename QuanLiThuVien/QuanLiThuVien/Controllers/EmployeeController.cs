@@ -48,6 +48,7 @@ namespace QuanLiThuVien.Controllers
                                  where ls.ThoiGianMuon > now
                                  select new
                                  {
+                                     IDDocGia = docgia.ID,
                                      HoTen = docgia.Hoten,
                                      tgmuon = ls.ThoiGianMuon,
                                      tgtra = ls.ThoiGianTra,
@@ -73,6 +74,7 @@ namespace QuanLiThuVien.Controllers
                                      && DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
                                      select new
                                      {
+                                         IDDocGia = docgia.ID,
                                          HoTen = docgia.Hoten,
                                          tgmuon = ls.ThoiGianMuon,
                                          tgtra = ls.ThoiGianTra,
@@ -88,6 +90,7 @@ namespace QuanLiThuVien.Controllers
                                      where docgia.Hoten.Contains(@keyword)
                                      select new
                                      {
+                                         IDDocGia = docgia.ID,
                                          HoTen = docgia.Hoten,
                                          tgmuon = ls.ThoiGianMuon,
                                          tgtra = ls.ThoiGianTra,
@@ -103,6 +106,7 @@ namespace QuanLiThuVien.Controllers
                                      where DateTime.Compare(ls.ThoiGianMuon, date).Equals(1)
                                      select new
                                      {
+                                         IDDocGia = docgia.ID,
                                          HoTen = docgia.Hoten,
                                          tgmuon = ls.ThoiGianMuon,
                                          tgtra = ls.ThoiGianTra,
@@ -114,26 +118,27 @@ namespace QuanLiThuVien.Controllers
                 }
                 return View();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return View();
             }
         }
+
         public ActionResult BorrowedBook()
         {
             return View();
         }
         public ActionResult SaveBorrowedBook()
         {
-            try 
+            try
             {
                 int IDSach = int.Parse(@Request["IDSach"]);
                 THONGTINMUONTRA muontra = new THONGTINMUONTRA();
                 muontra.IDDocGia = int.Parse(@Request["IDDocGia"].ToString());
                 muontra.IDNhanVienNhan = int.Parse(@Request["IDNhanVien"].ToString());
                 muontra.IDSach = IDSach;
-                string []CatChuoi1 = @Request["ThoiGianMuon"].Split('/');
-                string []CatChuoi2 = @Request["ThoiGianTra"].Split('/');
+                string[] CatChuoi1 = @Request["ThoiGianMuon"].Split('/');
+                string[] CatChuoi2 = @Request["ThoiGianTra"].Split('/');
                 string NgayMuon = CatChuoi1[1] + "/" + CatChuoi1[0] + "/" + CatChuoi1[2];
                 string NgayTra = CatChuoi2[1] + "/" + CatChuoi2[0] + "/" + CatChuoi2[2];
                 muontra.NgayMuon = DateTime.Parse(NgayMuon.ToString());
@@ -155,7 +160,7 @@ namespace QuanLiThuVien.Controllers
                 TempData["insert"] = "1";
                 return RedirectToAction("BorrowedBook");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 TempData["insert"] = "0";
                 return RedirectToAction("BorrowedBook");
@@ -166,10 +171,6 @@ namespace QuanLiThuVien.Controllers
             TempData["to"] = "";
             TempData["subject"] = "";
             return View();
-        }
-        public bool TestBrrowedRoom()
-        {
-            return true;
         }
         public ActionResult SaveBorrowedRoom()
         {
@@ -199,44 +200,24 @@ namespace QuanLiThuVien.Controllers
                             where ls.ThoiGianMuon > lsTest.ThoiGianMuon
                                   && lsTest.ThoiGianTra > ls.ThoiGianMuon
                             select lsTest);
-               
+
                 data.LICHSUMUONPHONGs.Add(ls);
                 data.SaveChanges();
                 TempData["insert"] = "1";
                 return RedirectToAction("BorrowedRoom");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 TempData["insert"] = "0";
                 return RedirectToAction("BorrowedRoom");
             }
         }
-        public ActionResult TraSach()
-        {
-            return View();
-        }
-         #region Chuc năng trả sách
-
-        public THONGTINMUONTRA layThongTinMuonSach() { return null; }
-        public decimal tinhTienTienPhatQuaHan() { return 0; }
-        public decimal tinhTienTienPhatThem() { return 0; }
-        public bool thuchienTraSach() { return false; }
-        #endregion
-        
-
-        public ActionResult layDSNguoiMuon()
-        {
-            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
-            var result = from t in data.VIEW_BORROWERS select t;
-            var tem = result.GetType();
-            return View(result);
-        }
         public ActionResult Mail(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var query = (from nguoiDK in data.NGUOIDANGKies select nguoiDK).ToList();
-            if(query.ToList().Count == 0)
+            List<NGUOIDANGKY> query = (from nguoiDK in data.NGUOIDANGKies select nguoiDK).ToList();
+            if (query.ToList().Count == 0)
             {
                 TempData["list"] = "0";
             }
@@ -245,7 +226,7 @@ namespace QuanLiThuVien.Controllers
 
             if (@Request["yourmail"] == null && @Request["password"] == null)
             {
-                return View(query.ToPagedList(pageNumber, pageSize));
+                return View(query);
             }
             else
             {
@@ -268,7 +249,7 @@ namespace QuanLiThuVien.Controllers
                         smtp.Send(mail);
                     }
                     TempData["notice"] = "1";
-                    return View("Mail", query.ToPagedList(pageNumber, pageSize));
+                    return View("Mail", query);
                 }
                 catch (Exception)
                 {
@@ -276,9 +257,101 @@ namespace QuanLiThuVien.Controllers
                     TempData["to"] = to;
                     TempData["subject"] = subject;
                     TempData["content"] = content;
-                    return View("Mail", query.ToPagedList(pageNumber, pageSize));
+                    return View("Mail", query);
                 }
             }
         }        
+
+
+
+        #region Chuc năng trả sách
+
+        public ActionResult layThongTinMuonSach(FormCollection f)
+        {
+            try
+            {
+                proc_layTTMuonSach_Result KQ = new proc_layTTMuonSach_Result();
+                //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                String maDocGia = Request.Form["madocgia"];
+                String maSach = Request.Form["masach"];
+                var query = data.proc_layTTMuonSach(maSach);
+                KQ = query.First();
+                return View("TraSach", KQ);
+            }
+            catch (Exception)
+            {
+                return View("TraSach", null);
+            }
+        }
+        public bool thuchienTraSach(FormCollection f){
+            try
+            {
+                int? ID = int.Parse(f["IDPhieuMuon"]);
+                int phat = int.Parse(f["tongphiphat"]);
+                String lido = (f["lidophat"]);
+                
+                //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                THONGTINMUONTRA result = (from tt in data.THONGTINMUONTRAs where tt.ID == ID select tt).First();
+                result.NgayTra = DateTime.Now;
+                //if (phat != null)
+                //{
+                    BANPHAT bphat = new BANPHAT();
+                    bphat.IDThongTinMuonTra = ID;
+                    bphat.PhiPhat = phat;
+                    bphat.LiDo = lido;
+                    data.BANPHATs.Add(bphat);
+                //}
+                data.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            { return false; }
+        }
+        public ActionResult TraSach()
+        {
+            return View();
+        }
+        #endregion
+
+
+        #region xem danh sách phiếu góp ý
+        public ActionResult xemDSPhieuGopY()
+        {
+            //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            var query = from p in data.THUGOPies where p.DaXem == false select p;
+            return View(query);
+        }
+
+        [HttpPost]
+        public bool xacnhanDaXemGopY(FormCollection f)
+        {
+            try
+            {
+                var temp = f["checkGopY"].Replace(",false", "");
+                string[] arrtem = temp.Split(',');
+                //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+                foreach (var i in arrtem)
+                {
+                    int iId = int.Parse(i);
+                    THUGOPY query = (from p in data.THUGOPies where p.ID == iId select p).First();
+                    query.DaXem = true;
+                    data.SaveChanges();
+
+                }
+                return true;
+            }
+            catch (Exception)
+            { return false; }
+            
+        }
+        #endregion
+
+        public ActionResult layDSNguoiMuon()
+        {
+            //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            var result = from t in data.VIEW_BORROWERS select t;
+            var tem = result.GetType();
+            return View(result);
+        }
     }
 }
