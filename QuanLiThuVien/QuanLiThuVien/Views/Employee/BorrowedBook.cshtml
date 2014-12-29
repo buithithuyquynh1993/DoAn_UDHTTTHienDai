@@ -2,62 +2,112 @@
     ViewBag.Title = "BorrowedBook";
     Layout = "~/Views/_Layout.cshtml";
 }
-<div class="panel panel-success" align="center">
-    <div class="panel-heading">
-        <font size="6" color="blue" face="arial"><b>   BorrowedBook </b> </font>
-    </div>
-</div>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datetimepicker.css")">
+<script src="@Url.Content("~/Content/js/jquery.js")"> </script>
+<script src="@Url.Content("~/Content/js/jquery.datetimepicker.js")"> </script>
+@if(@TempData["insert"] != null)
+{
+    if (TempData["insert"] == "1")
+    {
+        <script type="text/javascript">
+            alert('Thêm thành công!');
+        </script>
+    }
+    else
+    {
+        if(TempData["insert"] == "2")
+        {
+            <script type="text/javascript">
+            alert('Thời gian mượn không hợp lệ!');
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            alert('Thêm không thành công!');
+            </script>
+        }
+    }
+}
+
 <div class="col-md-4">
     <ul class="list-group">
+        <li class=" list-group-item"><a href="~/Employee/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
         <li class="list-group-item"><a href="~/Employee/BorrowedBook"> Mượn sách </a> </li>
-        <li class="list-group-item"><a href="~/Employee/BorrowedRoom"> Mượn phòng </a> </li>
-        <li class=" list-group-item"><a href="~/Public/GetListBorrowedRoom"> Trang chủ </a> </li>
+        <li class="list-group-item"><a href="~/Employee/BorrowedRoom"> Đặt phòng </a> </li>
+        <li class=" list-group-item"><a href="~/Employee/Mail"> Soạn mail </a> </li>
     </ul>
 </div>
 <div class="col-md-8">
+    <div class="panel panel-success" align="center">
+        <div class="panel-heading">
+            <font size="6" color="blue" face="arial"><b>   Mượn sách </b> </font>
+        </div>
+    </div>
     <form action="~/Employee/SaveBorrowedBook" method="get" class="form-horizontal" role="form">
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Mã nhân viên: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Mã nhân viên" name="IDNhanVien">
+                <input type="text" class="form-control" placeholder="Mã nhân viên" name="IDNhanVien" id="ID_NhanVien">
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Mã Độc Giả: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Mã độc giả" name="IDDocGia">
+                <input type="text" class="form-control" placeholder="Mã độc giả" name="IDDocGia" id="ID_DocGia" >
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Mã Sách: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Mã Sách" name="IDSach">
+                <input type="text" class="form-control" placeholder="Mã Sách" name="IDSach" id="ID_Sach">
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian mượn: </label>
             <div class="col-sm-10">
-                <input type='date' class="form-control" id='ID_ThoiGianMuon' name="ThoiGianMuon" />
+                <input type='text' class="form-control" id='ID_ThoiGianMuon' name="ThoiGianMuon" placeholder="ngày/tháng/năm" />
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label"> Thời gian trả: </label>
             <div class="col-sm-10">
-                <input type='date' class="form-control" id='ID_ThoiGianTra' name="ThoiGianTra" />
+                <input type='text' class="form-control" id='ID_ThoiGianTra' name="ThoiGianTra" placeholder="ngày/tháng/năm" />
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <button type="submit" class="btn btn-default">Lưu </button>
             </div>
         </div>
     </form>
 </div>
-<script type="text/javascript">
-    $(function () {
-        ('#ID_ThoiGianMuon').datetimepicker();
-        ('#ID_ThoiGianTra').datetimepicker();
-    });
+<script>
+    $(document).ready(function () {
 
+        $("#ID_ThoiGianMuon").datetimepicker(
+        {
+            timepicker: false,
+            format: 'd/m/Y'
+        });
+        $("#ID_ThoiGianTra").datetimepicker(
+       {
+           timepicker: false,
+           format: 'd/m/Y'
+       });
+        $("button").click(function () {
+            if ($("#ID_ThoiGianMuon").val() == "" || $("#ID_ThoiGianTra").val() == "" || $("#ID_DocGia").val() == "" || $("#ID_Sach").val() == "" || $("#ID_NhanVien").val() == "") 
+            {
+                alert("Vui lòng điền đầy đủ thông tin")
+                return false;
+            }
+            if ($("#ID_ThoiGianMuon").val() > $("#ID_ThoiGianTra").val())
+            {
+                alert("Thời gian mươn < Thời gian trả")
+                return false;
+            }
+        });
+
+    });
 </script>

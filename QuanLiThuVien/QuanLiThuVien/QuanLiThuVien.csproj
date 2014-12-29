@@ -225,90 +225,75 @@
     </Compile>
     <Compile Include="Models\BANPHAT.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\CHUDE.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DOCGIA.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\LICHSUMUONPHONG.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\LOPTAPHUAN.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Model.Context.cs">
-      <DependentUpon>Model.Context.tt</DependentUpon>
-      <SubType>Code</SubType>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Designer.cs">
-      <DependentUpon>Model.edmx</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NGUOIDANGKY.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\NHANVIEN.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\NHAXUATBAN.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\NHOMSACH.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\PHONG.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\proc_layDSMuonTra_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\proc_layTTMuonSach_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SACH.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\TACGIA.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\THONGTINMUONTRA.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\THUGOPY.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\USER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VIEW_BORROWERS.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\VITRI.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -316,14 +301,13 @@
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\jquery.datetimepicker.css" />
     <Content Include="Content\css\reader_style.css" />
     <Content Include="Content\css\search_box.css" />
     <Content Include="Content\css\table_normalize.css" />
     <Content Include="Content\css\table_style.css" />
     <Content Include="Content\css\templatemo_misc.css" />
     <Content Include="Content\css\templatemo_style.css" />
-    <Content Include="Content\fonts\flexslider-icon.svg" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\about_1.jpg" />
     <Content Include="Content\images\about_2.jpg" />
     <Content Include="Content\images\AjaxLoader.gif" />
@@ -353,7 +337,10 @@
     <Content Include="Content\images\templatemo_slide_2.jpg" />
     <Content Include="Content\images\templatemo_slide_3.jpg" />
     <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\jquery.datetimepicker.js" />
+    <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\min\jquery.js" />
     <Content Include="Content\js\min\main.min.js" />
     <Content Include="Content\js\min\plugins.min.js" />
     <Content Include="Content\js\plugins.js" />
@@ -362,12 +349,30 @@
     <Content Include="Content\js\vendor\jquery.gmap3.min.js" />
     <Content Include="Content\js\vendor\modernizr-2.6.1-respond-1.1.0.min.js" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\fonts\flexslider-icon.eot" />
+    <Content Include="Content\fonts\flexslider-icon.svg" />
     <Content Include="Content\fonts\flexslider-icon.ttf" />
     <Content Include="Content\fonts\flexslider-icon.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
@@ -434,19 +439,6 @@
     <Content Include="Content\sass\partials\_vars.scss" />
     <Content Include="Content\sass\styles.scss" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Models\Model.Context.tt">
-      <DependentUpon>Model.edmx</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Model.tt">
-      <DependentUpon>Model.edmx</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -474,14 +466,21 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\BarCode\Index.cshtml" />
     <Content Include="Views\BarCode\SetBarCode.cshtml" />
-    <Content Include="Views\Employee\BorrowedBook.cshtml" />
     <Content Include="Views\Employee\layDSNguoiMuon.cshtml" />
     <Content Include="Views\Employee\TraSach.cshtml" />
     <Content Include="Views\Reader\add.cshtml" />
     <Content Include="Views\Reader\LayDsMuonTra.cshtml" />
-    <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
     <Content Include="Views\Reader\GopY.cshtml" />
     <Content Include="Views\Employee\xemDSPhieuGopY.cshtml" />
+    <Content Include="Views\Employee\BorrowedBook.cshtml" />
+    <Content Include="Views\Employee\BorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Employee\Mail.cshtml" />
+    <Content Include="Views\Public\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Public\Instructions.cshtml" />
+    <Content Include="Views\Reader\BorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\GetListBorrowedRoom.cshtml" />
+    <Content Include="Views\Reader\UpdateBrrowedRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -492,12 +491,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
