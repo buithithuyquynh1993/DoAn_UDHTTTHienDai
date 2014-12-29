@@ -216,6 +216,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Bootstrap Html Helpers\BootstrapSelectFor.cs" />
+    <Compile Include="Bootstrap Html Helpers\HelperMethods.cs" />
     <Compile Include="Controllers\BarCodeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
@@ -278,6 +280,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TACGIA.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Temp.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THONGTINMUONTRA.cs">
@@ -484,6 +489,14 @@
     <Content Include="Views\Reader\ChinhSuaDatMuon.cshtml" />
     <Content Include="Views\Reader\DatSach.cshtml" />
     <Content Include="Views\Reader\GiaHanMuonSach.cshtml" />
+    <Content Include="Views\Reader\XemChiTietDatSach.cshtml" />
+    <Content Include="Views\Reader\Edit.cshtml" />
+    <Content Include="Views\Public\Index.cshtml" />
+    <Content Include="Views\Public\LogIn.cshtml" />
+    <Content Include="Views\Public\RegisterTraining.cshtml" />
+    <Content Include="Views\Reader\ViewListClassTraining.cshtml" />
+    <Content Include="Views\Employee\ViewClassDetail.cshtml" />
+    <Content Include="Views\Employee\ViewListClassTraining.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

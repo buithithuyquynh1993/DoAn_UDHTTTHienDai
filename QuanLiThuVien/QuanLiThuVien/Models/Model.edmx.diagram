@@ -37,6 +37,7 @@
         <AssociationConnector Association="QuanLyThuVienModel.FK_SACH_VITRI" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyThuVienModel.FK_THONGTINMUONTRA_SACH" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyThuVienModel.TACGIA_SACH" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.Temp" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

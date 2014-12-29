@@ -133,6 +133,17 @@
           <Property Name="IDTacGia" Type="int" Nullable="false" />
           <Property Name="IDSach" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QuanLyThuVien.dbo.Temp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="stt" />
+          </Key>
+          <Property Name="stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TS" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgayMuon" Type="date" />
+          <Property Name="NamXB" Type="date" />
+        </EntityType>
         <EntityType Name="THONGTINMUONTRA">
           <Key>
             <PropertyRef Name="ID" />
@@ -408,6 +419,14 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <EntitySet Name="THUGOPY" EntityType="Self.THUGOPY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VITRI" EntityType="Self.VITRI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temp" EntityType="Self.Temp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Temp].[stt] AS [stt], 
+    [Temp].[TS] AS [TS], 
+    [Temp].[NgayMuon] AS [NgayMuon], 
+    [Temp].[NamXB] AS [NamXB]
+    FROM [dbo].[Temp] AS [Temp]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VIEW_BORROWERS" EntityType="Self.VIEW_BORROWERS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VIEW_BORROWERS].[ID] AS [ID], 
@@ -953,6 +972,7 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <FunctionImport Name="proc_layTTMuonSach" ReturnType="Collection(QuanLyThuVienModel.proc_layTTMuonSach_Result)">
           <Parameter Name="maSach" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Temps" EntityType="QuanLyThuVienModel.Temp" />
         </EntityContainer>
         <ComplexType Name="proc_layDSMuonTra_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -990,6 +1010,15 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
           <Property Type="Int32" Name="IDSach" Nullable="true" />
           <Property Type="String" Name="TenSach" Nullable="true" MaxLength="100" />
         </ComplexType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="stt" />
+          </Key>
+          <Property Name="stt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgayMuon" Type="DateTime" Precision="0" />
+          <Property Name="NamXB" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1241,6 +1270,16 @@ warning 6002: The table/view 'QuanLyThuVien.dbo.VIEW_BORROWERS' does not have a 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Temps">
+            <EntityTypeMapping TypeName="QuanLyThuVienModel.Temp">
+              <MappingFragment StoreEntitySet="Temp">
+                <ScalarProperty Name="NamXB" ColumnName="NamXB" />
+                <ScalarProperty Name="NgayMuon" ColumnName="NgayMuon" />
+                <ScalarProperty Name="TS" ColumnName="TS" />
+                <ScalarProperty Name="stt" ColumnName="stt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

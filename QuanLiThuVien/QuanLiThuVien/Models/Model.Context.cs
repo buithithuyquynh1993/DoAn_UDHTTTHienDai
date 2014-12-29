@@ -69,6 +69,8 @@ public partial class QuanLyThuVienEntities : DbContext
 
     public virtual DbSet<VIEW_BORROWERS> VIEW_BORROWERS { get; set; }
 
+    public virtual DbSet<Temp> Temps { get; set; }
+
 
     public virtual ObjectResult<proc_layDSMuonTra_Result> proc_layDSMuonTra(string maDocGia, Nullable<int> dieukien)
     {

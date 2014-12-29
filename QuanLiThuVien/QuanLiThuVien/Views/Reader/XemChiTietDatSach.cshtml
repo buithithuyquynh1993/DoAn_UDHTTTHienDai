@@ -1,0 +1,39 @@
+﻿@model IEnumerable<QLTV.Models.Temp>
+
+@{
+    ViewBag.Title = "XemChiTietDatSach";
+}
+
+<table class="table table-bordered" style="margin-top:45px">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayMuon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NamXB)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayMuon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamXB)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.stt })
+            </td>
+        </tr>
+    }
+
+</table>

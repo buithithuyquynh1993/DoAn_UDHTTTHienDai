@@ -18,6 +18,30 @@ namespace QuanLiThuVien.Controllers
         //
         // GET: /Employee/  
         QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+        public ActionResult ViewListClassTraining() // Xem danh sach cac lop tap huan
+        {
+            var result = from a in data.LOPTAPHUANs
+                         select a;
+            return View(result);
+        }
+
+        public ActionResult ViewClassDetail(int ID) // xem chi tiet lop tap huan
+        {
+            var result = from a in data.NGUOIDANGKies
+                         where a.IDLopTapHuan == ID
+                         select a;
+            return View(result);
+        }
+
+        public ActionResult UpdateStatus(int ID) //  cap nhat trang thai hoc vien tham du
+        {
+            var result = from a in data.NGUOIDANGKies
+                         where a.ID == ID
+                         select a;
+
+            return View(result);
+        }
+
         public ActionResult GetListBorrowedRoom(int? page, string key, string keydate)
         {
             try

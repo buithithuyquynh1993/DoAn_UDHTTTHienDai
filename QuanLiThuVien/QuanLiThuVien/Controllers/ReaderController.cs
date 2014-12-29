@@ -18,6 +18,39 @@ namespace QuanLiThuVien.Controllers
         //
         // GET: /DocGia/
         QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+        public ActionResult ViewListClassTraining() // Xem danh sach cac lop tap huan
+        {
+            var result = from a in data.LOPTAPHUANs
+                         select a;
+            return View(result);
+        }
+
+        public ActionResult XemChiTietDatSach()
+        {
+            var result = from p in data.Temps
+                         select p;
+            return View(result);
+        }
+
+        public ActionResult update(FormCollection f)
+        {
+            int id = int.Parse(f["stt"]);
+            Temp result = (from p in data.Temps
+                           where p.stt == id
+                           select p).First();
+            result.NgayMuon = Convert.ToDateTime(f["NgayMuon"]);
+            data.SaveChanges();
+            return RedirectToAction("XemChiTietDatSach");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Temp result = (from p in data.Temps
+                           where p.stt == id
+                           select p).First();
+            return View(result);
+        }
+
         public ActionResult save(FormCollection f)
         {
             QuanLyThuVienEntities data = new QuanLyThuVienEntities();

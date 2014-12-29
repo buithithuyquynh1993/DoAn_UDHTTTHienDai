@@ -8,12 +8,74 @@ using PagedList.Mvc;
 using System.Dynamic;
 
 using QuanLiThuVien.Models;
+using System.Web.Security;
 
 namespace QuanLiThuVien.Controllers
 {
     public class PublicController : Controller
     {
         QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Registration(QuanLiThuVien.Models.USER user)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Registration()
+        {
+            return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogIn(QuanLiThuVien.Models.USER user)
+        {
+            // string a = "" + user.ID;
+
+            string userId_string = "1";// = user.ID.ToString();
+            if (ModelState.IsValid)
+            {
+                //if(IsValid(user.UserID, user.Password))
+                if (IsValid(user.ID, user.PASSWORD))
+                {
+                    //FormsAuthentication.SetAuthCookie(user.UserID, true);
+                    FormsAuthentication.SetAuthCookie(userId_string, true);
+                    return RedirectToAction("Index", "Public");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Không tồn tại người dùng trên.");
+                }
+            }
+            return View(user);
+        }
+
+        [HttpGet]
+        public ActionResult LogIn()
+        {
+            return View();
+        }
+
+        private bool IsValid(int userId, string password) // Kiểm tra đăng nhập có hợp lệ hay không
+        {
+            //var crypto = new SimpleCrypto.PBKDF2();
+            //bool isValid = false;
+            //return isValid;
+            return false;
+        }
         public ActionResult GetListBorrowedRoom(int? page, string key, string keydate)
         {
             try

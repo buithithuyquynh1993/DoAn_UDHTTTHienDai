@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" style="height:100px" color ="blue"></div>
+    </div>
+    <! -- Đăng nhập -->
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            @if (Request.IsAuthenticated)
+            {
+                <strong>@Html.Encode(User.Identity.Name)</strong>
+                <h1 style="font-size:25px" padding-bottom="30px;"> DANH SÁCH HỌC VIÊN ĐĂNG KÍ LỚP </h1>
+                @Html.ActionLink("Đăng xuất", "ClassDetail", "Public")
+            }
+            else
+            {
+                @Html.ActionLink("Đăng nhập", "LogIn", "Public")
+            }
+        </div>
+    </div>
+
+</div>

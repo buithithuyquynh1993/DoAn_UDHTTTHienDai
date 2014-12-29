@@ -1,0 +1,66 @@
+﻿@model QuanLiThuVien.Models.USER
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@using(Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken() // ngăn ngừa tấn công CSRF 
+     @Html.ValidationSummary(true)
+    if(@ViewBag.Message != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+<div class="container login">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+            <h1 style="font-size:30px" padding-bottom="30px;"> Đăng nhập</h1>
+        </div>
+    </div>
+    <div class="row" style="height:60px;">
+        <div class="col-md-3"></div>
+        <div class="col-md-8">
+
+            @Html.ValidationSummary(true, "Đăng nhập thât bại. Kiểm tra lại thông tin đăng nhập!")
+        </div>
+    </div>
+        <div>
+            <fieldset>
+                <div class="row"  >
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2"> <b style="font-size:18px;">Tài khoản</b> </div>
+
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(u => u.ID)
+                        @Html.ValidationMessageFor(u => u.ID)
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2"> <b style="font-size:18px;">Mật khẩu</b> </div>
+
+                    <div class="col-md-7">
+                        @Html.PasswordFor(u => u.PASSWORD)
+                        @Html.ValidationMessageFor(u => u.PASSWORD)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-3">
+                        <input class="btn btn-primary" type="submit" value="Đăng nhập"/>
+                        <a href="#"> Quên mật khẩu</a>
+                    </div>
+                </div>
+                
+            </fieldset>
+        </div>
+
+    </div>
+
+}
