@@ -37,8 +37,9 @@
 
 <div class="col-md-4">
     <ul class="list-group">
-        <li class=" list-group-item"><a href="~/Reader/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
-        <li class=" list-group-item"><a href="~/Reader/BorrowedRoom"> Đặt phòng </a> </li>
+        <li class="list-group-item"><a href="~/Public/GetListBorrowedRoom"> Danh sách đặt phòng </a> </li>
+        <li class=" list-group-item"><a href="~/Employee/GetListBorrowedRoom"> Nhân viên </a> </li>
+        <li class=" list-group-item"><a href="~/Reader/GetListBorrowedRoom"> Độc giả </a> </li>
     </ul>
 </div>
 <div class="col-md-8">
@@ -65,12 +66,11 @@
             <th> Thơi  Gian Mượn </th>
             <th> Thời Gian Trả </th>
             <th> Phòng </th>
-            <th> </th>
+        
         </tr>
         @foreach (object item in Model)
         {
-            var ID = item.GetType().GetProperty("id").GetValue(item, null);
-            var IDDocGia = item.GetType().GetProperty("idDocGia").GetValue(item, null);
+            var IDDocGia = item.GetType().GetProperty("IDDocGia").GetValue(item, null);
             var hoten = item.GetType().GetProperty("HoTen").GetValue(item, null);
             var tgmuon = item.GetType().GetProperty("tgmuon").GetValue(item, null);
             var tgtra = item.GetType().GetProperty("tgtra").GetValue(item, null);
@@ -81,13 +81,7 @@
                 <td> @tgmuon </td>
                 <td> @tgtra </td>
                 <td> @phong </td>
-                <td>
-                    @if (DateTime.Compare(DateTime.Parse(tgmuon.ToString()), DateTime.Today).Equals(1))
-                    {
-                        @Html.ActionLink("Cập nhật /", "UpdateBrrowedRoom", new { id = ID })
-                        @Html.ActionLink(" Xóa", "DeleteBrrowedRoom", new { id = ID }, new { onclick = "return confirm('Bạn chắc chắn muốn xóa?')" })
-                    }
-                </td>
+                
             </tr>
         }
     </table>

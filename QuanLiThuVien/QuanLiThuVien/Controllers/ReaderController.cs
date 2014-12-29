@@ -9,7 +9,7 @@ using QuanLiThuVien.Models;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using PagedList.Mvc;
-using PagedList;
+using PagedList; 
 
 namespace QuanLiThuVien.Controllers
 {
@@ -277,6 +277,194 @@ namespace QuanLiThuVien.Controllers
             query.delete_flag = "1";
             data.SaveChanges();
             return RedirectToAction("GetListBorrowedRoom");
+        }
+
+        public ActionResult DatSach()
+        {
+            string str = Request.Params["btn2"];
+            if (str == "Tìm Kiếm")
+            {
+                var chude = @Request["chude"];
+                var tensach = @Request["tensach"];
+
+                if (chude == "" && tensach == "")
+                {
+                    var query = (from tt in data.THONGTINMUONTRAs
+                                 join s in data.SACHes on tt.IDSach equals s.ID
+                                 join cd in data.CHUDEs on s.IDChuDe equals cd.ID
+                                 where s.TrangThai != "Đặt"
+
+                                 select new
+                                 {
+                                     TenSach = s.TenSach,
+                                     ChuDe = cd.TenChuDe,
+                                     MaSach = s.ID,
+                                 });
+                    return View("DatSach", query.ToList());
+                }
+                else
+                {
+                    if (tensach != "")
+                    {
+
+                        var query = (from tt in data.THONGTINMUONTRAs
+                                     join s in data.SACHes on tt.IDSach equals s.ID
+                                     join cd in data.CHUDEs on s.IDChuDe equals cd.ID
+                                     where (s.TrangThai != "Đặt" && s.TenSach == tensach)
+
+                                     select new
+                                     {
+                                         TenSach = s.TenSach,
+                                         ChuDe = cd.TenChuDe,
+                                         MaSach = s.ID,
+
+                                     });
+                        return View("DatSach", query.ToList());
+                    }
+
+                    if (chude != "")
+                    {
+                        var query = (from tt in data.THONGTINMUONTRAs
+                                     join s in data.SACHes on tt.IDSach equals s.ID
+                                     join cd in data.CHUDEs on s.IDChuDe equals cd.ID
+                                     where (s.TrangThai != "Đặt" && cd.TenChuDe == chude)
+
+                                     select new
+                                     {
+                                         TenSach = s.TenSach,
+                                         ChuDe = cd.TenChuDe,
+                                         MaSach = s.ID,
+                                     });
+                        return View("DatSach", query.ToList());
+                    }
+                    if (chude != "" && tensach != "")
+                    {
+                        var query = (from tt in data.THONGTINMUONTRAs
+                                     join s in data.SACHes on tt.IDSach equals s.ID
+                                     join cd in data.CHUDEs on s.IDChuDe equals cd.ID
+                                     where (s.TrangThai != "Đặt" && cd.TenChuDe == chude)
+                                     select new
+                                     {
+                                         TenSach = s.TenSach,
+                                         ChuDe = cd.TenChuDe,
+                                         MaSach = s.ID,
+                                     });
+                        return View("DatSach", query.ToList());
+                    }
+                }
+            }
+            return View("DatSach");
+        }
+
+        public ActionResult GiaHanMuonSach()
+        {
+            int id = 1;
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            var result = (from p in data.THONGTINMUONTRAs
+                          join s in data.SACHes on p.IDSach equals s.ID
+                          where p.IDDocGia == id
+                          select new
+                          {
+                              MaSach = s.ID,
+                              TenSach = s.TenSach,
+                              Tap = s.Tap,
+                              Cuon = s.Cuon,
+                              ThgMuon = p.NgayMuon,
+                              ThgTra = p.HanTra,
+                          });
+            return View("GiaHanMuonSach", result.ToList());
+        }
+
+        public ActionResult saveDatSach(int id)
+        {
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            DateTime now = DateTime.Today;
+
+            string str = Request.Params["btn2"];
+            int idDocGia = 1;
+            //int idDocGia = int.Parse(f["IDDocGia"]);
+            var temp = (from tt in data.THONGTINMUONTRAs
+                        where (tt.IDDocGia == idDocGia && tt.NgayTra == null)
+                        group tt.IDDocGia by tt.IDDocGia into t
+                        select new
+                        {
+                            // ID = tt.IDSach, 
+                            ID = t.Key,
+                            count = t.Count()
+                        }).First();
+            if (temp.count >= 2)
+            {
+                // đã đủ số sách mượn                  
+                TempData["datsach"] = "2";
+                return RedirectToAction("DatSach");
+            }
+            else
+                if (temp.count == 1)
+                    TempData["datsach"] = "1";
+
+
+            THONGTINMUONTRA info = new THONGTINMUONTRA();
+            info.IDDocGia = idDocGia;
+            info.IDSach = id;
+            info.NgayMuon = DateTime.Now;
+            info.HanTra = DateTime.Now.AddDays(7);
+            data.THONGTINMUONTRAs.Add(info);
+            data.SaveChanges();
+            return RedirectToAction("DatSach");
+        }
+
+        public ActionResult saveGiaHan(int id)
+        {
+            string str = Request.Params["btn1"];
+            TempData["giahan"] = "1";
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            THONGTINMUONTRA query = (from tt in data.THONGTINMUONTRAs where tt.ID == id select tt).First();
+            DateTime temp = DateTime.Parse(query.HanTra.ToString());
+            query.GiaHan = true;
+            query.HanTra = temp.AddDays(7);
+            TempData["giahan"] = "0";
+            data.SaveChanges();
+            return RedirectToAction("GiaHanMuonSach");
+        }
+
+        public ActionResult ChinhSuaDatMuon()
+        {
+            int id = 1;
+            var query = (from ls in data.THONGTINMUONTRAs
+                         join s in data.SACHes on ls.IDSach equals s.ID
+                         where ls.ID == id
+                         select new
+                         {
+                             MaSach = ls.IDSach,
+                             TenSach = s.TenSach,
+                             ChuDe = s.IDChuDe,
+                         });
+            return View("ChinhSuaDatMuon", query.ToList());
+        }
+
+        public ActionResult saveChinhSuaDatMuon(FormCollection f, string Check1)
+        {
+            string str = Request.Params["btn3"];
+            if (str == "Lưu")
+            {
+                var id = int.Parse(@Request["ID"].ToString());
+                THONGTINMUONTRA query = (from ls in data.THONGTINMUONTRAs where ls.ID == id select ls).First();
+
+                query.NgayMuon = DateTime.Parse(@Request["ThoiGianMuon"].ToString());
+                data.SaveChanges();
+            }
+            return RedirectToAction("ChinhSuaDatMuon");
+        }
+
+        public ActionResult XoaDatMuon(int id)
+        {
+            QuanLyThuVienEntities data = new QuanLyThuVienEntities();
+            THONGTINMUONTRA result = (from p in data.THONGTINMUONTRAs
+                                      where p.ID == id
+                                      select p).First();
+            data.THONGTINMUONTRAs.Remove(result);
+            data.SaveChanges();
+            return RedirectToAction("ChinhSuaDatMuon");
         }
     }
 }

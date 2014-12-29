@@ -141,10 +141,10 @@ namespace QuanLiThuVien.Controllers
                 string[] CatChuoi2 = @Request["ThoiGianTra"].Split('/');
                 string NgayMuon = CatChuoi1[1] + "/" + CatChuoi1[0] + "/" + CatChuoi1[2];
                 string NgayTra = CatChuoi2[1] + "/" + CatChuoi2[0] + "/" + CatChuoi2[2];
+
                 muontra.NgayMuon = DateTime.Parse(NgayMuon.ToString());
-                muontra.NgayTra = DateTime.Parse(NgayTra.ToString());
-                //if(DateTime.Compare(muontra.NgayMuon, muontra.NgayTra).Equals(1) || DateTime.Compare(DateTime.Today,muontra.NgayMuon).Equals(1))
-                if (muontra.NgayMuon > muontra.NgayTra || DateTime.Today > muontra.NgayMuon)
+                muontra.HanTra = DateTime.Parse(NgayTra.ToString());
+                if (muontra.NgayMuon > muontra.HanTra || DateTime.Today > muontra.NgayMuon)
                 {
                     TempData["insert"] = "2";
                     return RedirectToAction("BorrowedBook");

@@ -1,0 +1,65 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "GiaHanMuonSach";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@if (TempData["giahan"] != null)
+    {
+        if (TempData["giahan"] == "0")
+        {
+            <script type="text/javascript">
+                alert('Gia hạn thành công');
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+                alert('Gia hạn thất bại');
+            </script>
+
+        }
+    }
+<h2>CHI TIET SACH</h2>
+   
+    <div id="left">
+        <p>
+            <table class="table table-bordered" style="margin-top:45px">
+                <tr>
+                    <th> STT </th>
+                    <th> Tên Sách </th>
+                    <th> Tập</th>
+                    <th> Cuốn </th>
+                    <th> Ngày mượn </th>
+                    <th> Ngày trả </th>
+                    <th> Gia hạn </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    var Id = item.GetType().GetProperty("MaSach").GetValue(item, null);
+                    var TenSach = item.GetType().GetProperty("TenSach").GetValue(item, null);
+                    var Tap = item.GetType().GetProperty("Tap").GetValue(item, null);
+                    var Cuon = item.GetType().GetProperty("Cuon").GetValue(item, null);
+                    var ThgMuon = item.GetType().GetProperty("ThgMuon").GetValue(item, null);
+                    var ThgTra = item.GetType().GetProperty("ThgTra").GetValue(item, null);
+                    <input type="hidden" name="masach" value="@Id" />
+                    <tr>
+                        <td>  </td>
+                        <td> @TenSach </td>
+                        <td> @Tap </td>
+                        <td> @Cuon </td>
+                        <td> @ThgMuon </td>
+                        <td> @ThgTra </td>
+                        <td>@Html.ActionLink("Gia Hạn", "saveGiaHan", new { id = @Id })</td>
+                    </tr>
+                }
+
+            </table>
+        <p>
+            <input type="submit" name="btn1" value="Lưu" />
+            <input type="submit" name="btn1" value="Thoát" />
+        </p>
+    </div>
+<div class="clear">
+</div>
+
+

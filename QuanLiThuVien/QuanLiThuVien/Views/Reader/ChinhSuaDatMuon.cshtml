@@ -1,0 +1,57 @@
+﻿@model  dynamic
+@{
+    ViewBag.Title = "ChinhSuaDatMuon";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@if (@TempData["chinhdatsach"] != null)
+{
+    if (TempData["chinhdatsach"] == "0")
+    {
+        <script type="text/javascript">
+            alert('Cập nhật thành công');
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            alert('Cập nhật thất bại');
+        </script>
+
+    }
+}
+
+<h2>CHỈNH SỬA ĐẶT MƯỢN</h2>
+    
+    <div id="left">
+        <p>
+            <table class="table table-bordered" style="align-items:center">
+                <tr>
+                    <th> STT </th>
+                    <th> Tên Sách </th>
+                    <th> Chủ Đề </th>
+                    <th> Hủy </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    var masach = item.GetType().GetProperty("MaSach").GetValue(item, null);
+                    var tensach = item.GetType().GetProperty("TenSach").GetValue(item, null);
+                    var chude = item.GetType().GetProperty("ChuDe").GetValue(item, null);
+                    //var loai = item.GetType().GetProperty("Loai").GetValue(item, null);
+                    <input type="hidden" name="masach" value="@masach" />
+                    <tr>
+                        <td>  </td>
+                        <td> @tensach </td> 
+                        <td> @chude </td>
+                        <td> @Html.ActionLink("Hủy ", "XoaDatMuon", new { id = @masach }, new { onclick = "return confirm('Bạn chắc chắn muốn xóa?')" }) </td>
+                        @*<td> <input type='text' class="form-control" id='ID_NgayMuon' name="NgayMuon" placeholder="ngày/tháng/năm" /></td>*@
+                    </tr>
+                }
+            </table>
+        <p>
+            <input type="submit" name="btn3" value="Lưu" />
+            <input type="submit" name="btn3" value="Thoát" />
+        </p>
+    </div>
+
+<div class="clear">
+</div>

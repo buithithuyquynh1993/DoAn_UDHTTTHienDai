@@ -1,0 +1,91 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "DatSach";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>ĐẶT SÁCH</h2>
+@if (@TempData["datsach"] != null)
+{
+    if (TempData["datsach"] == "2")
+    {
+        <script type="text/javascript">
+            alert('Đã mượn đủ số lượng sách');
+        </script>
+    }
+    else
+    {
+        if (TempData["datsach"] == "0")
+        {
+            <script type="text/javascript">
+                alert('Chưa chọn sách');
+            </script>
+        }
+        else
+        {
+            if (TempData["datsach"] == "1")
+            {
+                <script type="text/javascript">
+                    alert('Đặt sách thành công');
+                </script>
+            }
+        }
+    }
+}
+
+<div id="left">
+
+    <form role="form" style="padding: 10px">
+        <div class="form-group" style="margin-bottom:10px">
+            <label for="inputPassword3" class="col-sm-2 control-label">Tên sách: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="ten"name="tensach"  placeholder="Tên sách"> 
+            </div>
+        </div><br /><br />
+        <div class="form-group" style="margin-bottom:10px">
+            <label for="inputPassword3" class="col-sm-2 control-label">Chủ đề: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="chude" name = "chude" placeholder="Chủ đề">
+            </div>
+        </div><br /><br />
+        <p>
+            <input type="submit" name="btn2" value="Tìm Kiếm" />
+        </p><br><br>
+    </form>
+    @if (Model == null)
+    {
+        <p> không có kết quả nào được tìm thấy </p>
+        return;
+    }
+    <form>
+        <p>
+            <table class="table table-bordered" style="align-items:center">
+                <tr>
+                    <th> STT </th>
+                    <th> Tên Sách </th>
+                    <th> Chủ Đề </th>
+                    <th> chi tiết </th>
+                    <th> Đặt sách </th>
+
+                </tr>
+
+                @foreach (var item in Model)
+                { // chỉ lấy được giả trị ở trong thẻ input thoi, chu k lay dc o day ha? muôn láy phải đặt nó trong thẻ inpur
+                    var masach = item.GetType().GetProperty("MaSach").GetValue(item, null);
+                    var tensach = item.GetType().GetProperty("TenSach").GetValue(item, null);
+                    var chude = item.GetType().GetProperty("ChuDe").GetValue(item, null);
+                    <input type="hidden" name="masach" value="@masach">
+                    <tr>
+                        <td> @masach </td>
+                        <td> @tensach </td>
+                        <td> @chude </td>
+                        <td></td>
+                        <!--<td> Html.CheckBoxFor(x => item.IsSelected) </td> -->
+                        <td> @Html.ActionLink("Đặt Sách", "saveDatSach", new { id = @masach })</td>
+                    </tr>
+                }
+            </table>
+            <input type="submit" name="btn2" value="Đặt Sách" />
+    </form>  <br /> <br />
+<div class="clear">
+</div>

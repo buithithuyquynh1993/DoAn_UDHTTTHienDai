@@ -308,6 +308,8 @@
     <Content Include="Content\css\table_style.css" />
     <Content Include="Content\css\templatemo_misc.css" />
     <Content Include="Content\css\templatemo_style.css" />
+    <Content Include="Content\fonts\flexslider-icon.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\about_1.jpg" />
     <Content Include="Content\images\about_2.jpg" />
     <Content Include="Content\images\AjaxLoader.gif" />
@@ -368,11 +370,9 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Content\fonts\flexslider-icon.eot" />
-    <Content Include="Content\fonts\flexslider-icon.svg" />
     <Content Include="Content\fonts\flexslider-icon.ttf" />
     <Content Include="Content\fonts\flexslider-icon.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
@@ -481,6 +481,9 @@
     <Content Include="Views\Reader\BorrowedRoom.cshtml" />
     <Content Include="Views\Reader\GetListBorrowedRoom.cshtml" />
     <Content Include="Views\Reader\UpdateBrrowedRoom.cshtml" />
+    <Content Include="Views\Reader\ChinhSuaDatMuon.cshtml" />
+    <Content Include="Views\Reader\DatSach.cshtml" />
+    <Content Include="Views\Reader\GiaHanMuonSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
