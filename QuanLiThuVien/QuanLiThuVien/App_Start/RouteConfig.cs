@@ -16,7 +16,7 @@ namespace QuanLiThuVien
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Reader", action = "Edit", id = UrlParameter.Optional }
+                defaults: new { controller = "Public", action = "GetListBorrowedRoom", id = UrlParameter.Optional }
             );
         }
     }

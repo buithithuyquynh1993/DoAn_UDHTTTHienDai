@@ -8,11 +8,18 @@
 
 <div class="container">
     <div class="row" style="height:30px;"></div>
+    <div class="row"></div>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1 style="font-size:25px" padding-bottom="30px;"> DANH SÁCH LỚP TẬP HUẤN </h1>
+            <h1 style="font-size:25px" padding-bottom="30px;"> CÁC LỚP TẬP HUẤN CÓ THỂ ĐĂNG KÍ </h1>
         </div>
+    </div>
+    <div class="row">
+        <div>
+
+        </div>
+         
     </div>
     <div class="row">
         <div class="col-md-1"> </div>
@@ -32,7 +39,9 @@
                         <th>
                             Thời gian
                         </th>
-                        <th></th>
+                        <th>
+                            Đăng kí
+                        </th>
                     </tr>
 
                     @foreach (var item in Model)
@@ -51,12 +60,20 @@
                                 @Html.DisplayFor(modelItem => item.ThoiGian)
                             </td>
                             <td>
-                                @Html.ActionLink("Xem chi tiết", "ClassDetail", new { id = item.ID })
+                                @Html.CheckBoxFor(modelItem => item.isSelected)
+                                @*@@Html.ActionLink("Xem chi tiết", "ClassDetail", new { id = item.ID })*@
                             </td>
                         </tr>
                     }
 
                 </table>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-3">
+                <input class="btn btn-primary" type="submit" value="Đăng kí" />
             </div>
         </div>
     </div>

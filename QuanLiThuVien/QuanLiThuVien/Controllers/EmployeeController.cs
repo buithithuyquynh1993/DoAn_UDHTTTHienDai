@@ -69,7 +69,7 @@ namespace QuanLiThuVien.Controllers
                     var query = (from ls in data.LICHSUMUONPHONGs
                                  join phong in data.PHONGs on ls.IDPhong equals phong.ID
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                                 where ls.ThoiGianMuon > now
+                                // where ls.ThoiGianMuon > now
                                  select new
                                  {
                                      IDDocGia = docgia.ID,
@@ -295,7 +295,6 @@ namespace QuanLiThuVien.Controllers
             try
             {
                 proc_layTTMuonSach_Result KQ = new proc_layTTMuonSach_Result();
-                //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
                 String maDocGia = Request.Form["madocgia"];
                 String maSach = Request.Form["masach"];
                 var query = data.proc_layTTMuonSach(maSach);
@@ -304,32 +303,29 @@ namespace QuanLiThuVien.Controllers
             }
             catch (Exception)
             {
-                return View("TraSach", null);
+                return View();
             }
         }
-        public bool thuchienTraSach(FormCollection f){
+        public ActionResult thuchienTraSach(FormCollection f)
+        {
             try
             {
                 int? ID = int.Parse(f["IDPhieuMuon"]);
                 int phat = int.Parse(f["tongphiphat"]);
                 String lido = (f["lidophat"]);
                 
-                //QuanLyThuVienEntities data = new QuanLyThuVienEntities();
                 THONGTINMUONTRA result = (from tt in data.THONGTINMUONTRAs where tt.ID == ID select tt).First();
                 result.NgayTra = DateTime.Now;
-                //if (phat != null)
-                //{
-                    BANPHAT bphat = new BANPHAT();
-                    bphat.IDThongTinMuonTra = ID;
-                    bphat.PhiPhat = phat;
-                    bphat.LiDo = lido;
-                    data.BANPHATs.Add(bphat);
-                //}
+                BANPHAT bphat = new BANPHAT();
+                bphat.IDThongTinMuonTra = ID;
+                bphat.PhiPhat = phat;
+                bphat.LiDo = lido;
+                data.BANPHATs.Add(bphat);
                 data.SaveChanges();
-                return true;
+                return View("TraSach");
             }
             catch (Exception)
-            { return false; }
+            {return View("TraSach"); }
         }
         public ActionResult TraSach()
         {
@@ -347,7 +343,7 @@ namespace QuanLiThuVien.Controllers
         }
 
         [HttpPost]
-        public bool xacnhanDaXemGopY(FormCollection f)
+        public ActionResult xacnhanDaXemGopY(FormCollection f)
         {
             try
             {
@@ -362,10 +358,10 @@ namespace QuanLiThuVien.Controllers
                     data.SaveChanges();
 
                 }
-                return true;
+                return RedirectToAction("xemDSPhieuGopY");
             }
             catch (Exception)
-            { return false; }
+            { return RedirectToAction("xemDSPhieuGopY"); }
             
         }
         #endregion

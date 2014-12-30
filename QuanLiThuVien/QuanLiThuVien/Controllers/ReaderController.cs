@@ -414,7 +414,7 @@ namespace QuanLiThuVien.Controllers
             DateTime now = DateTime.Today;
 
             string str = Request.Params["btn2"];
-            int idDocGia = 1;
+            int idDocGia = 8;
             //int idDocGia = int.Parse(f["IDDocGia"]);
             var temp = (from tt in data.THONGTINMUONTRAs
                         where (tt.IDDocGia == idDocGia && tt.NgayTra == null)

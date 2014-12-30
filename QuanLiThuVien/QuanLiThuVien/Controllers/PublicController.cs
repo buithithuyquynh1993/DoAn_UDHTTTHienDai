@@ -103,7 +103,7 @@ namespace QuanLiThuVien.Controllers
                     var query = (from ls in data.LICHSUMUONPHONGs
                                  join phong in data.PHONGs on ls.IDPhong equals phong.ID
                                  join docgia in data.DOCGIAs on ls.IDDocGia equals docgia.ID
-                                 where ls.ThoiGianMuon > now
+                                 //where ls.ThoiGianMuon > now
                                  select new
                                  {
                                      IDDocGia = docgia.ID,

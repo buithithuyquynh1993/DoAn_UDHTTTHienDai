@@ -34,6 +34,8 @@ public partial class LOPTAPHUAN
 
     public Nullable<System.TimeSpan> ThoiGian { get; set; }
 
+    public bool isSelected { get; set; }
+
 
 
     public virtual ICollection<NGUOIDANGKY> NGUOIDANGKies { get; set; }

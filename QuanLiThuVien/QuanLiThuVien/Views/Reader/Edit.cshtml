@@ -1,20 +1,20 @@
-﻿@model QLTV.Models.Temp
+﻿@model QuanLiThuVien.Models.Temp
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2></h2>
 
 @using (Html.BeginForm("update", "XemChiTietDatSach", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Temp</h4>
+     
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.stt)
+        @Html.HiddenFor(model => Model.stt)
 
        
         <div class="form-group">
